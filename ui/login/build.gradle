@@ -17,7 +17,9 @@ android {
     compileSdk 31
 
     defaultConfig {
-        applicationId "com.datangic.login"
+        if (config.isDebug) {
+            applicationId "com.datangic.login"
+        }
         minSdk 23
         targetSdk 31
         versionCode 1
@@ -33,6 +35,9 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
         }
     }
     compileOptions {
@@ -65,15 +70,19 @@ android {
 
 dependencies {
 
-    kapt config.kapt.arouter
-    implementation config.others.arouter
     implementation 'androidx.core:core-ktx:1.7.0'
-    implementation "androidx.compose.ui:ui:$compose_version"
-    implementation "androidx.compose.material:material:$compose_version"
-    implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
-    implementation 'androidx.activity:activity-compose:1.3.1'
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
     implementation config.koin.core
+
+    implementation project(":ui:components")
+    implementation project(":libs:common")
+    implementation project(":libs:base")
+
+//    implementation config.others.arouter
+//    implementation "com.alibaba:arouter-annptation:1.0.6"
+//    implementation project(":arouter-api")
+    kapt config.kapt.arouter
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'

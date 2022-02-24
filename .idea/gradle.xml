@@ -12,8 +12,12 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/libs" />
+            <option value="$PROJECT_DIR$/libs/api" />
             <option value="$PROJECT_DIR$/libs/base" />
+            <option value="$PROJECT_DIR$/libs/common" />
+            <option value="$PROJECT_DIR$/libs/network" />
             <option value="$PROJECT_DIR$/ui" />
+            <option value="$PROJECT_DIR$/ui/components" />
             <option value="$PROJECT_DIR$/ui/login" />
           </set>
         </option>

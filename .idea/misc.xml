@@ -4,6 +4,35 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../layout/compose-model-1643272005195.xml" value="1.5" />
+        <entry key="../../../../../layout/compose-model-1644476985688.xml" value="0.3888888888888889" />
+        <entry key="../../../../../layout/compose-model-1644482578632.xml" value="0.625" />
+        <entry key="../../../../../layout/compose-model-1644485584966.xml" value="0.5" />
+        <entry key="../../../../../layout/compose-model-1644485815801.xml" value="0.49074074074074076" />
+        <entry key="../../../../../layout/compose-model-1644495486380.xml" value="0.25" />
+        <entry key="../../../../../layout/compose-model-1644542648367.xml" value="0.4823321554770318" />
+        <entry key="../../../../../layout/compose-model-1644563748214.xml" value="0.36951013513513514" />
+        <entry key="../../../../../layout/compose-model-1644802566224.xml" value="0.1" />
+        <entry key="../../../../../layout/compose-model-1644802580944.xml" value="0.36951013513513514" />
+        <entry key="../../../../../layout/compose-model-1644818822562.xml" value="0.36951013513513514" />
+        <entry key="../../../../../layout/compose-model-1644820191936.xml" value="0.36951013513513514" />
+        <entry key="../../../../../layout/compose-model-1644829178108.xml" value="0.625" />
+        <entry key="../../../../../layout/compose-model-1644829806919.xml" value="0.5" />
+        <entry key="../../../../../layout/compose-model-1644841726176.xml" value="0.4988221436984688" />
+        <entry key="../../../../../layout/compose-model-1644841794409.xml" value="0.1" />
+        <entry key="../../../../../layout/compose-model-1644841823520.xml" value="0.5" />
+        <entry key="../../../../../layout/compose-model-1644841943538.xml" value="0.7588424437299035" />
+        <entry key="../../../../../layout/compose-model-1644894056498.xml" value="0.3685185185185185" />
+        <entry key="../../../../../layout/compose-model-1645094901796.xml" value="0.41203703703703703" />
+        <entry key="../../../../../layout/compose-model-1645147827167.xml" value="0.4981481481481482" />
+        <entry key="../../../../../layout/compose-model-1645150542683.xml" value="0.36951013513513514" />
+        <entry key="../../../../../layout/compose-model-1645152918463.xml" value="1.0" />
+        <entry key="../../../../../layout/compose-model-1645180437842.xml" value="0.165" />
+        <entry key="../../../../../layout/compose-model-1645181897714.xml" value="0.5166666666666667" />
+        <entry key="../../../../../layout/compose-model-1645268314219.xml" value="0.24722222222222223" />
+        <entry key="../../../../../layout/compose-model-1645269943478.xml" value="0.13518518518518519" />
+        <entry key="../../../../../layout/compose-model-1645269945570.xml" value="0.49074074074074076" />
+        <entry key="../../../../../layout/compose-model-1645272684218.xml" value="0.20462962962962963" />
+        <entry key="libs/themes/src/main/res/drawable/ic_security_24.xml" value="0.2005" />
       </map>
     </option>
   </component>
@@ -12,5 +41,10 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="com.itcodebox.notebooks.projectservice.ProjectUIState">
+    <option name="selectedNotebookId" value="1" />
+    <option name="selectedChapterId" value="1" />
+    <option name="selectedNoteId" value="1" />
   </component>
 </project>

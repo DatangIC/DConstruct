@@ -15,4 +15,8 @@ dependencyResolutionManagement {
 rootProject.name = "DConstruct"
 include ':app'
 include ':ui:login'
+include ':ui:components'
 include ':libs:base'
+include ':libs:common'
+include ':libs:network'
+include ':libs:api'

@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">login</string>
+    <string name="error_username">Not a valid username</string>
+    <string name="error_password">Password must be >5 characters</string>
+    <string name="error_login">Login failed</string>
+    <string name="error_phone_title">Phone number is Wrong</string>
+    <string name="error_phone_explain">Not a valid phone number</string>
 </resources>

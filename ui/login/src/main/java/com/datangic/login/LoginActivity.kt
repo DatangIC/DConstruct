@@ -6,37 +6,37 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.datangic.login.ui.theme.DConstructTheme
+import com.datangic.components.components.TipsDialog
+import com.datangic.components.themes.LoginTheme
+import com.datangic.libs.base.LOGIN_ACTIVITY
+import org.koin.androidx.compose.get
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
-@Route(path = "login/activity")
+@Route(path = LOGIN_ACTIVITY)
 class LoginActivity : ComponentActivity() {
+
+    private val mViewModel: LoginViewModel by viewModel()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            DConstructTheme {
+            LoginTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
-                    Greeting("Android")
+                    if (mViewModel.state.mDialogError.isShow()) {
+                        TipsDialog(mViewModel.state.mDialogError, onDismiss = { mViewModel.state.username.value = "" })
+                    }
+                    LoginPage(mViewModel)
                 }
             }
         }
     }
-}
 
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    DConstructTheme {
-        Greeting("Android")
+    override fun onBackPressed() {
+        if (mViewModel.onBackPressed())
+            super.onBackPressed()
     }
 }
+

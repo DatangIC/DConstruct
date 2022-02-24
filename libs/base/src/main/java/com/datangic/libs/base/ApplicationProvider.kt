@@ -6,11 +6,18 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import com.datangic.common.file.SharedPreferencesHelper
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import org.koin.android.ext.koin.androidContext
+import org.koin.android.ext.koin.androidFileProperties
+import org.koin.core.context.startKoin
 
 
 abstract class ApplicationProvider : Application() {
 
-    private val moduleList = mutableListOf<IApplication>()
+    protected val moduleList = mutableListOf<IApplication>()
 
     @SuppressLint("StaticFieldLeak")
     companion object {
@@ -23,9 +30,17 @@ abstract class ApplicationProvider : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        moduleList.forEach {
-            it.onCreate(this)
+        GlobalScope.launch(Dispatchers.IO) {
+            startKoin {
+                androidContext(this@ApplicationProvider)
+                androidFileProperties()
+                modules()
+            }
+            moduleList.forEach {
+                it.onCreate(this@ApplicationProvider)
+            }
         }
+
         registerActivityLifecycleCallbacks(mCallback)
     }
 
