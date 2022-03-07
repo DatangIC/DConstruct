@@ -13,25 +13,31 @@ object LoginState {
     }
 
     val loginStep = mutableStateOf(LoginStep.START_LOGIN)
-    val username = mutableStateOf("")
+    val email = mutableStateOf("")
+    val userPhone = mutableStateOf("")
     val password = mutableStateOf("")
     val verifyCode = mutableStateOf("")
     val mDialogError = TipsDialogState()
+    val mLoadingDialog = mutableStateOf(false)
 
     val loginFormState = mutableStateOf(LoginFormState())
     val loginResult = mutableStateOf(LoginResult())
 
-    fun loginChange() {
+    fun showLoading(boolean: Boolean) {
+        mLoadingDialog.value = boolean
+    }
+
+    fun stateChange(isLogin: Boolean = false) {
         when (loginStep.value) {
             LoginStep.START_LOGIN, LoginStep.INPUT_PHONE_DONE -> {
-                loginStep.value = LoginStep.INPUT_USER
+                loginStep.value = if (isLogin) LoginStep.INPUT_USER else LoginStep.START_LOGIN
             }
             LoginStep.INPUT_USER, LoginStep.INPUT_USER_DONE -> {
-                loginStep.value = LoginStep.START_LOGIN
+                loginStep.value = if (isLogin) LoginStep.START_LOGIN else LoginStep.INPUT_USER
             }
             else -> loginStep.value = LoginStep.START_LOGIN
         }
-        username.value = ""
+        userPhone.value = ""
         password.value = ""
         verifyCode.value = ""
     }

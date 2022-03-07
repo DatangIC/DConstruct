@@ -13,11 +13,8 @@ import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -88,7 +85,7 @@ fun LoginPage(
                 .constrainAs(emailIndicator) {
                     top.linkTo(titleIndicator.bottom)
                 },
-            onClick = { viewModel.state.loginChange() },
+            onClick = { viewModel.state.stateChange(true) },
         )
         AlphaText(ContentAlpha.disabled) {
             Text(
@@ -128,8 +125,8 @@ fun InputPhone(mViewModel: LoginViewModel, modifier: Modifier = Modifier) {
             color = MaterialTheme.colors.primary
         )
         TextInput(
-            text = mViewModel.state.username.value,
-            onValueChange = { mViewModel.state.username.value = it },
+            text = mViewModel.state.userPhone.value,
+            onValueChange = { mViewModel.state.userPhone.value = it },
             clear = mViewModel.state.loginStep.value == LoginState.LoginStep.START_LOGIN,
             label = stringResource(id = R.string.uphone),
             keyboardActions = KeyboardActions() {
@@ -162,6 +159,9 @@ fun InputPhone(mViewModel: LoginViewModel, modifier: Modifier = Modifier) {
                         contentDescription = stringResource(id = R.string.verification_code)
                     )
                 },
+                keyboardActions = KeyboardActions() {
+                    mViewModel.goLogin()
+                },
                 imeAction = ImeAction.Go,
                 keyboardType = KeyboardType.Number,
                 modifier = Modifier.fillMaxWidth(),
@@ -184,8 +184,8 @@ fun InputUser(mViewModel: LoginViewModel, modifier: Modifier = Modifier) {
             color = MaterialTheme.colors.primary
         )
         TextInput(
-            text = mViewModel.state.username.value,
-            onValueChange = { mViewModel.state.username.value = it },
+            text = mViewModel.state.email.value,
+            onValueChange = { mViewModel.state.email.value = it },
             clear = mViewModel.state.loginStep.value == LoginState.LoginStep.INPUT_USER,
             label = stringResource(id = R.string.email),
             leadingIcon = { Icon(imageVector = Icons.Filled.Email, contentDescription = "Email") },

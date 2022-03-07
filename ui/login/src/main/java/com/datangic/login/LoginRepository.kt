@@ -1,33 +1,50 @@
 package com.datangic.login
 
-import android.util.Log
-import com.datangic.login.data.LoggedInUser
+import androidx.lifecycle.LiveData
+import com.datangic.api.login.*
+import com.datangic.network.ResponseState
+import io.reactivex.rxjava3.core.Observable
 
 class LoginRepository(private val dataSource: LoginDataSource) {
 
-    var user: LoggedInUser? = null
-        private set
+    private val mLoginApiResource = LoginApiResource(api = LoginApi.create())
 
-    val isLoggedIn: Boolean
-        get() = user != null
+    fun getVerifyCode(
+        phone: String,
+        type: LoginApi.LoginType = LoginApi.LoginType.RegisterORLogin
+    ): Observable<ResponseState<VerifyCodeResult>> = mLoginApiResource.getVerifyCode(phone, type)
 
-    init {
-        user = null
-    }
+    fun getVerifyCode2(
+        phone: String,
+        type: LoginApi.LoginType = LoginApi.LoginType.RegisterORLogin
+    ): LiveData<ResponseState<VerifyCodeResult>> = mLoginApiResource.getVerifyCode2Live(phone, type)
 
-    fun login(username: String, password: String): Result<LoggedInUser> {
-        val result = dataSource.login(username, password)
-        Log.e("TAG", "username=$username\t password=$password")
-        if (result.isSuccess) {
-            setLoggedInUser(result.getOrDefault(LoggedInUser("", "")))
+
+    // 登陆&注册
+    fun login(
+        email: String = "",
+        username: String = "",
+        password: String = "",
+        code: String = ""
+    ): Observable<ResponseState<LoginDataResult>> {
+
+        return mLoginApiResource.loginOrRegister(
+            LoginData(
+                email = email,
+                userPhone = username,
+                userPassword = password,
+                code = code
+            )
+        ).map {
+            return@map it
         }
-        return result
     }
 
-    private fun setLoggedInUser(loggedInUser: LoggedInUser) {
-        this.user = loggedInUser
-        // If user credentials will be cached in local storage, it is recommended it be encrypted
-        // @see https://developer.android.com/training/articles/keystore
-    }
+    // updateUser
+    fun updateUser(userData: UserData): Observable<ResponseState<UserData>> = mLoginApiResource.updateUser(userData)
+
+    // LoginOut
+    fun loginOut(): Observable<ResponseState<String>> = mLoginApiResource.loginOut()
+
 
 }
