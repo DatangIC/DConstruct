@@ -1,6 +1,6 @@
 package com.datangic.network
 
-import android.app.Application
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Build
@@ -8,12 +8,13 @@ import android.webkit.CookieManager
 import android.webkit.CookieSyncManager
 import okhttp3.Cookie
 
+@SuppressLint("StaticFieldLeak")
 internal object SharePrefer {
     val KEY_DOMAIN = "domain"
     var sharePreferences: SharedPreferences? = null
-    var application: Application? = null
-    fun init(application: Application) {
-        sharePreferences = application.getSharedPreferences("cookies", Context.MODE_PRIVATE)
+    var context: Context? = null
+    fun init(context: Context) {
+        sharePreferences = context.getSharedPreferences("cookies", Context.MODE_PRIVATE)
     }
 
     fun put(key: String, value: String) {
@@ -45,7 +46,7 @@ internal object SharePrefer {
             editor.apply()
             put(KEY_DOMAIN, domain ?: "www.datangic.com")
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
-                application?.let {
+                context?.let {
                     CookieSyncManager.createInstance(it)
                 }
             }

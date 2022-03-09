@@ -6,6 +6,7 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import com.datangic.network.NetworkApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -30,6 +31,7 @@ abstract class ApplicationProvider : Application() {
     override fun onCreate() {
         super.onCreate()
         GlobalScope.launch(Dispatchers.IO) {
+            NetworkApi.init(this@ApplicationProvider)
             startKoin {
                 androidContext(this@ApplicationProvider)
                 androidFileProperties()
@@ -39,7 +41,6 @@ abstract class ApplicationProvider : Application() {
                 it.onCreate(this@ApplicationProvider)
             }
         }
-
         registerActivityLifecycleCallbacks(mCallback)
     }
 

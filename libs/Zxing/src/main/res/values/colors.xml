@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="color_mask">#55000000</color>
+    <color name="color_laser">?attr/colorPrimary</color>
+    <color name="color_text">#DAFFFFFF</color>
+    <color name="color_primary">?attr/colorPrimary</color>
+</resources>

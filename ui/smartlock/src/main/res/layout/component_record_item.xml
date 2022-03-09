@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="title"
+            type="java.lang.Object" />
+
+        <variable
+            name="time"
+            type="String" />
+
+        <variable
+            name="isError"
+            type="boolean" />
+
+        <variable
+            name="onItemClick"
+            type="View.OnClickListener" />
+
+        <variable
+            name="itemData"
+            type="com.datangic.data.database.view.ViewDeviceLog" />
+    </data>
+
+    <!--    <com.datangic.swipe3.SwipeLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:background="@color/background_2"-->
+    <!--        app:delete="@{isDelete}"-->
+    <!--        app:ios="false"-->
+    <!--        app:leftSwipe="false"-->
+    <!--        app:outsideCancel="false"-->
+    <!--        app:swipeEnable="false">-->
+
+    <!--    android:onClick="@{onItemClick}"-->
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_75dp"
+        android:background="@drawable/ripple_background_2"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{onItemClick}"
+        android:paddingStart="@dimen/margin_18dp"
+        android:paddingTop="@dimen/margin_10dp"
+        tools:ignore="RtlSymmetry">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/record_l"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/margin_32dp"
+            app:layout_constraintLeft_toRightOf="@id/record_selected"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/record_icon"
+                android:layout_width="@dimen/margin_28dp"
+                android:layout_height="@dimen/margin_28dp"
+                android:src="@drawable/ic_tips"
+                android:tint="@{isError?@color/red:@color/color_on_surface}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                tools:ignore="MissingConstraints" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/record_title"
+                style="@style/AppTheme.TextAppearance.Subtitle1"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/margin_16dp"
+                android:hint="@string/title_record"
+                android:text="@{title}"
+                android:textColor="@{isError?@color/red:@color/color_on_surface}"
+                app:layout_constraintLeft_toRightOf="@id/record_icon" />
+
+            <com.google.android.material.textview.MaterialTextView
+                style="@style/AppTheme.TextAppearance.Subtitle2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end"
+                android:layout_marginEnd="@dimen/margin_20dp"
+                android:hint="@string/dead_time"
+                android:text="@{time}"
+                android:textSize="@dimen/text_size_12sp"
+                app:layout_constraintRight_toRightOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/record_tips"
+            style="@style/AppTheme.TextAppearance.Subtitle2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="start|center_horizontal"
+            android:paddingHorizontal="@dimen/margin_6dp"
+            android:paddingBottom="@dimen/margin_4dp"
+            android:textSize="@dimen/text_size_12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/record_selected" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="@dimen/margin_6dp"
+            android:background="@color/divider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/record_tips"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/record_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:onClick="@{onItemClick}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!--                    android:onClick="@{onItemClick}"-->
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <!--        <androidx.constraintlayout.widget.ConstraintLayout-->
+    <!--            android:layout_width="wrap_content"-->
+    <!--            android:layout_height="@dimen/height_75dp"-->
+    <!--            android:paddingStart="@dimen/margin_16dp"-->
+    <!--            app:layout_constraintRight_toRightOf="parent"-->
+    <!--            app:layout_constraintTop_toTopOf="parent"-->
+    <!--            tools:ignore="RtlSymmetry">-->
+
+    <!--            <com.google.android.material.checkbox.MaterialCheckBox-->
+    <!--                android:id="@+id/record_selected"-->
+    <!--                android:layout_width="wrap_content"-->
+    <!--                android:layout_height="match_parent"-->
+    <!--                android:gravity="center"-->
+    <!--                app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--                app:layout_constraintRight_toRightOf="parent"-->
+    <!--                app:layout_constraintTop_toTopOf="parent" />-->
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
+    <!--</com.datangic.swipe3.SwipeLayout>-->
+</layout>

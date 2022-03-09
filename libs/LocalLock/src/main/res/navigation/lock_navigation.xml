@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/lock_navigation"
+    app:startDestination="@id/patternLockFragment">
+
+    <fragment
+        android:id="@+id/patternLockFragment"
+        android:name="com.datangic.localLock.fragment.PatternLockFragment"
+        android:label="PatternLockFragment"
+        tools:layout="@layout/pattern_lock_fragment" />
+    <fragment
+        android:id="@+id/passwordLockFragment"
+        android:name="com.datangic.localLock.fragment.PasswordLockFragment"
+        android:label="PasswordLockFragment"
+        tools:layout="@layout/password_lock_fragment" />
+    <fragment
+        android:id="@+id/fingerprintLockFragment"
+        android:name="com.datangic.localLock.fragment.FingerprintLockFragment"
+        android:label="FingerprintLockFragment"
+        tools:layout="@layout/fingerprint_fragment" />
+    <fragment
+        android:id="@+id/lockedFragment"
+        android:name="com.datangic.localLock.fragment.LockedFragment"
+        android:label="LockedFragment"
+        tools:layout="@layout/locked_fragment" />
+</navigation>

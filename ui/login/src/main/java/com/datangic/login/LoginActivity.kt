@@ -11,7 +11,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.datangic.components.components.LoadingDialog
 import com.datangic.components.components.TipsDialog
 import com.datangic.components.themes.LoginTheme
-import com.datangic.libs.base.LOGIN_ACTIVITY
+import com.datangic.libs.base.Router.LOGIN_ACTIVITY
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 @Route(path = LOGIN_ACTIVITY)

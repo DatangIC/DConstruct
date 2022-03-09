@@ -3,6 +3,6 @@
 
     <style name="Theme.DConstruct" parent="android:Theme.Material.Light.NoActionBar">
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:background">@mipmap/ic_welcome_logo3</item>
+        <item name="android:windowBackground">@mipmap/ic_welcome_logo3</item>
     </style>
 </resources>

@@ -1,0 +1,9 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="36dp"
+    android:height="36dp"
+    android:viewportWidth="1024"
+    android:viewportHeight="1024">
+  <path
+      android:fillColor="@color/management_nfc"
+      android:pathData="M938.67,85.33L85.33,85.33v853.33h853.33L938.67,85.33zM853.33,853.33L170.67,853.33L170.67,170.67h682.67v682.67zM768,256h-298.67v182.61c-25.6,14.93 -42.67,41.81 -42.67,73.39 0,46.93 38.4,85.33 85.33,85.33s85.33,-38.4 85.33,-85.33c0,-31.57 -17.07,-58.88 -42.67,-73.39L554.67,341.33h128v341.33L341.33,682.67L341.33,341.33h85.33L426.67,256L256,256v512h512L768,256z"/>
+</vector>

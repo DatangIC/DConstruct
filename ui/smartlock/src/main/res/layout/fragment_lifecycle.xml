@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="onFirstClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onSecondClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onThirdClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onLifecycleClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onLifecycleTipsClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onValidPeriodTipsClick"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginHorizontal="@dimen/margin_24dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/user_info"
+            style="@style/AppTheme.TextAppearance.Subtitle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_12dp"
+            android:gravity="left"
+            android:hint="@string/user_lifecycle_user_info"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlHardcoded" />
+
+        <LinearLayout
+            android:id="@+id/lifecycle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_24dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/user_info">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user_lifecycle"
+                    android:textAppearance="@style/AppTheme.TextAppearance.Subtitle1" />
+
+                <androidx.constraintlayout.utils.widget.ImageFilterView
+                    android:layout_width="@dimen/margin_24dp"
+                    android:layout_height="@dimen/margin_24dp"
+                    android:onClick="@{onLifecycleTipsClick}"
+                    android:paddingEnd="@dimen/margin_8dp"
+                    android:paddingBottom="@dimen/margin_8dp"
+                    android:src="@drawable/ic_question"
+                    android:tint="@color/grey_700"
+                    tools:ignore="RtlSymmetry" />
+            </LinearLayout>
+
+            <include
+                android:id="@+id/lifecycle_value"
+                layout="@layout/component_text_with_checkbox"
+                android:onClick="@{onLifecycleClick}" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/valid_period"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_24dp"
+            android:orientation="vertical"
+            app:layout_constraintTop_toBottomOf="@id/lifecycle">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/user_valid_period"
+                    android:textAppearance="@style/AppTheme.TextAppearance.Subtitle1" />
+
+                <androidx.constraintlayout.utils.widget.ImageFilterView
+                    android:layout_width="@dimen/margin_24dp"
+                    android:layout_height="@dimen/margin_24dp"
+                    android:onClick="@{onValidPeriodTipsClick}"
+                    android:paddingEnd="@dimen/margin_8dp"
+                    android:paddingBottom="@dimen/margin_8dp"
+                    android:src="@drawable/ic_question"
+                    android:tint="@color/grey_700"
+                    tools:ignore="RtlSymmetry" />
+            </LinearLayout>
+
+            <include
+                android:id="@+id/valid_period_value1"
+                layout="@layout/component_text_with_checkbox"
+                android:onClick="@{onFirstClick}" />
+
+            <include
+                android:id="@+id/valid_period_value2"
+                layout="@layout/component_text_with_checkbox"
+                android:onClick="@{onSecondClick}" />
+
+            <include
+                android:id="@+id/valid_period_value3"
+                layout="@layout/component_text_with_checkbox"
+                android:onClick="@{onThirdClick}" />
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

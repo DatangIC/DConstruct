@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="message_pattern_dot_added">添加画图点</string>
+    <string name="message_pattern_started">开始画图</string>
+    <string name="message_pattern_detected">画图结束</string>
+    <string name="message_pattern_cleared">取消画图</string>
+
+    <string name="numeric_keyboard_down">数字键盘下</string>
+    <string name="numeric_keyboard_up">数字键盘上</string>
+    <string name="numeric_keyboard_cancel">取消输入</string>
+
+    <string name="input_your_password">输入密码</string>
+    <string name="delete">删除</string>
+    <string name="cancel">取消</string>
+    <string name="confirm">确定</string>
+    <string name="notice">提示</string>
+    <string name="fingerprint_is_not_available">指纹不可用</string>
+    <string name="unlock_with_fingerprint">点击进行指纹验证</string>
+    <string name="verify_existing_fingerprint">验证已有指纹</string>
+
+    <string name="fingerprint_verification">指纹验证</string>
+    <string name="verification_failed">验证失败</string>
+    <string name="verified_successfully">验证成功</string>
+
+    <string name="other_ways_to_verify">其它方式验证</string>
+
+    <string name="password_pattern">图案密码</string>
+    <string name="password_pattern_last_node">密码至少4个节点</string>
+
+    <string name="password_number">数字密码</string>
+
+
+    <string name="old_password">输入旧密码</string>
+    <string name="reset_password">重新输入密码</string>
+    <string name="new_password">输入新密码</string>
+
+    <string name="confirm_password">确认密码</string>
+    <string name="two_password_entries_are_inconsistent">两次输入的密码不一致</string>
+    <string name="password_is_wrong">密码错误，请重新输入</string>
+
+    <string name="locked"><b>已锁定</b></string>
+
+    <string name="locked_time"> %s 秒 </string>
+</resources>

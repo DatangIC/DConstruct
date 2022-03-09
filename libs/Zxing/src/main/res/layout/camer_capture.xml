@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="MissingDefaultResource">
+
+
+    <com.datangic.zxing.view.AutoFitTextureView
+        android:id="@+id/textureView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true" />
+
+    <com.datangic.zxing.view.SurFinderView
+        android:id="@+id/viewfinderView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:ignore="MissingClass" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="@dimen/back_margin_left"
+        android:layout_marginTop="@dimen/back_margin_top"
+        app:shapeAppearanceOverlay="@style/circleImageStyle"
+        app:srcCompat="@drawable/ic_back"
+        app:tint="@android:color/white" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivFlashlight"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/flashlight_margin"
+        android:layout_marginBottom="@dimen/flashlight_margin_bottom"
+        app:shapeAppearanceOverlay="@style/circleImageStyle"
+        app:srcCompat="@drawable/flashlight_selector"
+        app:tint="@android:color/white" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivPhoto"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="@dimen/flashlight_margin"
+        android:layout_marginBottom="@dimen/flashlight_margin_bottom"
+        android:src="@drawable/ic_file"
+        app:shapeAppearanceOverlay="@style/circleImageStyle"
+        app:tint="@android:color/white" />
+</RelativeLayout>

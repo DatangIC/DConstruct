@@ -1,11 +1,10 @@
 package com.datangic.api
 
 import com.datangic.api.login.LoginApi
-import com.datangic.api.reqresIn.ReqresIn
 import org.junit.Before
 import org.junit.Test
 import org.mockito.Mock
-import org.mockito.Mockito.*
+import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 
 
@@ -28,7 +27,7 @@ class LoginApiTest {
         //检验方法是否调用
         verify(mockList).add("one")
         verify(mockList).clear()
-        println(LoginApi.LoginType.RegisterORLogin.str)
+        println(LoginApi.LoginType.RegisterORLogin)
     }
 
 }

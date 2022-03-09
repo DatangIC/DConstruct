@@ -1,0 +1,7 @@
+package com.datangic.smartlock.utils
+
+import kotlinx.coroutines.InternalCoroutinesApi
+import kotlinx.coroutines.scheduling.ExperimentalCoroutineDispatcher
+
+@InternalCoroutinesApi
+object LockScheduler:ExperimentalCoroutineDispatcher()

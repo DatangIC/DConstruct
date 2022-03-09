@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="onRedClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onGreenClick"
+            type="android.view.View.OnClickListener" />
+
+    </data>
+
+    <com.datangic.swipe3.SwipeLayout
+        android:id="@+id/swipe_layout"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_75dp">
+
+        <include
+            android:id="@+id/swipe_context"
+            layout="@layout/component_connect_device"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/swipe_red"
+            android:layout_width="@dimen/width_75dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/ripple_red"
+            android:gravity="center"
+            android:onClick="@{onRedClick}"
+            android:text="@string/delete"
+            android:textColor="@color/title_primary"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/swipe_green"
+            android:layout_width="@dimen/width_75dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/ripple_green"
+            android:gravity="center"
+            android:onClick="@{onGreenClick}"
+            android:text="@string/dialog_share"
+            android:textColor="@color/title_primary"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </com.datangic.swipe3.SwipeLayout>
+</layout>

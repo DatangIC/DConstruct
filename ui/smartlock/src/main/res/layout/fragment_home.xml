@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="mToolbarProgress"
+            type="com.datangic.smartlock.components.ToolbarProgress" />
+
+        <variable
+            name="onSearchClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onScanClick"
+            type="android.view.View.OnClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.home.HomeFragment">
+
+        <include
+            android:id="@+id/home_toolbar"
+            layout="@layout/toolbar_progress"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:toolBarWithProgressBar="@{mToolbarProgress}" />
+
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:paddingBottom="@dimen/margin_32dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/home_toolbar">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <com.youth.banner.Banner
+                    android:id="@+id/banner"
+                    style="@style/AppTheme.Banner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/scan_card_view"
+                    style="@style/AppTheme.ViewCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/banner"
+                    android:layout_marginHorizontal="@dimen/margin_16dp"
+                    android:layout_marginTop="@dimen/margin_32_dp"
+                    android:layout_marginBottom="@dimen/margin_16dp"
+                    android:minHeight="@dimen/height_200dp"
+                    android:visibility="visible">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:minHeight="@dimen/height_200dp">
+
+                        <androidx.constraintlayout.utils.widget.ImageFilterView
+                            android:id="@+id/scan_icon"
+                            style="@style/AppTheme.ImageButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_28dp"
+                            android:onClick="@{onScanClick}"
+                            android:src="@drawable/ic_scan"
+                            android:tint="@color/color_on_surface"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/scan_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_28dp"
+                            android:text="@string/search"
+                            android:textAppearance="@style/AppTheme.TextAppearance.Subtitle1"
+                            app:layout_constraintBottom_toTopOf="@id/scan_icon"
+                            app:layout_constraintLeft_toRightOf="@id/scan_icon" />
+
+                        <com.google.android.material.textview.MaterialTextView
+                            android:id="@+id/scan_text"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/margin_28dp"
+                            android:layout_marginEnd="@dimen/margin_16dp"
+                            android:paddingTop="@dimen/margin_8dp"
+                            android:text="@string/scan_text"
+                            android:textAppearance="@style/AppTheme.TextAppearance.Subtitle2"
+                            app:layout_constraintLeft_toRightOf="@id/scan_icon"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/scan_title" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/margin_8dp"
+                            android:onClick="@{onSearchClick}"
+                            android:paddingHorizontal="@dimen/margin_28dp"
+                            android:text="@string/new_lock"
+                            android:theme="@style/AppTheme.Button"
+                            app:icon="@drawable/ic_search"
+                            app:layout_constraintLeft_toRightOf="@id/scan_icon"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/scan_text" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/manager_pager"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@id/banner"
+                    android:layout_marginTop="@dimen/margin_40_dp"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

@@ -1,0 +1,457 @@
+<resources>
+
+    <string name="app_name">智能锁2</string>
+    <string name="title_home">主页</string>
+    <string name="title_me">我的</string>
+    <string name="title_setting">设置</string>
+    <string name="title_system">系统设置</string>
+    <string name="title_check_repair">检测&amp;修复</string>
+    <string name="title_version_info">版本信息</string>
+    <string name="title_wifi">Wi-Fi 设置</string>
+    <string name="title_update">更新</string>
+    <string name="title_update_lock">门锁固件更新</string>
+    <string name="title_update_face">人脸固件更新</string>
+    <string name="title_scanning">搜索</string>
+    <string name="title_verifying">验证</string>
+
+    <string name="title_device">设备</string>
+
+    <string name="title_device_management">设备管理</string>
+
+    <string name="title_keys">开锁信息</string>
+    <string name="title_temp_pwd">临时密码</string>
+    <string name="title_record">记录</string>
+    <string name="title_lifecycle">生命周期设置</string>
+    <string name="title_user">用户</string>
+
+    <string name="fingerprint">指纹模块</string>
+    <string name="back_panel">后面板</string>
+
+    <string name="undo">取消</string>
+    <string name="delete">删除</string>
+    <string name="back">返回</string>
+    <string name="all">所有</string>
+    <string name="album">抓图</string>
+
+
+    <!--Dialog    -->
+
+    <string name="location_permission_title">位置权限</string>
+    <string name="location_permission_info">对于 Android 6.0 及以上的系统，需要获得位置信息才能使用低功耗蓝牙.
+      \n\n低功耗蓝牙使用了iBeacons、 Eddystone等,这些需要获得手机的位置信息.<b>我们不会记录或者使用这些位置信息.</b></string>
+    <string name="grant_permission">授权</string>
+    <string name="permission_settings">设置</string>
+    <string name="bluetooth_disabled_title">蓝牙未启动</string>
+    <string name="bluetooth_disabled_info">蓝牙未启动，请点击下面按键启动蓝牙.</string>
+    <string name="bluetooth_disabled_action">启用</string>
+    <string name="camera_and_storage_permission_title">权限请求</string>
+    <string name="camera_and_storage_permission_info">应用需要获得 <b>相机</b> 和 <b>存储</b> 的权限去扫描二维码.<b>\n我们不会记录或者使用这些位置信息..</b></string>
+
+    <string name="camera_permission_title">相机权限请求</string>
+    <string name="camera_permission_info">应用需要 <b>相机</b>  权限用于扫描二维码。</string>
+    <string name="storage_permission_title">存储权限请求</string>
+    <string name="storage_permission_info">应用需要 <b>存储</b> 权限来扫描本地二维码.\n
+        <b>我们不会记录或者使用这些位置信息.</b></string>
+
+    <!--dialog    -->
+
+    <string name="waite">请稍候…</string>
+    <string name="wrong">警告</string>
+    <string name="error">错误</string>
+    <string name="notice">提示</string>
+    <string name="dialog_waiting">请稍候</string>
+    <string name="dialog_device_exists">设备已存在.</string>
+    <string name="dialog_error_message_wrong_qr_code">没有检测到有效信息，请扫描正确的二维码.</string>
+    <string name="dialog_error_qr_code_has_expired">二维码已过期.</string>
+    <string name="dialog_restore_the_device_successfully">恢复设备成功</string>
+    <string name="dialog_failed_to_restore_device">恢复设备失败</string>
+    <string name="dialog_add_the_device_successfully">添加设备成功</string>
+    <string name="dialog_failed_to_add_device">添加设备失败</string>
+    <string name="cancel">取消</string>
+    <string name="add">新增</string>
+    <string name="confirm">确认</string>
+    <string name="dialog_share">分享</string>
+    <string name="close">关闭</string>
+    <string name="edit">编辑</string>
+    <string name="unbind">解绑</string>
+    <string name="delay_second" formatted="true">%d 秒</string>
+
+    <string name="dialog_guide_title">没有找到目标锁?</string>
+    <string name="dialog_guide_info">1. 确定锁已经 <b>开启</b>.
+        \n\n2. Make sure the <b>relevant</b> firmware and SoftDevice are flashed.
+    \n\n3. Location is turned off. Some Android phones require it enabled in order to scan for Bluetooth LE devices.
+        \n\n Press <b>CONFIRM</b> to reconnect, <b>CANCEL</b> to exit.</string>
+    <string name="ble_link_loss">蓝牙连接丢失,点击请重新连接。</string>
+    <string name="ble_not_supported">蓝牙不支持该服务</string>
+    <string name="ble_connect_timeout">连接 <b>超时</b></string>
+    <string name="ble_terminate_peer_user">用户主动断开蓝牙</string>
+    <string name="ble_terminate_peer_device">设备主动断开蓝牙</string>
+
+    <string name="dialog_message_open_slide">打开滑盖</string>
+
+    <string name="dialog_internet_error" formatted="true">网络请求失败，请稍候重试.\n\t %s</string>
+    <string name="dialog_delete_device_tips">确定删除设备?</string>
+    <string name="dialog_delete_device_tips_restore">点击&lt;b> 确认 &lt;/b>键 &lt;b>恢复出厂设置&lt;/b> \n 此操作将删除手机和设备到所有信息, 点击&lt;b> 取消&lt;/b> 键 &lt;b>将只删除手机上到信息&lt;/b>.</string>
+
+    <string name="dialog_title_password">设置密码</string>
+    <string name="password">密码</string>
+    <string name="confirm_password">确认密码</string>
+
+    <string name="fingerprint_is_full">指纹录入数量已满</string>
+    <string name="fingerprint_already_exist">指纹已存在</string>
+    <string name="add_unlock_information">输入开锁信息</string>
+
+    <string name="edit_unlock_info_name">编辑名称</string>
+
+    <!--Dialog temp    -->
+    <string name="dialog_temp_pwd_title">创建临时密码</string>
+    <string name="dialog_temp_pwd_once">次数:</string>
+    <string name="once_true">单次</string>
+    <string name="once_false">多次</string>
+    <string name="effective_period">有效时长(小时):</string>
+
+    <string name="dialog_error_temp_secret_code">临时密码到密钥为空.</string>
+    <string name="dialog_error_temp_pwd_limit">临时密码数量已达最大值.</string>
+    <string name="dialog_error_temp_pwd_create">临时密码创建失败，请稍候再试.</string>
+
+    <string name="dialog_name_input_title">用户名称</string>
+    <string name="dialog_name_input_tips">输入新名称</string>
+    <string name="dialog_name_input_error">错误字符</string>
+
+    <string name="dialog_wifi_server_ip">服务地址(IP)</string>
+    <string name="dialog_wifi_server_ip_helper">eg:192.1.1.168</string>
+    <string name="dialog_wifi_server_port">服务端口号(Port)</string>
+    <string name="dialog_wifi_wifi_ip" formatted="true">&lt;b>Wi-Fi:&lt;/b> %s</string>
+    <string name="dialog_wifi_wifi_pwd">Wi-Fi 密码</string>
+
+    <string name="dialog_wifi_server_ip_error">服务地址错误.</string>
+    <string name="dialog_wifi_server_port_error">服务端口错误.</string>
+    <string name="dialog_wifi_server_wifi">Wi-Fi错误</string>
+
+    <string name="dialog_wifi_set_error">配置失败，请稍候再试</string>
+
+
+    <string name="password_length_tip" formatted="true">密码长度为 %d 字符 .</string>
+    <string name="password_length_error" formatted="true">密码长度错误 %d.</string>
+    <string name="password_confirm_incorrect">两次输入密码不一致.</string>
+
+    <string name="dialog_title_secret_code">新增安全密码</string>
+    <string name="secret_code_name_tip" formatted="true">名称</string>
+    <string name="secret_code_key_tip" formatted="true">安全密码名称</string>
+    <string name="secret_code_value_tip" formatted="true">安全密码</string>
+    <string name="secret_code_length_tip" formatted="true">安全密码必须为 %d 字符</string>
+    <string name="secret_code_length_error" formatted="true">安全密码长度不等于 %d</string>
+
+    <string name="bottom_dialog_volume_selector">音量调节</string>
+    <string name="bottom_dialog_volume_mute">静音</string>
+    <string name="bottom_dialog_volume_low">低</string>
+    <string name="bottom_dialog_volume_middle">中</string>
+    <string name="bottom_dialog_volume_high">高</string>
+
+    <string name="bottom_dialog_language_selector">语言设置</string>
+    <string name="bottom_dialog_language_only_chinese">仅中文</string>
+    <string name="bottom_dialog_language_chinese">中文</string>
+    <string name="bottom_dialog_language_english">英文</string>
+
+    <string name="bottom_dialog_unlock_period_selector">回锁时间 </string>
+    <string name="bottom_dialog_unlock_period_5">5 秒</string>
+    <string name="bottom_dialog_unlock_period_8">8 秒</string>
+    <string name="bottom_dialog_unlock_period_10">10 秒</string>
+    <string name="bottom_dialog_unlock_period_15">15 秒</string>
+    <string name="bottom_dialog_unlock_period_30">30 秒</string>
+
+    <string name="time_picker">时间选择</string>
+    <string name="time_picker_to">到</string>
+
+
+    <string name="bottom_dialog_add_user">新用户</string>
+    <string name="bottom_dialog_new_user">普通用户</string>
+    <string name="bottom_dialog_new_admin">管理员</string>
+
+    <string name="bottom_dialog_user_settings">设置</string>
+    <string name="bottom_dialog_user_share">分享</string>
+    <string name="bottom_dialog_user_delete">删除</string>
+    <string name="bottom_dialog_user_batch_deletion">Batch Deletion</string>
+    <string name="bottom_dialog_user_user_lifecycle">生命周期设置</string>
+    <string name="bottom_dialog_user_user_edit_name">编辑名称</string>
+    <string name="bottom_dialog_user_user_set_as_admin">设为管理员</string>
+
+
+    <!--Me-->
+    <string name="device_management">设备管理</string>
+    <string name="system_settings">系统设置</string>
+    <string name="about_us">关于我们</string>
+    <string name="version">版本:%s \n</string>
+
+    <!--Scan    -->
+    <string name="scan_start">开始搜索</string>
+    <string name="scan_stop">停止搜索</string>
+    <string name="verify">安全认证</string>
+    <string name="name_is_required">需要名称</string>
+
+    <!--Home    -->
+    <string name="scan">扫一扫</string>
+    <string name="search">搜索</string>
+    <string name="scan_text">扫描二维码.</string>
+    <string name="new_lock">添加门锁</string>
+
+    <string name="management_device">设备管理</string>
+    <string name="management_name">门锁</string>
+    <string name="management_setting">设置</string>
+    <string name="management_ble_status">蓝牙状态</string>
+    <string name="management_sync_at" formatted="true">同步时间:%s</string>
+
+
+    <string name="management_password">密码</string>
+    <string name="management_fingerprint">指纹</string>
+    <string name="management_nfc">卡片</string>
+    <string name="management_face">人脸信息</string>
+    <string name="management_record">记录</string>
+    <string name="management_temp_pwd">临时密码</string>
+    <string name="management_user">用户</string>
+
+    <!--Database-->
+    <string name="default_device_name">智能门锁</string>
+    <string name="default_admin_name">管理员</string>
+    <string name="default_user_name">用户</string>
+    <string name="default_user_name_with_id" formatted="true">用户 %d</string>
+    <string name="default_key_password_name">密码</string>
+    <string name="default_key_temp_password_name">临时密码</string>
+    <string name="default_key_nfc_name">卡片</string>
+    <string name="default_key_fingerprint_name">指纹</string>
+    <string name="default_key_face_name">人脸信息</string>
+
+    <!--BLE    -->
+    <string name="ble_initializing">初始化</string>
+    <string name="ble_scanning">搜索中…</string>
+    <string name="ble_found">已找到设备</string>
+    <string name="ble_connected">已连接</string>
+    <string name="ble_connecting">连接中…</string>
+    <string name="ble_disconnected">未连接</string>
+    <string name="ble_scan_timeout">未找到设备</string>
+    <string name="ble_disconnecting">断开中…</string>
+
+
+    <!-- Settings   -->
+    <string name="setting_combination_unlock">组合开锁</string>
+    <string name="setting_automatic_closing">自动关门</string>
+    <string name="setting_bluetooth_keep_on">蓝牙常开</string>
+    <string name="setting_lock_keep_open">门锁常开</string>
+    <string name="setting_voice_prompts">声音提示</string>
+    <string name="setting_anti_prizing_alarm">防撬报警</string>
+    <string name="setting_lock_cylinder">智能锁芯</string>
+    <string name="setting_follow_doorbell">跟随门铃</string>
+    <string name="setting_infrared">红外</string>
+    <string name="setting_magic_number">幻数</string>
+    <string name="setting_temp_pwd">临时密码</string>
+    <string name="setting_volume_adjustment">音量</string>
+    <string name="setting_unlock_period">回锁时间</string>
+    <string name="setting_unlock_period_time" formatted="true">%d 秒</string>
+    <string name="setting_lock_status">门锁状态</string>
+    <string name="setting_lock_status_open">开</string>
+    <string name="setting_lock_status_close">关</string>
+    <string name="setting_language">门锁语言</string>
+    <string name="setting_language_chinese_only">仅中文</string>
+    <string name="setting_language_chinese">中文</string>
+    <string name="setting_language_english">英文</string>
+    <string name="setting_nfc"> NFC类型</string>
+    <string name="setting_nfc_encrypted_and_ordinary">安全卡片 &amp; 普通卡片</string>
+    <string name="setting_nfc_encrypted">安全卡片</string>
+
+    <string name="setting_wifi_power">Wi-Fi 开关</string>
+    <string name="setting_wifi_status">Wi-Fi 状态</string>
+
+    <string name="setting_wifi_status_not_setting">未设置</string>
+    <string name="setting_wifi_status_router_dis_connected">连接路由器</string>
+    <string name="setting_wifi_status_server_dis_connected">已连接路由器</string>
+    <string name="setting_wifi_status_server_connected">已连接服务器</string>
+    <string name="setting_wifi_status_error">错误</string>
+    <string name="setting_wifi_setting">Wi-Fi 设置</string>
+
+
+    <string name="setting_power_saving_period">省电时间段</string>
+
+
+    <string name="setting_self_check_repair">自检 &amp; 修复</string>
+    <string name="setting_version_information">版本信息</string>
+    <string name="setting_version_update">版本更新</string>
+    <string name="setting_restore_factory_settings">恢复出厂设置</string>
+    <string name="setting_restore_factory_tips">此操作将 &lt;b>删除应用和门锁的所有信息 且无法恢复&lt;/b> !</string>
+    <string name="bottom_line">已到达最底端.</string>
+
+    <string name="check_repair_check">检测</string>
+    <string name="check_repair_repair">修复</string>
+    <string name="check_repair_repair_keyboard">键盘</string>
+    <string name="check_repair_repair_back_panel">后面板</string>
+
+
+    <string name="check_repair_repair_all_properly">所有器件运行正常.</string>
+
+    <string name="check_repair_repair_error">1个器件出错.</string>
+    <string name="check_repair_repair_errors" formatted="true"> %d 个器件出错.</string>
+
+    <string name="check_repair_repair_err_code" formatted="true">错误码 = %s</string>
+
+    <string name="check_repair_repair_err_key" formatted="true">\n 键盘错误</string>
+    <string name="check_repair_repair_err_fingerprint">\n 指纹错误.</string>
+    <string name="check_repair_repair_err_nfc">\n 卡片错误.</string>
+    <string name="check_repair_repair_err_back_panel">\n 后面板错误.</string>
+    <string name="check_repair_repair_err_face_nir">\n 人脸模块 NIR 错误.</string>
+    <string name="check_repair_repair_err_face_rgb">\n 人脸模块 RGB 错误.</string>
+    <string name="check_repair_repair_err_face_flash">\n 人脸模块 闪存 错误.</string>
+    <string name="check_repair_repair_err_face_touch">\n 人脸模块 触摸板 错误.</string>
+    <string name="check_repair_repair_err_face_lcm">\n 人脸模块 LCM 错误.</string>
+    <string name="check_repair_repair_err_face_chip">\n 人脸模块 芯片 错误.</string>
+    <string name="check_repair_repair_err_wifi">\n Wi-Fi 模块错误.</string>
+
+    <string name="version_info_serial_number" formatted="true">&lt;b>序列号: &lt;/b> %s</string>
+    <string name="version_info_imei" formatted="true">&lt;b>唯一标识码: &lt;/b> %s</string>
+    <string name="version_info_mac_address" formatted="true">&lt;b>蓝牙地址: &lt;/b>%s</string>
+    <string name="version_info_software_version" formatted="true">&lt;b>软件版本: &lt;/b>%s</string>
+    <string name="version_info_hardware_version" formatted="true">&lt;b>硬件版本: &lt;/b>%s</string>
+    <string name="version_info_software_face" formatted="true">&lt;b>人脸模块版本: &lt;/b>%s</string>
+    <string name="version_info_software_fingerprint" formatted="true">&lt;b>指纹模块版本: &lt;/b>%s</string>
+    <string name="version_info_software_back_panel" formatted="true">&lt;b>后面板版本: &lt;/b>%s</string>
+    <string name="version_info_software_wifi" formatted="true">&lt;b>Wi-Fi模块版本: &lt;/b>%s</string>
+
+    <string name="version_update_true">检测到新版本</string>
+    <string name="version_update_false">已是最新版本</string>
+    <string name="version_version_error">未获得正确到版本号</string>
+    <string name="version_checking_version">检测更新…</string>
+    <string name="version_sync_version">同步本地版本信息…</string>
+    <string name="version_querying_version">查询最新版本信息…</string>
+
+    <string name="version_checking_done">完成</string>
+
+
+    <string name="version_serial_number" formatted="true">&lt;b>序列号:&lt;/b> %s</string>
+    <string name="version_runtime_version" formatted="true">&lt;b>本地版本:&lt;/b> %s</string>
+    <string name="version_lasted_version" formatted="true">&lt;b>最新版本:&lt;/b> %s</string>
+    <string name="version_release_time" formatted="true">&lt;b>更新时间:&lt;/b> %s</string>
+    <string name="version_release_notes"><b>更新说明:</b></string>
+    <string name="lock">智能锁</string>
+    <string name="update_tips"> 1.请保持手机和智能锁设备电量充足,\n2.在升级过程中，请勿操作智能锁,\n3.在升级过程中，请勿将应用切换到后台.</string>
+
+    <string name="download">下载</string>
+    <string name="downloading">下载中…</string>
+    <string name="update">更新</string>
+    <string name="updating">更新中…</string>
+    <string name="update_successful">更新成功</string>
+    <string name="update_failed">更新失败</string>
+
+
+    <!-- SecretCode   -->
+    <string name="select_secret_code">安全密码</string>
+
+    <string name="_0e_title">Validation error</string>
+    <string name="_0e_0x01_">Random number verification failed.</string>
+    <string name="_0e_0x02_">User does not exist.</string>
+    <string name="_0e_0x03_">No permission.</string>
+    <string name="_0e_0x04_">Device busy.</string>
+    <string name="_0e_0x05_">Authentication code error.</string>
+    <string name="_0e_0x06_">User has been suspended.</string>
+    <string name="_0e_0x07_">Illegal application connection.</string>
+    <string name="_0e_0x08_">User has expired.</string>
+    <string name="_0e_0x09_">The security code is set successfully.</string>
+    <string name="_0e_0x0a_">The door lock has been restored to factory settings.</string>
+
+    <!--Manager   -->
+
+    <string name="key_name">密码名称</string>
+    <string name="password_value" formatted="true">密码: %s</string>
+    <string name="password_value_with_asterisk" formatted="true">密码:* %s</string>
+    <string name="sync_at" formatted="true">同步时间: %s</string>
+    <string name="dead_time" formatted="true">有效截止时间: %s</string>
+
+    <string name="record_user"> 用户记录 </string>
+    <string name="record_lock"> 门锁记录 </string>
+
+    <string name="event_unlock"> 开锁 </string>
+    <string name="event_lock"> 门锁 </string>
+    <string name="event_add_key"> 添加开锁密钥 </string>
+    <string name="event_delete_key">删除开锁密钥</string>
+    <string name="event_add_user"> 添加用户 </string>
+    <string name="event_delete_user">删除用户</string>
+    <string name="event_doorbell">门铃</string>
+    <string name="event_unlock_tips" formatted="false"> %s 通过 %s 打开 %s. </string>
+    <string name="event_unlock_tips_temp_ped" formatted="false"> %s 打开 %s. </string>
+    <string name="event_add_key_tips" formatted="false"> %s 添加成功 %s. </string>
+    <string name="event_delete_key_tips" formatted="false"> %s 删除 %s. </string>
+    <string name="event_delete_user_tips" formatted="true">
+         %s 删除用户.
+    </string>
+    <string name="event_add_user_tips" formatted="true">
+         %s 添加用户.
+    </string>
+
+    <string name="seized_fingerprint"> 挟持指纹 </string>
+    <string name="seized_password"> 挟持密码</string>
+    <string name="remote_unlock"> 远程 </string>
+    <string name="unknown">未知</string>
+    <string name="combined_unlock">组合开锁</string>
+    <string name="locked">已锁</string>
+
+    <string name="event_error_smashed">砸门</string>
+    <string name="event_error_pwd">多次密码错误</string>
+    <string name="event_error_nfc">卡片多次错误</string>
+    <string name="event_error_fingerprint">指纹多次错误</string>
+    <string name="event_error_sized_fingerprint">挟持指纹开锁</string>
+    <string name="event_error_sized_password">挟持密码开锁</string>
+    <string name="event_error_demolished">被拆</string>
+    <string name="event_error_try">多次尝试开锁</string>
+
+    <!--Users    -->
+    <string name="user_id" formatted="true">用户编号: %d</string>
+    <string name="user_pause">暂停</string>
+    <string name="user_start">启用</string>
+    <string name="user_more">更多</string>
+    <string name="status_pause">暂停</string>
+    <string name="status_activated">已启用</string>
+    <string name="status_inactivated">未激活</string>
+
+    <string name="user_lifecycle_user_info" formatted="false">&lt;b>用户名称:&lt;/b> %s &lt;br/> &lt;br/> &lt;b>编号:&lt;/b>  %s</string>
+    <string name="user_lifecycle">生命周期:</string>
+    <string name="user_lifecycle_value" formatted="false">%s &lt;b> 到 &lt;/b> %s </string>
+    <string name="user_valid_period">有效时间段:</string>
+    <string name="user_valid_first_period">&lt;b>第一时段:\t\t&lt;/b> %s</string>
+    <string name="user_valid_second_period">&lt;b>第二时段:\t\t&lt;/b> %s</string>
+    <string name="user_valid_third_period">&lt;b>第三时段:\t\t&lt;/b> %s</string>
+    <string name="user_valid_period_value" formatted="false">%s &lt;b> 到 &lt;/b> %s</string>
+
+    <string name="user_valid_period_tips">一天中有三个时间段可以设置，用户可在这三个时间段内正常使用.</string>
+    <string name="user_lifecycle_tips">用户在生命周期中才可以使用.</string>
+
+    <string name="end_blow_start_error"> &lt;b>结束时间&lt;/b> 需要大于 &lt;b>开始时间&lt;/b>.</string>
+
+    <!--System settings    -->
+    <string name="debug_ota">OTA 测试</string>
+    <string name="debug">测试</string>
+    <string name="theme">主题</string>
+    <string name="theme_light">明亮</string>
+    <string name="theme_dark">黑暗</string>
+    <string name="theme_system">跟随系统</string>
+    <string name="language">语言</string>
+    <string name="language_chinese">简体中文</string>
+    <string name="language_english">英文</string>
+    <string name="set_info">设置设备信息</string>
+    <string name="set_secret_code">设置厂商信息</string>
+    <string name="system_fingerprint">指纹验证</string>
+    <string name="system_password">设置应用密码</string>
+    <string name="system_password_change">更改应用密码</string>
+
+    <string name="new_device">添加设备</string>
+    <string name="scan_for_add">扫描二维码添加</string>
+    <string name="search_for_add">搜索添加</string>
+    <string name="retrieve">找回设备</string>
+    <string name="scan_for_retrieve">扫描二维码找回</string>
+    <string name="search_for_retrieve">搜索找回</string>
+
+    <!--    tips-->
+    <string name="password_is_exists">一个用户最多设置一个密码.</string>
+    <string name="nfc_is_exists">一个用户最多设置一个卡片.</string>
+    <string name="face_is_exists">一个用户最多设置一个人脸信息.</string>
+    <string name="fingerprint_is_exists">一个用户最多设置五个指纹信息.</string>
+    <string name="is_once">单次</string>
+    <string name="is_more">多次</string>
+
+</resources>

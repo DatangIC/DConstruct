@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/system_navigation"
+    app:startDestination="@+id/navigationDevice">
+
+    <fragment
+        android:id="@+id/navigationDevice"
+        android:name="com.datangic.smartlock.ui.system.DeviceFragment"
+        android:label="@string/title_device_management"
+        tools:layout="@layout/pager_list_view" />
+
+    <fragment
+        android:id="@+id/navigationSystem"
+        android:name="com.datangic.smartlock.ui.system.SystemFragment"
+        android:label="@string/title_system"
+        tools:layout="@layout/fragment_setting" />
+
+</navigation>

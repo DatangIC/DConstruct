@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/scan_navigation"
+    app:startDestination="@+id/navigation_scanning">
+
+    <fragment
+        android:id="@+id/navigation_scanning"
+        android:name="com.datangic.smartlock.ui.scanning.ScanningFragment"
+        android:label="@string/title_scanning"
+        tools:layout="@layout/fragment_scanning">
+
+        <action
+            android:id="@+id/action_navigation_scanning_to_navigation_verifying"
+            app:destination="@id/navigation_verifying"
+            app:enterAnim="@anim/nav_default_pop_enter_anim"
+            app:exitAnim="@anim/nav_default_pop_exit_anim"
+            app:popUpTo="@id/scan_navigation">
+            <argument
+                android:name="ble_device"
+                app:argType="com.datangic.smartlock.parcelable.ExtendedBluetoothDevice"
+                app:nullable="true" />
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_verifying"
+        android:name="com.datangic.smartlock.ui.scanning.VerifyingFragment"
+        android:label="@string/title_verifying"
+        tools:layout="@layout/fragment_verifying">
+        <argument
+            android:name="scan_result"
+            app:argType="string"
+            app:nullable="true" />
+    </fragment>
+
+</navigation>

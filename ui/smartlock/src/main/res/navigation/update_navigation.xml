@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/upgrade_navigation"
+    app:startDestination="@id/upgradeFragment">
+
+    <fragment
+        android:id="@+id/upgradeFragment"
+        android:name="com.datangic.smartlock.ui.setting.UpdateFragment"
+        android:label="@string/title_update"
+        tools:layout="@layout/fragment_update">
+        <argument
+            android:name="@string/argument_mac_address"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="@string/argument_serial_number"
+            app:argType="string"
+            app:nullable="false" />
+
+        <action
+            android:id="@+id/action_upgradeFragment_to_updateFaceFragment"
+            app:destination="@id/updateFaceFragment"
+
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_upgradeFragment_to_updateLockFragment"
+            app:destination="@id/updateLockFragment"
+
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/updateLockFragment"
+        android:name="com.datangic.smartlock.ui.setting.UpdateLockFragment"
+        android:label="@string/title_update_lock"
+        tools:layout="@layout/fragment_update_lock">
+        <argument
+            android:name="@string/argument_update_file"
+            app:argType="com.datangic.smartlock.parcelable.UpdateFile"
+            app:nullable="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/updateFaceFragment"
+        android:name="com.datangic.smartlock.ui.setting.UpdateFaceFragment"
+        android:label="@string/title_update_face"
+        tools:layout="@layout/fragment_update_lock">
+        <argument
+            android:name="@string/argument_update_face"
+            app:argType="com.datangic.smartlock.parcelable.UpdateFace"
+            app:nullable="false" />
+    </fragment>
+</navigation>

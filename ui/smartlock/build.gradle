@@ -1,0 +1,134 @@
+def config = rootProject.ext
+if (config.isDebug) {
+    apply plugin: "com.android.application"
+} else {
+    apply plugin: "com.android.library"
+}
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'androidx.navigation.safeargs.kotlin'
+//apply plugin: 'com.google.protobuf'
+
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
+android {
+    compileSdk 31
+
+    defaultConfig {
+        if (config.isDebug) {
+            applicationId "com.datangic.smartlock3"
+        }
+        minSdk 23
+        targetSdk 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments += ["room.schemaLocation": "$projectDir/schemas".toString()]
+//            }
+//        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        dataBinding = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion compose_version
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+    sourceSets {
+        main {
+            if (config.isDebug) {
+                manifest.srcFile 'src/main/AndroidManifestDebug.xml'
+            }
+            jniLibs.srcDirs = ['libs/jni/dts1586']
+
+            assets {
+                srcDirs 'src/main/assets'
+            }
+        }
+    }
+}
+
+dependencies {
+
+//    kapt config.kapt.room
+    kapt config.kapt.arouter
+
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation config.androidx.layout
+    implementation config.androidx.navigation_fragment
+    implementation config.androidx.navigation_ui
+    implementation config.androidx.livedata
+    implementation config.androidx.viewmodel
+    implementation config.androidx.coordinator
+
+//    implementation config.room.runtime
+//    implementation config.room.ktx
+    implementation "androidx.work:work-runtime-ktx:$work_version"
+
+    // Banner
+    implementation config.others.banner
+    // Picture
+    implementation config.others.glide
+    // DataStore
+    //noinspection GradleDependency
+//    implementation config.androidx.datastore
+//    implementation config.google.protobuf
+//
+    //    Koin
+    // Koin AndroidX Scope features
+    implementation config.koin.core
+    implementation config.koin.workmanager
+
+    //Json
+    implementation config.google.gson
+    //BLE
+    implementation config.ble.lib
+    implementation config.ble.scanner
+    //Http
+    implementation config.network.volley
+    implementation project(":libs:base")
+
+    implementation project(":libs:data")
+
+    implementation project(':libs:Zxing')
+    implementation project(':libs:RequestPermissions')
+    implementation project(':libs:Swipe')
+    implementation project(':libs:LocalLock')
+
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
+    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+}

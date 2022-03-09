@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/setting_navigation"
+    app:startDestination="@id/settingFragment">
+
+    <action
+        android:id="@+id/back_setting_fragment"
+        app:destination="@id/settingFragment"
+        app:enterAnim="@android:anim/slide_in_left"
+        app:exitAnim="@android:anim/slide_out_right"
+        app:popEnterAnim="@android:anim/slide_in_left"
+        app:popExitAnim="@android:anim/slide_out_right"
+        app:popUpToInclusive="true" />
+
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.datangic.smartlock.ui.setting.SettingFragment"
+        android:label="@string/title_setting"
+        app:defaultNavHost="true"
+        tools:layout="@layout/fragment_setting">
+        <action
+            android:id="@+id/action_settingFragment_to_checkRepairFragment"
+            app:destination="@id/checkRepairFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingFragment_to_versionInfoFragment"
+            app:destination="@id/versionInfoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingFragment_to_upgrade_navigation"
+            app:destination="@id/upgrade_navigation"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right">
+            <argument
+                android:name="@string/argument_mac_address"
+                app:argType="string"
+                app:nullable="false" />
+            <argument
+                android:name="@string/argument_serial_number"
+                app:argType="string"
+                app:nullable="false" />
+        </action>
+        <action
+            android:id="@+id/action_settingFragment_to_wifiFragment"
+            app:destination="@id/wifiFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right">
+            <argument
+                android:name="@string/argument_mac_address"
+                app:argType="string"
+                app:nullable="false" />
+            <argument
+                android:name="@string/argument_serial_number"
+                app:argType="string"
+                app:nullable="false" />
+
+        </action>
+    </fragment>
+
+    <fragment
+        android:id="@+id/checkRepairFragment"
+        android:name="com.datangic.smartlock.ui.setting.CheckRepairFragment"
+        android:label="@string/title_check_repair"
+        tools:layout="@layout/fragment_check_repair">
+        <argument
+            android:name="@string/argument_mac_address"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="@string/argument_serial_number"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/versionInfoFragment"
+        android:name="com.datangic.smartlock.ui.setting.VersionInfoFragment"
+        android:label="@string/title_version_info"
+        tools:layout="@layout/fragment_version_info">
+        <argument
+            android:name="@string/argument_mac_address"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="@string/argument_serial_number"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/wifiFragment"
+        android:name="com.datangic.smartlock.ui.setting.WifiFragment"
+        android:label="@string/title_wifi"
+        tools:layout="@layout/fragment_set_wifi">
+        <argument
+            android:name="@string/argument_mac_address"
+            app:argType="string"
+            app:nullable="false" />
+        <argument
+            android:name="@string/argument_serial_number"
+            app:argType="string"
+            app:nullable="false" />
+    </fragment>
+
+    <include app:graph="@navigation/update_navigation" />
+
+</navigation>

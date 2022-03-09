@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="scanButtonClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="scanningButtonText"
+            type="com.datangic.smartlock.components.DynamicTitle" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/scanning_devices_list"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/margin_8dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/scanning_button"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/component_scanner_device" />
+
+        <com.datangic.smartlock.widgets.LoadingMaterialButton
+            android:id="@+id/scanning_button"
+            style="@style/AppTheme.Button"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:layout_marginHorizontal="@dimen/margin_48dp"
+            android:layout_marginBottom="@dimen/margin_16dp"
+            android:onClick="@{scanButtonClick}"
+            android:text="@{scanningButtonText.title}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

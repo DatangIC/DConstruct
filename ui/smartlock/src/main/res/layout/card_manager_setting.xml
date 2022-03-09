@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="cardSetting"
+            type="com.datangic.smartlock.components.CardSetting" />
+
+        <variable
+            name="lockClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="settingsClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="bleClick"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background_2"
+        android:paddingBottom="@dimen/margin_10dp">
+
+        <include
+            android:id="@+id/manager_name"
+            layout="@layout/component_icon_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_10dp"
+            android:layout_marginStart="@dimen/margin_8dp"
+            app:icon="@{@drawable/ic_lock_36}"
+            app:iconTint="@{@color/management_nfc}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:onItemClick="@{lockClick}"
+            app:text="@{cardSetting.lockName}" />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterButton
+            android:id="@+id/group_title_up"
+            android:layout_width="@dimen/margin_24dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_8dp"
+            android:background="@drawable/ripple_grey"
+            android:onClick="@{lockClick}"
+            android:src="@drawable/animated_selector_up_down"
+            android:tint="@color/text_secondary"
+            app:animated_checked="@{cardSetting.open}"
+            app:layout_constraintBottom_toBottomOf="@id/manager_name"
+            app:layout_constraintLeft_toRightOf="@id/manager_name"
+            app:layout_constraintTop_toTopOf="@id/manager_name" />
+
+
+        <include
+            android:id="@+id/manager_settings"
+            layout="@layout/component_icon_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_10dp"
+            android:layout_marginEnd="@dimen/margin_8dp"
+            app:icon="@{@drawable/ic_setting}"
+            app:iconTint="@{@color/management_users}"
+            app:layout_constraintRight_toRightOf="@id/manager_ble"
+            app:layout_constraintTop_toTopOf="parent"
+            app:onItemClick="@{settingsClick}"
+            app:text="@{@string/management_setting}" />
+
+
+        <LinearLayout
+            android:id="@+id/manager_battery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_10dp"
+            android:orientation="horizontal"
+            android:padding="@dimen/margin_4dp"
+            app:layout_constraintLeft_toLeftOf="@id/manager_name"
+            app:layout_constraintTop_toBottomOf="@id/manager_name">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="@dimen/margin_32dp"
+                android:layout_height="@dimen/margin_32dp"
+                android:src="@{@drawable/level_battery_bar}"
+                android:tint="@{cardSetting.battery>20?@color/management_nfc:@color/red}"
+                app:imageLevel="@{cardSetting.battery}"
+                app:srcCompat="@drawable/ic_lock_36" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@{String.format(@string/management_percent,cardSetting.battery)}"
+                android:textColor="@color/text_primary"
+                android:textSize="@dimen/text_size_12sp" />
+
+        </LinearLayout>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_2dp"
+            android:text="@{String.format(@string/management_sync_at,cardSetting.syncAt)}"
+            android:textColor="@color/text_primary"
+            android:textSize="@dimen/text_size_12sp"
+            app:layout_constraintBottom_toBottomOf="@id/manager_battery"
+            app:layout_constraintLeft_toRightOf="@id/manager_battery"
+            app:layout_constraintTop_toTopOf="@id/manager_battery" />
+
+
+        <include
+            android:id="@+id/manager_ble"
+            layout="@layout/component_icon_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_10dp"
+            android:layout_marginEnd="@dimen/margin_8dp"
+            app:icon="@{@drawable/ic_bluetooth}"
+            app:iconTint="@{@color/management_users}"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/manager_settings"
+            app:onItemClick="@{bleClick}"
+            app:text="@{cardSetting.bleStatus}" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -3,13 +3,16 @@
     package="com.datangic.login">
 
     <application>
+        <meta-data
+            android:name="com.google.android.actions"
+            android:resource="@xml/network" />
+
         <activity
             android:name=".LoginActivity"
             android:exported="true"
             android:immersive="true"
             android:label="@string/app_name"
-            android:theme="@style/Theme.DConstruct">
-        </activity>
+            android:theme="@style/Theme.DConstruct"></activity>
     </application>
 
 </manifest>

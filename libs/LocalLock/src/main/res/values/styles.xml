@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="defaultPasswordLockView">
+        <item name="textSize">@dimen/size_30dp</item>
+        <item name="radius">@dimen/size_32dp</item>
+        <item name="frameWidth">1.2</item>
+        <item name="startColor">?attr/colorPrimary</item>
+        <item name="endColor">?attr/colorPrimary</item>
+        <item name="clickColor">?attr/colorOnPrimary</item>
+    </style>
+
+    <style name="AppTheme.MaterialDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="android:textColorSecondary">?attr/colorPrimary</item>
+        <item name="buttonBarPositiveButtonStyle">@style/AppTheme.Dialog.PositiveButton</item>
+        <item name="buttonBarNegativeButtonStyle">@style/AppTheme.Dialog.Button</item>
+        <item name="buttonBarNeutralButtonStyle">@style/AppTheme.Dialog.Button</item>
+        <item name="materialAlertDialogTitlePanelStyle">@style/AppTheme.Dialog.DialogPanel</item>
+        <item name="materialAlertDialogTitleIconStyle">@style/AppTheme.Dialog.DialogTitleIcon</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/AppTheme.Dialog.DialogTitleText</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/AppTheme.Dialog.DialogBodyTextStyle
+        </item>
+    </style>
+
+    <style name="AppTheme.DialogError" parent="AppTheme.MaterialDialog">
+        <item name="materialAlertDialogTitleIconStyle">@style/AppTheme.Dialog.DialogErrorTitleIcon
+        </item>
+        <item name="materialAlertDialogTitleTextStyle">@style/AppTheme.Dialog.DialogErrorTitleText
+        </item>
+    </style>
+
+    <style name="AppTheme.Dialog.Button" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+    <style name="AppTheme.Dialog.PositiveButton" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="AppTheme.Dialog.DialogPanel" parent="MaterialAlertDialog.MaterialComponents.Title.Panel">
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingTop">@dimen/size_10dp</item>
+    </style>
+
+    <style name="AppTheme.Dialog.DialogTitleText" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textSize">@dimen/size_16sp</item>
+        <item name="android:paddingTop">@dimen/width_3dp</item>
+    </style>
+
+    <style name="AppTheme.Dialog.DialogTitleIcon" parent="MaterialAlertDialog.MaterialComponents.Title.Icon">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:paddingStart">@dimen/size_10dp</item>
+        <item name="android:tint">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="AppTheme.Dialog.DialogBodyTextStyle" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <style name="AppTheme.Dialog.DialogErrorTitleText" parent="AppTheme.Dialog.DialogTitleText">
+        <item name="android:textColor">@android:color/holo_red_light</item>
+    </style>
+
+    <style name="AppTheme.Dialog.DialogErrorTitleIcon" parent="AppTheme.Dialog.DialogTitleIcon">
+        <item name="android:tint">@android:color/holo_red_light</item>
+    </style>
+</resources>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/margin_12dp">
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/check_value"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/margin_24dp"
+            android:src="@drawable/ic_modify"
+            android:tint="@color/color_on_surface"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/text_value"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/text_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/user_valid_period_value"
+            android:textIsSelectable="false"
+            app:layout_constraintBottom_toBottomOf="@id/check_value"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/check_value" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

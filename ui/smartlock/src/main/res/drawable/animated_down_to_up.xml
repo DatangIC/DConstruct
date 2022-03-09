@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:drawable="@drawable/ic_down">
+
+    <target android:name="down">
+        <aapt:attr name="android:animation">
+            <objectAnimator
+                android:duration="200"
+                android:propertyName="pathData"
+                android:valueFrom="M5 8.0718L18.8564 8.0718L11.9282 20.0718L5 8.0718Z"
+                android:valueTo="M19 15.9282L5.14359 15.9282L12.0718 3.9282L19 15.9282Z"
+                android:valueType="pathType" />
+        </aapt:attr>
+    </target>
+</animated-vector>

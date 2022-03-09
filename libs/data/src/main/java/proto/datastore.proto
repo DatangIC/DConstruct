@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+option java_package = "com.datangic.data";
+option java_multiple_files = true;
+
+message DefaultDevice {
+  string serial_number = 1;
+  string mac_address = 2;
+}
+message SecretCodeMap {
+  string default = 1;
+  map<string, string> secret_code = 2;
+}
+
+enum ThemeType {
+  SYSTEM = 0;
+  LIGHT = 1;
+  DARK = 2;
+}
+
+message SystemSettings {
+  bool debug_ota = 1;
+  bool debug = 2;
+  ThemeType theme = 3;
+}
+
+message LocalPassword{
+  int32 type = 1;
+  string password = 2;
+  bool biometric = 3;
+}

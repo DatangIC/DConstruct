@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.datangic.smartlock"
+    android:installLocation="auto">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:requestLegacyExternalStorage="true"
+        tools:ignore="ScopedStorage" />
+
+    <uses-feature
+        android:name="android.hardware.bluetooth_le"
+        android:required="true" />
+
+
+    <application
+        android:name=".di.LockApplicationForDebug"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <provider
+            android:authorities="com.datangic.smartlock"
+            android:name="androidx.core.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/provider_paths"/>
+        </provider>
+        <activity
+            android:name=".SplashScreenActivity"
+            android:launchMode="singleTop"
+            android:noHistory="false"
+            android:theme="@style/AppTheme.SplashScreen"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:launchMode="singleTask"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="com.datangic.smartLock.LAUNCHER" />
+            </intent-filter>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
+        <activity
+            android:name=".ui.scanning.ScanActivity"
+            android:label="@string/title_scanning"
+            android:singleUser="true" />
+        <activity
+            android:name=".ui.setting.SettingActivity"
+            android:label="@string/title_setting"
+            android:singleUser="true" />
+        <activity
+            android:name=".ui.manager.ManagerActivity"
+            android:label="@string/title_setting"
+            android:singleUser="true" />
+        <activity
+            android:name=".ui.system.SystemActivity"
+            android:label="@string/title_setting"
+            android:singleUser="true" />
+
+        <activity
+            android:name="com.datangic.localLock.LockerActivity"
+            android:noHistory="false"
+            android:screenOrientation="portrait"
+            android:singleUser="true" />
+
+        <activity
+            android:name="com.datangic.zxing.ScanActivity"
+            android:noHistory="true"
+            android:screenOrientation="portrait"
+            android:singleUser="true" />
+
+
+    </application>
+
+</manifest>

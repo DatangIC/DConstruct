@@ -1,0 +1,33 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryVariant">@color/color_primary</item>
+        <item name="colorOnPrimary">@color/text_primary</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/color_secondary</item>
+        <item name="colorSecondaryVariant">@color/color_secondary_variant</item>
+        <item name="colorOnSecondary">@color/text_secondary</item>
+        <!-- Status bar color. -->
+        <item name="colorPrimaryDark">@color/color_primary</item>
+        <item name="android:windowContentTransitions">false</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:statusBarColor">@color/color_primary</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/background_1</item>
+        <item name="android:textColorPrimary">@color/title_primary</item>
+        <item name="android:textColorSecondary">@color/title_secondary</item>
+        <item name="colorAccent">@color/color_on_surface</item>
+
+        <item name="toolbarStyle">@style/AppTheme.Toolbar</item>
+    </style>
+
+    <style name="ThemeOverlay.Toolbar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+        <item name="android:background">?attr/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme.BottomNavigationViewColor" parent="">
+        <item name="colorOnPrimary">@color/color_on_surface</item>
+    </style>
+</resources>

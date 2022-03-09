@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/pattern_tips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_15dp"
+        android:text="@string/password_pattern"
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/size_16sp"
+        app:layout_constraintBottom_toTopOf="@id/locker_view"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <com.datangic.localLock.widgets.PatternLockView
+        android:id="@+id/locker_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/size_30dp"
+        app:correctStateColor="?attr/colorPrimary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:normalStateColor="?attr/colorPrimary" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

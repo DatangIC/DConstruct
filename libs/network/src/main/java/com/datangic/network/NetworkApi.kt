@@ -1,6 +1,7 @@
 package com.datangic.network
 
-import android.app.Application
+import android.annotation.SuppressLint
+import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import com.datangic.network.impl.*
@@ -11,12 +12,14 @@ import com.datangic.network.networkState.NetworkState
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 import java.util.concurrent.TimeUnit
 
+@SuppressLint("StaticFieldLeak")
 object NetworkApi {
-    private lateinit var application: Application
+    private lateinit var context: Context
     private var requestInfo: IRequestInfo? = null
     private var cacheFile: File? = null
     private var cookieJar: CookieJar? = null
@@ -25,17 +28,17 @@ object NetworkApi {
     //    private var authorizationInfo: IAuthorization? = null
     private val mHandler = Handler(Looper.getMainLooper())
     fun init(
-        application: Application,
+        context: Context,
         infoI: IRequestInfo? = DefaultRequestInfo(),
         logger: ILogger? = null,
         cookieJar: CookieJar? = null,
     ): NetworkApi {
         this.requestInfo = infoI
         this.logger = logger
-        this.application = application
-        this.cacheFile = File(application.cacheDir, "http-cache")
-        NetworkState.register(application)
-        SharePrefer.init(application)
+        this.context = context
+        this.cacheFile = File(context.cacheDir, "http-cache")
+        NetworkState.register(context)
+        SharePrefer.init(context)
         this.cookieJar = cookieJar ?: object : CookieJar {
             override fun loadForRequest(url: HttpUrl): List<Cookie> {
                 return SharePrefer.getCookies()
@@ -74,6 +77,7 @@ object NetworkApi {
             baseUrl(baseUrl)
             client(getOkHttpClient(isCookie, authorizationInfo, *interceptors))
             addConverterFactory(GsonConverterFactory.create())
+            addCallAdapterFactory(RxJava3CallAdapterFactory.create())
             addCallAdapterFactory(LiveData2CallAdapterFactory())
         }.build().create(T::class.java)
     }
@@ -88,7 +92,7 @@ object NetworkApi {
     ): OkHttpClient {
         val okHttpClientBuilder = OkHttpClient.Builder()
         okHttpClientBuilder.apply {
-            addInterceptor(ResponseInterceptor(application))
+            addInterceptor(ResponseInterceptor(context))
             var hasRequestInterceptor = false
             interceptors.forEach { interceptor ->
                 if (interceptor is RequestInterceptor) hasRequestInterceptor = true

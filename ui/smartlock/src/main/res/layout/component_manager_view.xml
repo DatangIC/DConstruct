@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="itemOnClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="managerItem"
+            type="com.datangic.smartlock.components.DeviceItem" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_grey"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{itemOnClick}"
+        android:paddingVertical="@dimen/margin_10dp"
+        android:layout_margin="@dimen/margin_2dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/item_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/height_36dp"
+            android:src="@{managerItem.icon}"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_management_face" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:text="@{managerItem.name}"
+            android:textColor="@color/text_primary"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/item_icon" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

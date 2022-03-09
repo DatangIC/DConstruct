@@ -1,0 +1,22 @@
+<level-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:drawable="@drawable/level_0_fingerprint_48"
+        android:maxLevel="0"
+        android:minLevel="0" />
+    <item
+        android:drawable="@drawable/level_1_fingerprint_48"
+        android:maxLevel="1"
+        android:minLevel="1" />
+    <item
+        android:drawable="@drawable/level_2_fingerprint_48"
+        android:maxLevel="2"
+        android:minLevel="2" />
+    <item
+        android:drawable="@drawable/level_3_fingerprint_48"
+        android:maxLevel="3"
+        android:minLevel="3" />
+    <item
+        android:drawable="@drawable/level_4_fingerprint_48"
+        android:maxLevel="4"
+        android:minLevel="4" />
+</level-list>

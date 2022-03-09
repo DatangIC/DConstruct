@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/margin_32dp"
+            tools:context=".ui.setting.SettingActivity">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/info_serial_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_48dp"
+                android:textAppearance="@style/AppTheme.TextAppearance.Subtitle1"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/info_imei"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20dp"
+                android:textAppearance="@style/AppTheme.TextAppearance.Subtitle1"
+                app:layout_constraintTop_toBottomOf="@id/info_serial_number" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/info_mac_address"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20dp"
+                android:textAppearance="@style/AppTheme.TextAppearance.Subtitle1"
+                app:layout_constraintTop_toBottomOf="@id/info_imei" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/info_version_software"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20dp"
+                android:textAppearance="@style/AppTheme.TextAppearance.Subtitle1"
+                app:layout_constraintTop_toBottomOf="@id/info_mac_address" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/info_version_hardware"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20dp"
+                android:textAppearance="@style/AppTheme.TextAppearance.Subtitle1"
+                app:layout_constraintTop_toBottomOf="@id/info_version_software" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/info_version_fingerprint"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20dp"
+                android:textAppearance="@style/AppTheme.TextAppearance.Subtitle1"
+                app:layout_constraintTop_toBottomOf="@id/info_version_hardware" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/info_version_face"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20dp"
+                android:hint="@string/management_face"
+                android:textAppearance="@style/AppTheme.TextAppearance.Subtitle1"
+                app:layout_constraintTop_toBottomOf="@id/info_version_fingerprint" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/info_version_back_panel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20dp"
+                android:hint="@string/check_repair_repair_back_panel"
+                android:textAppearance="@style/AppTheme.TextAppearance.Subtitle1"
+                app:layout_constraintTop_toBottomOf="@id/info_version_face" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/info_version_wifi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_20dp"
+                android:hint="@string/check_repair_repair_wifi"
+                android:textAppearance="@style/AppTheme.TextAppearance.Subtitle1"
+                app:layout_constraintTop_toBottomOf="@id/info_version_back_panel" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

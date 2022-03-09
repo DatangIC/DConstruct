@@ -1,0 +1,477 @@
+<resources>
+
+    <string name="app_name">SmartLock2</string>
+    <string name="title_home">Home</string>
+    <string name="title_me">Me</string>
+    <string name="title_setting">Settings</string>
+    <string name="title_system">System</string>
+    <string name="title_check_repair">Check&amp;Repair</string>
+    <string name="title_version_info">Version Info</string>
+    <string name="title_wifi">Wi-Fi Setting</string>
+    <string name="title_update">Update</string>
+    <string name="title_update_lock">Update Lock</string>
+    <string name="title_update_face">Update Face</string>
+    <string name="title_scanning">Scanning</string>
+    <string name="title_verifying">Verifying</string>
+
+    <string name="title_device">Device</string>
+
+    <string name="title_device_management">Devices</string>
+
+    <string name="title_keys">Unlock Information</string>
+    <string name="title_temp_pwd">Temp-Password</string>
+    <string name="title_record">Record</string>
+    <string name="title_lifecycle">Lifecycle Settings</string>
+    <string name="title_user">User</string>
+
+    <string name="fingerprint">Fingerprint</string>
+    <string name="back_panel">Back Panel</string>
+
+
+    <string name="undo">Undo</string>
+    <string name="delete">Delete</string>
+    <string name="back">Back</string>
+    <string name="all">All</string>
+    <string name="album">Album</string>
+
+    <string name="argument_mac_address" translatable="false">Mac_Address</string>
+    <string name="argument_serial_number" translatable="false">Serial_Number</string>
+    <string name="argument_user_info" translatable="false">User_Info</string>
+    <string name="argument_update_file" translatable="false">Update_File</string>
+    <string name="argument_update_face" translatable="false">Update_Face</string>
+
+    <!--Dialog    -->
+
+    <string name="location_permission_title">LOCATION PERMISSION REQUIRED</string>
+    <string name="location_permission_info">From Android 6.0 Marshmallow onwards the application requires Location permission in order to scan for Bluetooth Low Energy devices.
+      \n\nThis is because Bluetooth LE beacons, for example iBeacons or Eddystone, may be used to determine the phone\'s and user\'s location.
+        <b>We will not use this information in any way.</b></string>
+    <string name="grant_permission">Grant</string>
+    <string name="permission_settings">Settings</string>
+    <string name="bluetooth_disabled_title">BLUETOOTH DISABLED</string>
+    <string name="bluetooth_disabled_info">The Bluetooth adapter is turned off. Click the button below to enable it.</string>
+    <string name="bluetooth_disabled_action">Enable</string>
+    <string name="camera_and_storage_permission_title">PERMISSIONS REQUIRED</string>
+    <string name="camera_and_storage_permission_info">The app needs access to the <b>Camera</b> and <b>Storage</b> to scan or read the QR code.<b>\nWe will not use this information in any way.</b></string>
+
+    <string name="camera_permission_title">CAMERA PERMISSION REQUIRED</string>
+    <string name="camera_permission_info">The app needs access to the <b>Camera</b>  to scan the QR code.</string>
+    <string name="storage_permission_title">STORAGE PERMISSION REQUIRED</string>
+    <string name="storage_permission_info">This app needs access to your <b>Storage</b> in order to read the local QR code.\n
+        <b>We will not use this information in any way.</b></string>
+
+    <!--dialog    -->
+
+    <string name="waite">Waiting</string>
+    <string name="wrong">Wrong</string>
+    <string name="error">ERROR</string>
+    <string name="notice">NOTICE</string>
+    <string name="dialog_waiting">Please waiting</string>
+    <string name="dialog_device_exists">Device already exists</string>
+    <string name="dialog_error_message_wrong_qr_code">No information is detected, please scan the correct QR code.</string>
+    <string name="dialog_error_qr_code_has_expired">QR code has expired.</string>
+
+    <string name="dialog_restore_the_device_successfully">Restore the device successfully</string>
+    <string name="dialog_failed_to_restore_device">Failed to restore device</string>
+
+    <string name="dialog_add_the_device_successfully">Added new device successfully</string>
+    <string name="dialog_failed_to_add_device">Failed to add new device</string>
+    <string name="cancel">Cancel</string>
+    <string name="add">Add</string>
+    <string name="confirm">Confirm</string>
+    <string name="dialog_share">Share</string>
+    <string name="close">Close</string>
+    <string name="edit">Edit</string>
+    <string name="unbind">Unbind</string>
+    <string name="delay_second" formatted="true">%d second</string>
+
+    <string name="dialog_guide_title">CAN\'T SEE YOUR LOCK?</string>
+    <string name="dialog_guide_info">1. Make sure the LOCK is <b>turned on</b>.
+        \n\n2. Make sure the <b>relevant</b> firmware and SoftDevice are flashed.
+    \n\n3. Location is turned off. Some Android phones require it enabled in order to scan for Bluetooth LE devices.
+        \n\n Press <b>CONFIRM</b> to reconnect, <b>CANCEL</b> to exit.</string>
+    <string name="ble_link_loss">Bluetooth connection lost</string>
+    <string name="ble_not_supported">The device’s Bluetooth does not support the service</string>
+    <string name="ble_connect_timeout">Request connection <b>timeout</b>. \n Make sure the device is <b>turned on</b> and near the phone
+    \n Press <b>CONFIRM</b> to reconnect, <b>CANCEL</b> to exit. </string>
+    <string name="ble_terminate_peer_user">The user actively disconnects Bluetooth</string>
+    <string name="ble_terminate_peer_device">The device actively disconnects Bluetooth</string>
+
+    <string name="dialog_message_open_slide">Open The Slide</string>
+
+    <string name="dialog_internet_error" formatted="true">Network request error, please try again later.\n\t %s</string>
+    <string name="dialog_delete_device_tips">Do you want to delete the device?</string>
+    <string name="dialog_delete_device_tips_restore">Click&lt;b> CONFIRM &lt;/b>to &lt;b>restore&lt;/b> the factory settings and delete the data, click&lt;b> CANCEL&lt;/b> to &lt;b>delete only&lt;/b>.</string>
+
+    <string name="dialog_title_password">Set Password</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+
+    <string name="fingerprint_is_full">Fingerprint is full.</string>
+    <string name="fingerprint_already_exist">Fingerprint already exists</string>
+    <string name="add_unlock_information">Entering unlock information</string>
+
+    <string name="edit_unlock_info_name">Edit Name</string>
+
+    <!--Dialog temp    -->
+    <string name="dialog_temp_pwd_title">Create Temp-Password</string>
+    <string name="dialog_temp_pwd_once">Once:</string>
+    <string name="once_true">True</string>
+    <string name="once_false">False</string>
+    <string name="effective_period">Effective period:</string>
+
+    <string name="dialog_error_temp_secret_code">Temporary security key is empty.</string>
+    <string name="dialog_error_temp_pwd_limit">The number of temporary passwords has exceeded the upper limit.</string>
+    <string name="dialog_error_temp_pwd_create">Temporary password generated error, please try again later.</string>
+
+    <string name="dialog_name_input_title">Username</string>
+    <string name="dialog_name_input_tips">Please enter a new username.</string>
+    <string name="dialog_name_input_error">Incorrect characters entered.</string>
+
+    <string name="dialog_wifi_server_ip">Server Address</string>
+    <string name="dialog_wifi_server_ip_helper">eg:192.1.1.168</string>
+    <string name="dialog_wifi_server_port">Server Port</string>
+    <string name="dialog_wifi_wifi_ip" formatted="true">&lt;b>Wi-Fi:&lt;/b> %s</string>
+    <string name="dialog_wifi_wifi_pwd">Wi-Fi Password</string>
+
+    <string name="dialog_wifi_server_ip_error">Server address error.</string>
+    <string name="dialog_wifi_server_port_error">Server port error.</string>
+    <string name="dialog_wifi_server_wifi">Server address error.</string>
+
+    <string name="dialog_wifi_set_error">Configuration failed, try again later.</string>
+
+
+    <string name="password_length_tip" formatted="true">Password length must be %d characters .</string>
+    <string name="password_length_error" formatted="true">Password length is not %d.</string>
+    <string name="password_confirm_incorrect">You enter two passwords do not match.</string>
+
+    <string name="dialog_title_secret_code">Add Secret Code</string>
+    <string name="secret_code_name_tip" formatted="true">Name</string>
+    <string name="secret_code_key_tip" formatted="true">Name of Secret Code</string>
+    <string name="secret_code_value_tip" formatted="true">Secret Code</string>
+    <string name="secret_code_length_tip" formatted="true">Secret Code must be %d characters .</string>
+    <string name="secret_code_length_error" formatted="true">Secret Code length is not %d.</string>
+
+    <string name="bottom_dialog_volume_selector">Volume Selection</string>
+    <string name="bottom_dialog_volume_mute">Mute</string>
+    <string name="bottom_dialog_volume_low">Low</string>
+    <string name="bottom_dialog_volume_middle">Middle</string>
+    <string name="bottom_dialog_volume_high">High</string>
+
+    <string name="bottom_dialog_language_selector">Language Selection</string>
+    <string name="bottom_dialog_language_only_chinese">Only Chinese</string>
+    <string name="bottom_dialog_language_chinese">Chinese</string>
+    <string name="bottom_dialog_language_english">English</string>
+
+    <string name="bottom_dialog_unlock_period_selector">Unlock Period </string>
+    <string name="bottom_dialog_unlock_period_5">5 Second</string>
+    <string name="bottom_dialog_unlock_period_8">8 Second</string>
+    <string name="bottom_dialog_unlock_period_10">10 Second</string>
+    <string name="bottom_dialog_unlock_period_15">15 Second</string>
+    <string name="bottom_dialog_unlock_period_30">30 Second</string>
+
+    <string name="time_picker">Time Picker</string>
+    <string name="time_picker_to">To</string>
+
+
+    <string name="bottom_dialog_add_user">New User</string>
+    <string name="bottom_dialog_new_user">User</string>
+    <string name="bottom_dialog_new_admin">Admin</string>
+
+    <string name="bottom_dialog_user_settings">Settings</string>
+    <string name="bottom_dialog_user_share">Share</string>
+    <string name="bottom_dialog_user_delete">Delete</string>
+    <string name="bottom_dialog_user_batch_deletion">Batch Deletion</string>
+    <string name="bottom_dialog_user_user_lifecycle">Lifecycle Settings</string>
+    <string name="bottom_dialog_user_user_edit_name">Edit Name</string>
+    <string name="bottom_dialog_user_user_set_as_admin">Set As Administrator</string>
+
+
+    <!--Me-->
+    <string name="user_name" translatable="false">Jack</string>
+    <string name="user_phone" translatable="false">13262223222</string>
+    <string name="copyright" translatable="false">Copyright@Datang</string>
+    <string name="device_management">Device Management</string>
+    <string name="system_settings">System Settings</string>
+    <string name="about_us">About Us</string>
+
+    <!--Scan    -->
+    <string name="scan_start">Start Scanning</string>
+    <string name="scan_stop">Stop Scanning</string>
+    <string name="verify">Security Certification</string>
+    <string name="name_is_required">Name is required</string>
+    <string name="version">version:%s \n</string>
+
+    <!--Home    -->
+    <string name="scan">Scan</string>
+    <string name="search">Search</string>
+    <string name="scan_text">Scan the QR code or authorization code of the lock.</string>
+    <string name="new_lock">New Lock</string>
+
+    <string name="management_device">Devices</string>
+    <string name="management_name">Smart Lock</string>
+    <string name="management_setting">Settings</string>
+    <string name="management_ble_status">Ble Status</string>
+    <string name="management_sync_at" formatted="true">Sync at:%s</string>
+    <string name="management_percent" formatted="true" translatable="false">%s%%</string>
+
+
+    <string name="management_password">Password</string>
+    <string name="management_fingerprint">Fingerprint</string>
+    <string name="management_nfc">NFC</string>
+    <string name="management_face">Face</string>
+    <string name="management_record">Record</string>
+    <string name="management_temp_pwd">Temp-Password</string>
+    <string name="management_user">Users</string>
+
+    <!--Database-->
+    <string name="default_device_name">SmartLock</string>
+    <string name="default_admin_name">Admin</string>
+    <string name="default_user_name">User</string>
+    <string name="default_user_name_with_id" formatted="true">User %d</string>
+    <string name="default_key_password_name">Password</string>
+    <string name="default_key_temp_password_name">Temp Password</string>
+    <string name="default_key_fingerprint_name">Fingerprint</string>
+    <string name="default_key_nfc_name">NFC</string>
+    <string name="default_key_face_name">Face</string>
+    <string name="fab_description" translatable="false">Fab description</string>
+
+    <!--BLE    -->
+    <string name="ble_initializing">Initializing</string>
+    <string name="ble_scanning">Scanning</string>
+    <string name="ble_found">Found</string>
+    <string name="ble_connected">Connected</string>
+    <string name="ble_connecting">Connecting</string>
+    <string name="ble_disconnected">Disconnected</string>
+    <string name="ble_scan_timeout">Timeout</string>
+    <string name="ble_disconnecting">Disconnecting</string>
+
+
+    <!-- Settings   -->
+    <string name="setting_combination_unlock">Combination Unlock</string>
+    <string name="setting_automatic_closing">Automatic Closing</string>
+    <string name="setting_bluetooth_keep_on">Bluetooth Keep On</string>
+    <string name="setting_lock_keep_open">Lock Keep Open</string>
+    <string name="setting_voice_prompts">Voice Prompts</string>
+    <string name="setting_anti_prizing_alarm">Anti Prizing Alarm</string>
+    <string name="setting_lock_cylinder">Lock Cylinder</string>
+    <string name="setting_follow_doorbell">Follow Doorbell</string>
+    <string name="setting_infrared">Infrared</string>
+    <string name="setting_magic_number">Magic Number</string>
+    <string name="setting_temp_pwd">Temporary Password</string>
+    <string name="setting_volume_adjustment">Volume</string>
+    <string name="setting_unlock_period">Unlock Period</string>
+    <string name="setting_unlock_period_time" formatted="true">%d Second</string>
+    <string name="setting_lock_status">Lock Status</string>
+    <string name="setting_lock_status_open">Open</string>
+    <string name="setting_lock_status_close">Close</string>
+    <string name="setting_language">Lock Language</string>
+    <string name="setting_language_chinese_only">Only Chinese</string>
+    <string name="setting_language_chinese">Chinese</string>
+    <string name="setting_language_english">English</string>
+    <string name="setting_nfc">Types of NFC</string>
+    <string name="setting_nfc_encrypted_and_ordinary">Encrypted &amp; Ordinary</string>
+    <string name="setting_nfc_encrypted">Ordinary</string>
+
+    <string name="setting_wifi_power">Wi-Fi Power</string>
+    <string name="setting_wifi_status">Wi-Fi Status</string>
+
+    <string name="setting_wifi_status_not_setting">Not Setting</string>
+    <string name="setting_wifi_status_router_dis_connected">Router Connecting</string>
+    <string name="setting_wifi_status_server_dis_connected">Router-Connected</string>
+    <string name="setting_wifi_status_server_connected">Server-Connected</string>
+    <string name="setting_wifi_status_error">Error</string>
+    <string name="setting_wifi_setting">Wi-Fi Setting</string>
+
+
+    <string name="setting_power_saving_period">Power Saving Period</string>
+    <string name="setting_power_saving_period_status" formatted="false" translatable="false">%s - %s</string>
+
+
+    <string name="setting_self_check_repair">Self-Check &amp; Repair</string>
+    <string name="setting_version_information">Version Information</string>
+    <string name="setting_version_update">Version Update</string>
+    <string name="setting_restore_factory_settings">Restore Factory Settings</string>
+    <string name="setting_restore_factory_tips">This operation will &lt;b>delete all data on the APP and the Lock&lt;/b> and cannot be retrieved!</string>
+    <string name="bottom_line">Has reached the bottom line.</string>
+
+    <string name="check_repair_check">Check</string>
+    <string name="check_repair_repair">Repair</string>
+    <string name="check_repair_repair_keyboard">Keyboard</string>
+    <string name="check_repair_repair_back_panel">Panel</string>
+    <string name="check_repair_repair_wifi" translatable="false">Wi-Fi</string>
+
+
+    <string name="check_repair_repair_all_properly">All parts are working properly.</string>
+
+    <string name="check_repair_repair_error">There is 1 error.</string>
+    <string name="check_repair_repair_errors" formatted="true">There are %d errors.</string>
+
+    <string name="check_repair_repair_err_code" formatted="true">Error Code = %s</string>
+
+    <string name="check_repair_repair_err_key" formatted="true">\n Keyboard error</string>
+    <string name="check_repair_repair_err_fingerprint">\n Fingerprint error.</string>
+    <string name="check_repair_repair_err_nfc">\n NFC error.</string>
+    <string name="check_repair_repair_err_back_panel">\n Panel error.</string>
+    <string name="check_repair_repair_err_face_nir">\n NIR of Face error.</string>
+    <string name="check_repair_repair_err_face_rgb">\n RGB of Face error.</string>
+    <string name="check_repair_repair_err_face_flash">\n Flash of Face error.</string>
+    <string name="check_repair_repair_err_face_touch">\n Touch of Face error.</string>
+    <string name="check_repair_repair_err_face_lcm">\n LCM of Face error.</string>
+    <string name="check_repair_repair_err_face_chip">\n Chip of Face error.</string>
+    <string name="check_repair_repair_err_wifi">\n Wi-Fi serial port error.</string>
+
+    <string name="version_info_serial_number" formatted="true">&lt;b>Serial Number: &lt;/b> %s</string>
+    <string name="version_info_imei" formatted="true">&lt;b>IMEI: &lt;/b> %s</string>
+    <string name="version_info_mac_address" formatted="true">&lt;b>Mac Address: &lt;/b>%s</string>
+    <string name="version_info_software_version" formatted="true">&lt;b>Software: &lt;/b>%s</string>
+    <string name="version_info_hardware_version" formatted="true">&lt;b>Hardware: &lt;/b>%s</string>
+    <string name="version_info_software_face" formatted="true">&lt;b>Face: &lt;/b>%s</string>
+    <string name="version_info_software_fingerprint" formatted="true">&lt;b>Fingerprint: &lt;/b>%s</string>
+    <string name="version_info_software_back_panel" formatted="true">&lt;b>Back Panel: &lt;/b>%s</string>
+    <string name="version_info_software_wifi" formatted="true">&lt;b>Wi-Fi: &lt;/b>%s</string>
+
+    <string name="version_update_true">There is a new version</string>
+    <string name="version_update_false">Is the latest version</string>
+    <string name="version_version_error">Failed to get the version</string>
+    <string name="version_checking_version">Checking updates…</string>
+    <string name="version_sync_version">Syncing local version…</string>
+    <string name="version_querying_version">Querying for updates…</string>
+
+    <string name="version_checking_done">Done</string>
+
+
+    <string name="version_serial_number" formatted="true">&lt;b>Serial Number:&lt;/b> %s</string>
+    <string name="version_runtime_version" formatted="true">&lt;b>Runtime Version:&lt;/b> %s</string>
+    <string name="version_lasted_version" formatted="true">&lt;b>Lasted Version:&lt;/b> %s</string>
+    <string name="version_release_time" formatted="true">&lt;b>Release Time:&lt;/b> %s</string>
+    <string name="version_release_notes"><b>Release Notes:</b></string>
+    <string name="lock">Lock</string>
+    <string name="update_tips"> 1.Please keep your phone and device fully charged,\n2.Do not operate the device during the update,    \n3.During the update process, do not turn off the phone, switch to the background, or turn off the screen.</string>
+
+    <string name="download">Download</string>
+    <string name="downloading">Downloading</string>
+    <string name="update">Update</string>
+    <string name="updating">Updating</string>
+    <string name="update_successful">Update Successful.</string>
+    <string name="update_failed">Update Failed.</string>
+    <string name="percent" formatted="true" translatable="false">%.2f%%</string>
+    <string name="update_step" formatted="false" translatable="false">(%d/%d)</string>
+
+
+    <!-- SecretCode   -->
+    <string name="select_secret_code">Secret Code</string>
+
+    <string name="_0e_title">Validation error</string>
+    <string name="_0e_0x01_">Random number verification failed.</string>
+    <string name="_0e_0x02_">User does not exist.</string>
+    <string name="_0e_0x03_">No permission.</string>
+    <string name="_0e_0x04_">Device busy.</string>
+    <string name="_0e_0x05_">Authentication code error.</string>
+    <string name="_0e_0x06_">User has been suspended.</string>
+    <string name="_0e_0x07_">Illegal application connection.</string>
+    <string name="_0e_0x08_">User has expired.</string>
+    <string name="_0e_0x09_">The security code is set successfully.</string>
+    <string name="_0e_0x0a_">The door lock has been restored to factory settings.</string>
+
+    <!--Manager   -->
+
+    <string name="key_name">Name of key</string>
+    <string name="password_value" formatted="true">Password: %s</string>
+    <string name="password_value_with_asterisk" formatted="true">Password:* %s</string>
+    <string name="sync_at" formatted="true">Sync At: %s</string>
+    <string name="dead_time" formatted="true">Dead Time: %s</string>
+
+    <string name="record_user"> User </string>
+    <string name="record_lock"> Lock </string>
+
+    <string name="event_unlock"> Unlock </string>
+    <string name="event_lock"> Lock </string>
+    <string name="event_add_key"> Add Unlock Key </string>
+    <string name="event_delete_key">Delete unlock key</string>
+    <string name="event_add_user"> Add User </string>
+    <string name="event_delete_user">Delete User</string>
+    <string name="event_doorbell">Doorbell</string>
+    <string name="event_unlock_tips" formatted="false"> %s uses %s to open  %s. </string>
+    <string name="event_unlock_tips_temp_ped" formatted="false"> %s to open the %s. </string>
+    <string name="event_add_key_tips" formatted="false"> %s successfully added %s. </string>
+    <string name="event_delete_key_tips" formatted="false"> %s deleted %s. </string>
+    <string name="event_delete_user_tips" formatted="true">
+        The %s deleted user.
+    </string>
+    <string name="event_add_user_tips" formatted="true">
+        The %s added user.
+    </string>
+
+    <string name="seized_fingerprint"> Sized-Fingerprint </string>
+    <string name="seized_password"> Sized-Password </string>
+    <string name="remote_unlock"> Application </string>
+    <string name="unknown">Unknown</string>
+    <string name="combined_unlock">Combined</string>
+    <string name="locked">Locked</string>
+
+    <string name="event_error_smashed">Door smashed</string>
+    <string name="event_error_pwd">Password error multiple times</string>
+    <string name="event_error_nfc">NFC error multiple times</string>
+    <string name="event_error_fingerprint">Fingerprint error multiple times</string>
+    <string name="event_error_sized_fingerprint">Sized-Fingerprint</string>
+    <string name="event_error_sized_password">Sized-Password</string>
+    <string name="event_error_demolished">Demolished</string>
+    <string name="event_error_try">Try to open the door many times</string>
+
+    <!--Users    -->
+    <string name="user_id" formatted="true">User Number: %d</string>
+    <string name="user_pause">Pause</string>
+    <string name="user_start">Start</string>
+    <string name="user_more">More</string>
+    <string name="status_pause">Pause</string>
+    <string name="status_activated">Activated</string>
+    <string name="status_inactivated">Inactivated</string>
+
+    <string name="user_lifecycle_user_info" formatted="false">&lt;b>Username:&lt;/b> %s &lt;br/> &lt;br/> &lt;b>ID:&lt;/b>  %s</string>
+    <string name="user_lifecycle">User\'s life cycle:</string>
+    <string name="user_lifecycle_value_title" formatted="true" translatable="false">%s</string>
+    <string name="user_lifecycle_value" formatted="false">%s &lt;b> To &lt;/b> %s </string>
+    <string name="user_valid_period">User\'s validity period:</string>
+    <string name="user_valid_first_period">&lt;b>First time period:\t\t\t\t\t\t&lt;/b> %s</string>
+    <string name="user_valid_second_period">&lt;b>Second time period:\t\t\t&lt;/b> %s</string>
+    <string name="user_valid_third_period">&lt;b>The third time period:\t\t&lt;/b> %s</string>
+    <string name="user_valid_period_value" formatted="false">%s &lt;b> To &lt;/b> %s</string>
+
+    <string name="user_valid_period_tips">Three time periods can be set in a day, and the user is available in this time period.</string>
+    <string name="user_lifecycle_tips">The user\'s life cycle, after expiration, the user will become invalid.</string>
+
+    <string name="end_blow_start_error">The &lt;b>End Time&lt;/b> needs to be greater than the &lt;b>Start Time&lt;/b>.</string>
+
+    <!--System settings    -->
+    <string name="debug_ota">OTA Test</string>
+    <string name="debug">Debug</string>
+    <string name="theme">Theme</string>
+    <string name="theme_light">Light</string>
+    <string name="theme_dark">Dark</string>
+    <string name="theme_system">Follow System</string>
+    <string name="language">Language</string>
+    <string name="language_chinese">Chinese</string>
+    <string name="language_english">English</string>
+    <string name="set_info">Set Device Info</string>
+    <string name="set_secret_code">Set Secret Code</string>
+    <string name="system_fingerprint">Fingerprint Verification</string>
+    <string name="system_password">Set Password</string>
+    <string name="system_password_change">Change Password</string>
+
+    <string name="new_device">New Device</string>
+    <string name="scan_for_add">Scan the QR code to add a device</string>
+    <string name="search_for_add">Search for Bluetooth to add a device</string>
+    <string name="retrieve">Retrieve</string>
+    <string name="scan_for_retrieve">Scan the QR code to retrieve the device</string>
+    <string name="search_for_retrieve">Search Bluetooth to retrieve the device</string>
+
+
+    <!--    tips-->
+    <string name="password_is_exists">A user can set at most one password.</string>
+    <string name="nfc_is_exists">One user can set up one NFC.</string>
+    <string name="face_is_exists">A user can set at most one face information.</string>
+    <string name="fingerprint_is_exists">A user can set up to five fingerprint information.</string>
+    <string name="is_once">Once</string>
+    <string name="is_more">Repeatedly</string>
+</resources>

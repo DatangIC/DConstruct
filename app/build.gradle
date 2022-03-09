@@ -46,6 +46,7 @@ android {
     }
     buildFeatures {
         compose true
+        dataBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion compose_version
@@ -60,7 +61,7 @@ android {
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.7.0'
+//    implementation 'androidx.core:core-ktx:1.7.0'
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.4.0'
 //    implementation project(":arouter-api")
@@ -69,6 +70,7 @@ dependencies {
 
     if(!config.isDebug) {
         implementation project(":ui:login")
+        implementation project(":ui:smartlock")
     }
 
 //    implementation config.others.arouter

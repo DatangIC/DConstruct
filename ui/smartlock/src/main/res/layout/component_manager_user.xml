@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.datangic.data.database.table.DeviceEnum.DeviceUserStatus" />
+
+        <variable
+            name="onPauseClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onStartClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onMoreClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onItemClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="onEditNameClick"
+            type="android.view.View.OnClickListener" />
+
+        <variable
+            name="userItem"
+            type="com.datangic.smartlock.components.UserItem" />
+    </data>
+
+    <com.datangic.swipe3.SwipeLayout
+        android:id="@+id/user_swipe"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_75dp"
+        android:background="@drawable/ripple_background_2">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/user_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/ripple_background_2"
+            android:clickable="true"
+            android:focusable="true"
+            android:longClickable="true"
+            android:onClick="@{onItemClick}"
+            android:paddingStart="@dimen/margin_32dp"
+            tools:ignore="RtlSymmetry">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <androidx.constraintlayout.utils.widget.ImageFilterView
+                    android:id="@+id/user_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/margin_6dp"
+                    android:src="@drawable/ic_user_32"
+                    android:tint="@color/color_on_surface"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/user_name"
+                    style="@style/AppTheme.TextAppearance.Subtitle1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_24dp"
+                    android:gravity="center"
+                    android:hint="@string/user_name"
+                    android:onClick="@{onEditNameClick}"
+                    android:text="@{userItem.userName}"
+                    app:layout_constraintBottom_toTopOf="@id/user_id"
+                    app:layout_constraintLeft_toRightOf="@id/user_icon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.utils.widget.ImageFilterView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:background="@drawable/ripple_grey"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:onClick="@{onEditNameClick}"
+                    android:src="@drawable/ic_modify"
+                    android:tint="@color/color_on_surface"
+                    app:layout_constraintBottom_toBottomOf="@id/user_name"
+                    app:layout_constraintLeft_toRightOf="@id/user_name"
+                    app:layout_constraintTop_toTopOf="@id/user_name" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/user_id"
+                    style="@style/AppTheme.TextAppearance.Subtitle2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/user_id"
+                    android:text="@{String.format(@string/user_id,userItem.userId)}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="@id/user_icon"
+                    app:layout_constraintTop_toBottomOf="@id/user_icon" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/user_status"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginEnd="@dimen/margin_24dp"
+                android:gravity="center"
+                android:hint="@string/status_activated"
+                android:text="@{userItem.userStatus}"
+                android:textColor="@{userItem.userStatus == DeviceUserStatus.PAUSE?@color/red:@color/color_on_surface}"
+                app:layout_constraintRight_toRightOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/divider"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/user_start"
+            android:layout_width="@dimen/width_75dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/ripple_green"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:onClick="@{onStartClick}"
+            android:padding="@dimen/margin_18dp"
+            android:text="@string/user_start"
+            android:textColor="@color/title_primary"
+            android:visibility="@{userItem.userStatus == DeviceUserStatus.PAUSE?View.VISIBLE:View.GONE}"
+            app:layout_constraintRight_toLeftOf="@id/delete"
+            app:tint="@color/title_primary" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/user_pause"
+            android:layout_width="@dimen/width_75dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/ripple_red"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:onClick="@{onPauseClick}"
+            android:padding="@dimen/margin_18dp"
+            android:text="@string/user_pause"
+            android:textColor="@color/title_primary"
+            android:visibility="@{userItem.userStatus == DeviceUserStatus.PAUSE?View.GONE:View.VISIBLE}"
+            app:layout_constraintRight_toRightOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/user_more"
+            android:layout_width="@dimen/width_75dp"
+            android:layout_height="match_parent"
+            android:background="@drawable/ripple_purple"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:onClick="@{onMoreClick}"
+            android:padding="@dimen/margin_18dp"
+            android:text="@string/user_more"
+            android:textColor="@color/title_primary"
+            app:layout_constraintRight_toRightOf="parent" />
+
+    </com.datangic.swipe3.SwipeLayout>
+</layout>

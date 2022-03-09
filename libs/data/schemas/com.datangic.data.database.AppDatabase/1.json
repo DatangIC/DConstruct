@@ -1,0 +1,1042 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 1,
+    "identityHash": "8a41499d096b2286e63964be2465adcc",
+    "entities": [
+      {
+        "tableName": "User",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `username` TEXT, `email` TEXT)",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "username",
+            "columnName": "username",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "email",
+            "columnName": "email",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "Device",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`did` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `type` INTEGER NOT NULL, `serial_number` TEXT NOT NULL, `mac_address` TEXT NOT NULL, `device_user_id` TEXT NOT NULL, `create_at` INTEGER NOT NULL, `update_at` INTEGER NOT NULL, `imei` TEXT NOT NULL, `secret_code` TEXT, `nfc` INTEGER NOT NULL, `face` INTEGER NOT NULL, `wifi` INTEGER NOT NULL, `infrared` INTEGER NOT NULL, `variable_password` INTEGER NOT NULL, `automatic_lock` INTEGER NOT NULL, `self_eject_lock` INTEGER NOT NULL, `permission_switch` INTEGER NOT NULL, `magic_number` INTEGER NOT NULL, `temporary_password` INTEGER NOT NULL, `status_query` INTEGER NOT NULL, `seized_fingerprint` INTEGER NOT NULL, `volume_adjustment` INTEGER NOT NULL, `follow_doorbell` INTEGER NOT NULL, `language_switch` INTEGER NOT NULL, `back_panel_ota` INTEGER NOT NULL, `temp_password_without_asterisk` INTEGER NOT NULL, `lock_keep_open` INTEGER NOT NULL, `lock_cylinder` INTEGER NOT NULL, `software_version` TEXT, `hardware_version` TEXT, `wifi_software_version` TEXT, `back_panel_software_version` TEXT, `fingerprint_software_version` TEXT, `face_software_version` TEXT NOT NULL, `temporary_password_secret_code` TEXT, `min_password_length` INTEGER NOT NULL, `max_password_length` INTEGER NOT NULL)",
+        "fields": [
+          {
+            "fieldPath": "did",
+            "columnName": "did",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type",
+            "columnName": "type",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serialNumber",
+            "columnName": "serial_number",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "macAddress",
+            "columnName": "mac_address",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deviceUserID",
+            "columnName": "device_user_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createAt",
+            "columnName": "create_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updateAt",
+            "columnName": "update_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "imei",
+            "columnName": "imei",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "secretCode",
+            "columnName": "secret_code",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nfc",
+            "columnName": "nfc",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "face",
+            "columnName": "face",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "wifi",
+            "columnName": "wifi",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "infrared",
+            "columnName": "infrared",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "variablePassword",
+            "columnName": "variable_password",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "automaticLock",
+            "columnName": "automatic_lock",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "selfEjectLock",
+            "columnName": "self_eject_lock",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "permissionSwitch",
+            "columnName": "permission_switch",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "magicNumber",
+            "columnName": "magic_number",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "temporaryPassword",
+            "columnName": "temporary_password",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "statusQuery",
+            "columnName": "status_query",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "seizedFingerprint",
+            "columnName": "seized_fingerprint",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "volumeAdjustment",
+            "columnName": "volume_adjustment",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "followDoorbell",
+            "columnName": "follow_doorbell",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "languageSwitch",
+            "columnName": "language_switch",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "backPanelOta",
+            "columnName": "back_panel_ota",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "temporaryPasswordWithoutAsterisk",
+            "columnName": "temp_password_without_asterisk",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lockKeepOpen",
+            "columnName": "lock_keep_open",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lockCylinder",
+            "columnName": "lock_cylinder",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "softwareVersion",
+            "columnName": "software_version",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "hardwareVersion",
+            "columnName": "hardware_version",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "wifiSoftwareVersion",
+            "columnName": "wifi_software_version",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "backPanelSoftwareVersion",
+            "columnName": "back_panel_software_version",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "fingerprintSoftwareVersion",
+            "columnName": "fingerprint_software_version",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "faceSoftwareVersion",
+            "columnName": "face_software_version",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "temporaryPasswordSecretCode",
+            "columnName": "temporary_password_secret_code",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "minPasswordLength",
+            "columnName": "min_password_length",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "maxPasswordLength",
+            "columnName": "max_password_length",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "did"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_Device_serial_number_mac_address",
+            "unique": true,
+            "columnNames": [
+              "serial_number",
+              "mac_address"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_Device_serial_number_mac_address` ON `${TABLE_NAME}` (`serial_number`, `mac_address`)"
+          }
+        ],
+        "foreignKeys": []
+      },
+      {
+        "tableName": "DeviceStatus",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`sid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `device_user_id` TEXT NOT NULL, `serial_number` TEXT NOT NULL, `mac_address` TEXT NOT NULL, `create_at` INTEGER NOT NULL, `update_at` INTEGER NOT NULL, `battery` INTEGER NOT NULL, `unlock_period` INTEGER NOT NULL, `volume` INTEGER NOT NULL, `opening` INTEGER NOT NULL, `language` INTEGER NOT NULL, `enable_nfc_type` INTEGER NOT NULL, `enable_lock_cylinder` INTEGER NOT NULL, `enable_anti_prizing_alarm` INTEGER NOT NULL, `enable_combination_lock` INTEGER NOT NULL, `enable_automatic_closing` INTEGER NOT NULL, `enable_infrared` INTEGER NOT NULL, `enable_magic_number` INTEGER NOT NULL, `enable_temporary_password` INTEGER NOT NULL, `enable_voice` INTEGER NOT NULL, `enable_doorbell` INTEGER NOT NULL, `enable_wifi` INTEGER NOT NULL, `enable_bluetooth_keep_on` INTEGER NOT NULL, `enable_lock_keep_open` INTEGER NOT NULL, `power_saving_start_at` INTEGER NOT NULL, `power_saving_end_at` INTEGER NOT NULL, `wifi_rssi` INTEGER NOT NULL, `wifi_status` INTEGER, FOREIGN KEY(`serial_number`, `mac_address`) REFERENCES `Device`(`serial_number`, `mac_address`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "sid",
+            "columnName": "sid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deviceUserID",
+            "columnName": "device_user_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serialNumber",
+            "columnName": "serial_number",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "macAddress",
+            "columnName": "mac_address",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createAt",
+            "columnName": "create_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updateAt",
+            "columnName": "update_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "battery",
+            "columnName": "battery",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unlockPeriod",
+            "columnName": "unlock_period",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "volume",
+            "columnName": "volume",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "opening",
+            "columnName": "opening",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "language",
+            "columnName": "language",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enableNfcType",
+            "columnName": "enable_nfc_type",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enableLockCylinder",
+            "columnName": "enable_lock_cylinder",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enableAntiPrizingAlarm",
+            "columnName": "enable_anti_prizing_alarm",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enableCombinationLock",
+            "columnName": "enable_combination_lock",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enableAutomaticClosing",
+            "columnName": "enable_automatic_closing",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enableInfrared",
+            "columnName": "enable_infrared",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enableMagicNumber",
+            "columnName": "enable_magic_number",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enableTemporaryPassword",
+            "columnName": "enable_temporary_password",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enableVoice",
+            "columnName": "enable_voice",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enableDoorbell",
+            "columnName": "enable_doorbell",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enableWifi",
+            "columnName": "enable_wifi",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enableBluetoothKeepOn",
+            "columnName": "enable_bluetooth_keep_on",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enableLockKeepOpen",
+            "columnName": "enable_lock_keep_open",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powerSavingStartAt",
+            "columnName": "power_saving_start_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "powerSavingEndAt",
+            "columnName": "power_saving_end_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "wifiRssi",
+            "columnName": "wifi_rssi",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "wifiStatus",
+            "columnName": "wifi_status",
+            "affinity": "INTEGER",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "sid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_DeviceStatus_serial_number_mac_address",
+            "unique": true,
+            "columnNames": [
+              "serial_number",
+              "mac_address"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_DeviceStatus_serial_number_mac_address` ON `${TABLE_NAME}` (`serial_number`, `mac_address`)"
+          },
+          {
+            "name": "index_DeviceStatus_serial_number",
+            "unique": false,
+            "columnNames": [
+              "serial_number"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_DeviceStatus_serial_number` ON `${TABLE_NAME}` (`serial_number`)"
+          },
+          {
+            "name": "index_DeviceStatus_mac_address",
+            "unique": false,
+            "columnNames": [
+              "mac_address"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_DeviceStatus_mac_address` ON `${TABLE_NAME}` (`mac_address`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Device",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "serial_number",
+              "mac_address"
+            ],
+            "referencedColumns": [
+              "serial_number",
+              "mac_address"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "DeviceLog",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `serial_number` TEXT NOT NULL, `mac_address` TEXT NOT NULL, `device_user_id` TEXT NOT NULL, `log_id` INTEGER NOT NULL, `create_at` INTEGER NOT NULL, `update_at` INTEGER NOT NULL, `log_unlock_type` INTEGER NOT NULL, `log_state` INTEGER NOT NULL, `log_lock_id` INTEGER NOT NULL, `log_create_at` INTEGER NOT NULL, FOREIGN KEY(`serial_number`, `mac_address`) REFERENCES `Device`(`serial_number`, `mac_address`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serialNumber",
+            "columnName": "serial_number",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "macAddress",
+            "columnName": "mac_address",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deviceUserId",
+            "columnName": "device_user_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "logId",
+            "columnName": "log_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createAt",
+            "columnName": "create_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updateAt",
+            "columnName": "update_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "logUnlockType",
+            "columnName": "log_unlock_type",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "logState",
+            "columnName": "log_state",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "logLockId",
+            "columnName": "log_lock_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "logCreateAt",
+            "columnName": "log_create_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_DeviceLog_serial_number_mac_address",
+            "unique": false,
+            "columnNames": [
+              "serial_number",
+              "mac_address"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_DeviceLog_serial_number_mac_address` ON `${TABLE_NAME}` (`serial_number`, `mac_address`)"
+          },
+          {
+            "name": "index_DeviceLog_serial_number",
+            "unique": false,
+            "columnNames": [
+              "serial_number"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_DeviceLog_serial_number` ON `${TABLE_NAME}` (`serial_number`)"
+          },
+          {
+            "name": "index_DeviceLog_mac_address",
+            "unique": false,
+            "columnNames": [
+              "mac_address"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_DeviceLog_mac_address` ON `${TABLE_NAME}` (`mac_address`)"
+          },
+          {
+            "name": "index_DeviceLog_device_user_id",
+            "unique": false,
+            "columnNames": [
+              "device_user_id"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_DeviceLog_device_user_id` ON `${TABLE_NAME}` (`device_user_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Device",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "serial_number",
+              "mac_address"
+            ],
+            "referencedColumns": [
+              "serial_number",
+              "mac_address"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "DeviceKey",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `serial_number` TEXT NOT NULL, `mac_address` TEXT NOT NULL, `device_user_id` TEXT NOT NULL, `create_at` INTEGER NOT NULL, `update_at` INTEGER NOT NULL, `dead_time` INTEGER NOT NULL, `key_type` INTEGER NOT NULL, `key_name` TEXT, `key_value` TEXT, `key_lock_id` INTEGER NOT NULL, FOREIGN KEY(`serial_number`, `mac_address`) REFERENCES `Device`(`serial_number`, `mac_address`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serialNumber",
+            "columnName": "serial_number",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "macAddress",
+            "columnName": "mac_address",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deviceUserId",
+            "columnName": "device_user_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createAt",
+            "columnName": "create_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updateAt",
+            "columnName": "update_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deadTime",
+            "columnName": "dead_time",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "keyType",
+            "columnName": "key_type",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "keyName",
+            "columnName": "key_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "keyValue",
+            "columnName": "key_value",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "keyLockId",
+            "columnName": "key_lock_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_DeviceKey_serial_number_mac_address",
+            "unique": false,
+            "columnNames": [
+              "serial_number",
+              "mac_address"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_DeviceKey_serial_number_mac_address` ON `${TABLE_NAME}` (`serial_number`, `mac_address`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Device",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "serial_number",
+              "mac_address"
+            ],
+            "referencedColumns": [
+              "serial_number",
+              "mac_address"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "DeviceUser",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `parent_user_id` TEXT NOT NULL, `serial_number` TEXT NOT NULL, `mac_address` TEXT NOT NULL, `device_user_id` TEXT NOT NULL, `all_user_id` TEXT NOT NULL, `active_at` INTEGER NOT NULL, `create_at` INTEGER NOT NULL, `update_at` INTEGER NOT NULL, `device_username` TEXT NOT NULL, `administrator` INTEGER NOT NULL, `user_status` INTEGER NOT NULL, `auth_code` TEXT, `lifecycle_start` INTEGER NOT NULL, `lifecycle_end` INTEGER NOT NULL, `enable_period_start` TEXT NOT NULL, `enable_period_end` TEXT NOT NULL, `share_code_picture_path` TEXT, FOREIGN KEY(`serial_number`, `mac_address`) REFERENCES `Device`(`serial_number`, `mac_address`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "parentUserId",
+            "columnName": "parent_user_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serialNumber",
+            "columnName": "serial_number",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "macAddress",
+            "columnName": "mac_address",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deviceUserId",
+            "columnName": "device_user_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "allUserId",
+            "columnName": "all_user_id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "activeAt",
+            "columnName": "active_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createAt",
+            "columnName": "create_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "updateAt",
+            "columnName": "update_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deviceUsername",
+            "columnName": "device_username",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "administrator",
+            "columnName": "administrator",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "userStatus",
+            "columnName": "user_status",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "authCode",
+            "columnName": "auth_code",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "lifecycleStart",
+            "columnName": "lifecycle_start",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lifecycleEnd",
+            "columnName": "lifecycle_end",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enablePeriodStart",
+            "columnName": "enable_period_start",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "enablePeriodEnd",
+            "columnName": "enable_period_end",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "shareCodePicturePath",
+            "columnName": "share_code_picture_path",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "uid"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_DeviceUser_serial_number_mac_address",
+            "unique": false,
+            "columnNames": [
+              "serial_number",
+              "mac_address"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_DeviceUser_serial_number_mac_address` ON `${TABLE_NAME}` (`serial_number`, `mac_address`)"
+          },
+          {
+            "name": "index_DeviceUser_serial_number",
+            "unique": false,
+            "columnNames": [
+              "serial_number"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_DeviceUser_serial_number` ON `${TABLE_NAME}` (`serial_number`)"
+          },
+          {
+            "name": "index_DeviceUser_mac_address",
+            "unique": false,
+            "columnNames": [
+              "mac_address"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_DeviceUser_mac_address` ON `${TABLE_NAME}` (`mac_address`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Device",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "serial_number",
+              "mac_address"
+            ],
+            "referencedColumns": [
+              "serial_number",
+              "mac_address"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "TemporaryPassword",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `serial_number` TEXT NOT NULL, `mac_address` TEXT NOT NULL, `password` TEXT NOT NULL, `random_number` INTEGER NOT NULL, `create_at` INTEGER NOT NULL, `deadline` INTEGER NOT NULL, FOREIGN KEY(`serial_number`, `mac_address`) REFERENCES `Device`(`serial_number`, `mac_address`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "serialNumber",
+            "columnName": "serial_number",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "macAddress",
+            "columnName": "mac_address",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "password",
+            "columnName": "password",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "randomNumber",
+            "columnName": "random_number",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "createAt",
+            "columnName": "create_at",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "deadline",
+            "columnName": "deadline",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_TemporaryPassword_serial_number_mac_address",
+            "unique": false,
+            "columnNames": [
+              "serial_number",
+              "mac_address"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_TemporaryPassword_serial_number_mac_address` ON `${TABLE_NAME}` (`serial_number`, `mac_address`)"
+          },
+          {
+            "name": "index_TemporaryPassword_serial_number",
+            "unique": false,
+            "columnNames": [
+              "serial_number"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_TemporaryPassword_serial_number` ON `${TABLE_NAME}` (`serial_number`)"
+          },
+          {
+            "name": "index_TemporaryPassword_mac_address",
+            "unique": false,
+            "columnNames": [
+              "mac_address"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_TemporaryPassword_mac_address` ON `${TABLE_NAME}` (`mac_address`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "Device",
+            "onDelete": "CASCADE",
+            "onUpdate": "CASCADE",
+            "columns": [
+              "serial_number",
+              "mac_address"
+            ],
+            "referencedColumns": [
+              "serial_number",
+              "mac_address"
+            ]
+          }
+        ]
+      }
+    ],
+    "views": [
+      {
+        "viewName": "ViewManagerDevice",
+        "createSql": "CREATE VIEW `${VIEW_NAME}` AS SELECT Device.name,Device.type,Device.serial_number AS serialNumber,Device.mac_address AS macAddress,Device.imei,Device.nfc,Device.face,Device.seized_fingerprint AS seizedFingerprint,Device.permission_switch AS permissionSwitch,Device.secret_code AS secretCode,DeviceUser.device_user_id AS deviceUserID,DeviceUser.administrator,DeviceUser.auth_code AS authCode,DeviceUser.user_status AS userStatus,DeviceStatus.battery,DeviceStatus.update_at AS updateAt  FROM Device  INNER JOIN DeviceUser ON Device.serial_number = DeviceUser.serial_number  AND Device.mac_address = DeviceUser.mac_address  AND Device.device_user_id = DeviceUser.device_user_id INNER JOIN DeviceStatus ON Device.serial_number = DeviceStatus.serial_number  AND Device.mac_address = DeviceStatus.mac_address  AND Device.device_user_id = DeviceStatus.device_user_id"
+      },
+      {
+        "viewName": "ViewDeviceStatus",
+        "createSql": "CREATE VIEW `${VIEW_NAME}` AS SELECT DeviceStatus.mac_address AS macAddress,DeviceStatus.serial_number AS serialNumber,DeviceStatus.opening AS isOpening,DeviceStatus.language AS language,DeviceStatus.unlock_period AS unlockPeriod,DeviceStatus.volume AS volume,DeviceStatus.wifi_rssi AS wifiRSSI,DeviceStatus.wifi_status AS wifiStatus,DeviceStatus.enable_nfc_type AS nfcType,DeviceStatus.enable_lock_cylinder AS enableLockCylinder,DeviceStatus.enable_anti_prizing_alarm AS enableAntiPrizingAlarm,DeviceStatus.enable_combination_lock AS enableCombinationLock,DeviceStatus.enable_automatic_closing AS enableAutomaticClosing,DeviceStatus.enable_infrared AS enableInfrared,DeviceStatus.enable_magic_number AS enableMagicNumber,DeviceStatus.enable_temporary_password AS enableTemporaryPassword,DeviceStatus.enable_voice AS enableVoice,DeviceStatus.enable_doorbell AS enableDoorbell,DeviceStatus.enable_wifi AS enableWifi,DeviceStatus.enable_bluetooth_keep_on AS enableBluetoothKeepOn,DeviceStatus.enable_lock_keep_open AS enableLockKeepOpen,DeviceStatus.power_saving_start_at AS powerSavingStartAt,DeviceStatus.power_saving_end_at AS powerSavingEndAt,Device.status_query AS hasStatusQuery,Device.nfc AS hasNFC,Device.face AS hasFace,Device.wifi AS hasWifi,Device.secret_code AS secretCode,Device.back_panel_ota AS backPanelOTA,Device.infrared AS hasInfrared,Device.automatic_lock AS hasAutomaticLock,Device.self_eject_lock AS hasSelfEjectLock,Device.permission_switch AS hasPermissionSwitch,Device.magic_number AS hasMagicNumber,Device.seized_fingerprint AS hasSeizedFingerprint,Device.volume_adjustment AS hasVolumeAdjustment,Device.follow_doorbell AS hasFollowDoorbell,Device.temporary_password AS hasTemporaryPassword,Device.lock_keep_open AS hasLockKeepOpen,Device.lock_cylinder AS hasLockCylinder,Device.language_switch AS hasLanguageSwitch,Device.variable_password AS hasVariablePassword,Device.min_password_length AS hasMinPasswordLen,Device.max_password_length AS hasMaxPasswordLen,DeviceUser.device_user_id AS deviceUserID,DeviceUser.administrator AS isAdministrator,DeviceUser.user_status AS userStatus  FROM DeviceStatus  INNER JOIN Device ON DeviceStatus.serial_number = Device.serial_number  AND DeviceStatus.mac_address = Device.mac_address  AND DeviceStatus.device_user_id = Device.device_user_id INNER JOIN DeviceUser ON DeviceStatus.serial_number = DeviceUser.serial_number  AND DeviceStatus.mac_address = DeviceUser.mac_address  AND DeviceStatus.device_user_id = DeviceUser.device_user_id"
+      },
+      {
+        "viewName": "ViewDeviceKey",
+        "createSql": "CREATE VIEW `${VIEW_NAME}` AS SELECT DeviceKey.serial_number AS serialNumber,DeviceKey.mac_address AS macAddress,DeviceKey.device_user_id AS deviceUserID,DeviceKey.dead_time AS deadTime,DeviceKey.key_type AS keyType,DeviceKey.key_name AS keyName,DeviceKey.key_value AS keyValue,DeviceKey.key_lock_id AS keyLockId,DeviceKey.create_at AS createAt,DeviceKey.update_at AS updateAt,Device.temporary_password_secret_code AS temporaryPasswordSecretCode,Device.secret_code AS secretCode,Device.temp_password_without_asterisk AS temporaryPasswordWithoutAsterisk  FROM DeviceKey  INNER JOIN Device ON Device.serial_number = DeviceKey.serial_number  AND Device.mac_address = DeviceKey.mac_address"
+      },
+      {
+        "viewName": "ViewDeviceLog",
+        "createSql": "CREATE VIEW `${VIEW_NAME}` AS SELECT DeviceLog.serial_number AS serialNumber,DeviceLog.mac_address AS macAddress,DeviceLog.device_user_id AS deviceUserID,DeviceLog.log_id AS logId,DeviceLog.log_unlock_type AS logUnlockType ,DeviceLog.log_state AS logState,DeviceLog.log_lock_id AS logLockId,DeviceLog.log_create_at AS logCreateAt,Device.name AS deviceName,DeviceUser.device_username AS deviceUserName  FROM DeviceLog  INNER JOIN Device ON Device.serial_number = DeviceLog.serial_number  AND Device.mac_address = DeviceLog.mac_address  LEFT JOIN DeviceUser ON DeviceUser.serial_number = DeviceLog.serial_number  AND DeviceUser.mac_address = DeviceLog.mac_address  AND DeviceUser.device_user_id = DeviceLog.device_user_id"
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8a41499d096b2286e63964be2465adcc')"
+    ]
+  }
+}

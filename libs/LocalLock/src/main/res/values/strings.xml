@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="message_pattern_dot_added">Dot added to pattern</string>
+    <string name="message_pattern_started">Pattern drawing started</string>
+    <string name="message_pattern_detected">Pattern drawing completed</string>
+    <string name="message_pattern_cleared">Pattern cleared</string>
+
+    <string name="numeric_keyboard_down">Numeric keyboard down</string>
+    <string name="numeric_keyboard_up">Numeric keyboard up</string>
+    <string name="numeric_keyboard_cancel">Numeric keyboard cancel</string>
+
+    <string name="input_your_password">Input your Password</string>
+    <string name="delete">Delete</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="notice">NOTICE</string>
+    <string name="fingerprint_is_not_available">Fingerprint is not available</string>
+    <string name="unlock_with_fingerprint">Click to unlock with fingerprint</string>
+    <string name="verify_existing_fingerprint">Verify existing fingerprint</string>
+
+    <string name="other_ways_to_verify">Other ways to verify</string>
+
+    <string name="fingerprint_verification">Fingerprint Verification</string>
+    <string name="verification_failed">Verification Failed</string>
+    <string name="verified_successfully">Verified successfully</string>
+
+    <string name="password_pattern">Password Pattern</string>
+    <string name="password_pattern_last_node">Password requires at least 4 nodes</string>
+
+    <string name="password_number">Password Number</string>
+
+
+    <string name="old_password">Enter old password</string>
+    <string name="reset_password">Reset password</string>
+    <string name="new_password">Enter a new password</string>
+
+    <string name="confirm_password">Confirm the new password</string>
+    <string name="two_password_entries_are_inconsistent">Two password entries are inconsistent</string>
+    <string name="password_is_wrong">Incorrect password, please try again</string>
+
+    <string name="locked"><b>Locked</b></string>
+
+    <string name="locked_time"> %s S </string>
+
+</resources>

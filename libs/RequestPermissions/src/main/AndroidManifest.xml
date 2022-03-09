@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?><!--suppress AndroidDomInspection -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.datangic.requestPermissions">
+
+    <application>
+        <activity android:name="com.datangic.easypermissions.components.TestActivity" />
+        <activity android:name="com.datangic.easypermissions.components.TestAppCompatActivity" />
+        <activity android:name="com.datangic.easypermissions.components.TestSupportFragmentActivity" />
+    </application>
+
+</manifest>

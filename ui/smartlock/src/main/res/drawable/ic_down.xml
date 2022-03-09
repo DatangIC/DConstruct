@@ -1,0 +1,27 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="16dp"
+    android:height="16dp"
+    android:viewportWidth="20"
+    android:viewportHeight="24">
+  <path
+      android:name="down"
+      android:pathData="M5 8.0718L18.8564 8.0718L11.9282 20.0718L5 8.0718Z"
+      android:fillColor="#77000000"/>
+</vector>
+
+
+<!--<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--<path d="M13.9282 12L0.0718162 12L7.00002 -1.93349e-05L13.9282 12Z" fill="black"/>-->
+<!--</svg>-->
+
+<!--<svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--<path d="M4.07184 5.99996L17.9282 5.99996L11 18L4.07184 5.99996Z" fill="black"/>-->
+<!--</svg>-->
+
+<!--<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--<path d="M5 8.0718L18.8564 8.0718L11.9282 20.0718L5 8.0718Z" fill="black"/>-->
+<!--</svg>-->
+
+<!--<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">-->
+<!--<path d="M19 15.9282L5.14359 15.9282L12.0718 3.9282L19 15.9282Z" fill="black"/>-->
+<!--</svg>-->

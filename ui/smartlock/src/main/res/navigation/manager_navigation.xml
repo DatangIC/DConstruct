@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/manager_navigation"
+    app:startDestination="@+id/navigationManagerUser">
+
+
+    <fragment
+        android:id="@+id/navigationManagerKeys"
+        android:name="com.datangic.smartlock.ui.manager.KeysFragment"
+        android:label="@string/title_keys"
+        tools:layout="@layout/fragment_viewpager2_with_title">
+
+
+        <action
+            android:id="@+id/action_navigation_manager_keys_to_navigation_manager_user"
+            app:destination="@id/navigationManagerUser"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigationManagerTempKeys"
+        android:name="com.datangic.smartlock.ui.manager.TempPwdFragment"
+        android:label="@string/title_temp_pwd"
+        tools:layout="@layout/pager_list_view" />
+
+    <fragment
+        android:id="@+id/navigationManagerRecord"
+        android:name="com.datangic.smartlock.ui.manager.RecordFragment"
+        android:label="@string/title_record"
+        tools:layout="@layout/fragment_viewpager2_with_title" />
+
+    <fragment
+        android:id="@+id/navigationManagerUser"
+        android:name="com.datangic.smartlock.ui.manager.UserFragment"
+        android:label="@string/title_user"
+        app:defaultNavHost="true"
+        tools:layout="@layout/pager_list_view">
+        <action
+            android:id="@+id/action_navigation_manager_user_to_navigation_manager_keys"
+            app:destination="@id/navigationManagerKeys"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left">
+            <argument
+                android:name="@string/argument_user_info"
+                app:argType="com.datangic.smartlock.parcelable.IntentExtra"
+                app:nullable="false" />
+        </action>
+        <action
+            android:id="@+id/action_navigation_manager_user_to_navigation_user_lifecycle"
+            app:destination="@id/navigationUserLifecycle"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigationUserLifecycle"
+        android:name="com.datangic.smartlock.ui.manager.LifecycleFragment"
+        android:label="@string/title_lifecycle"
+        tools:layout="@layout/fragment_lifecycle">
+
+        <argument
+            android:name="@string/argument_user_info"
+            app:argType="com.datangic.smartlock.parcelable.IntentExtra"
+            app:nullable="false" />
+
+        <action
+            android:id="@+id/action_navigation_user_lifecycle_to_navigation_manager_user"
+            app:destination="@id/navigationManagerUser"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+</navigation>

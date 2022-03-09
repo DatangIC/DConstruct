@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <data>
+
+        <variable
+            name="itemStatus"
+            type="com.datangic.smartlock.components.LockStatusItem" />
+
+        <variable
+            name="onItemClick"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@drawable/ripple_background_2"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="@{onItemClick}">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/setting_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/margin_24dp"
+            android:gravity="center_vertical"
+            android:hint="@string/title_setting"
+            android:text="@{itemStatus.itemName}"
+            android:textAppearance="@style/AppTheme.TextAppearance.Subtitle1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/margin_24dp"
+            android:gravity="center_vertical"
+            android:text="@{itemStatus.itemStatus}"
+            android:textAppearance="@style/AppTheme.TextAppearance.Subtitle2"
+            android:textColor="@color/color_on_surface"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/divider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="@id/setting_name"
+            app:layout_constraintRight_toRightOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

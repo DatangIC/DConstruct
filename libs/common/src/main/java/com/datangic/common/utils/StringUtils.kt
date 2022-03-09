@@ -34,7 +34,6 @@ fun ByteArray.toHexString(): String {
     val bytes = "0123456789ABCDEF"
     var result = ""
     for (i in this) {
-//        System.out.println("index=${i}")
         val j: Int = if (i.toInt() >= 0) i.toInt() else (i.toInt() + 256)
         result += bytes[(j.and(0xF0).shr(4)) % 16]
         result += bytes[(j.and(0x0F)) % 16]
