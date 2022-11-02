@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Login</string>
+
+    <!--Database-->
+    <string name="default_device_name">SmartLock</string>
+    <string name="default_admin_name">Admin</string>
+    <string name="default_user_name">User</string>
+    <string name="default_user_name_with_id" formatted="true">User %d</string>
+    <string name="default_key_password_name">Password</string>
+    <string name="default_key_temp_password_name">Temp Password</string>
+    <string name="default_key_fingerprint_name">Fingerprint</string>
+    <string name="default_key_nfc_name">NFC</string>
+    <string name="default_key_face_name">Face</string>
+    <string name="fab_description" translatable="false">Fab description</string>
+
+    <!--login2-->
+    <string name="login">Login</string>
+    <string name="password">Password</string>
+    <string name="phone">Phone</string>
+    <string name="error_username">Not a valid username</string>
+    <string name="error_password">Password must be >6 characters</string>
+    <string name="error_login">Login failed</string>
+    <string name="error_phone_title">Phone number is Wrong</string>
+    <string name="error_phone_explain">Not a valid phone number</string>
+    <string name="email">Email</string>
+    <string name="action_sign_in">Sing In</string>
+    <string name="welcome">Welcome</string>
+    <string name="email_or_phone">Email/Phone</string>
+    <string name="verify_code">Verify Code</string>
+
+</resources>

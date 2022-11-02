@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Database-->
+    <string name="default_device_name">智能门锁</string>
+    <string name="default_admin_name">管理员</string>
+    <string name="default_user_name">用户</string>
+    <string name="default_user_name_with_id" formatted="true">用户 %d</string>
+    <string name="default_key_password_name">密码</string>
+    <string name="default_key_temp_password_name">临时密码</string>
+    <string name="default_key_nfc_name">卡片</string>
+    <string name="default_key_fingerprint_name">指纹</string>
+    <string name="default_key_face_name">人脸信息</string>
+    <string name="login">登陆</string>
+    <string name="password">密码</string>
+    <string name="phone">手机</string>
+    <string name="error_username">用户名错误</string>
+    <string name="error_password">密码必须大于6个字符</string>
+    <string name="error_login">登陆失败</string>
+    <string name="error_phone_title">手机号错误</string>
+    <string name="error_phone_explain">手机号错误</string>
+    <string name="email">邮箱</string>
+    <string name="action_sign_in">登陆</string>
+    <string name="welcome">欢迎</string>
+    <string name="app_name">登陆</string>
+    <string name="email_or_phone">邮箱/手机号</string>
+    <string name="verify_code">验证码</string>
+
+</resources>
