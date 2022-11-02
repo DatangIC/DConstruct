@@ -1,0 +1,224 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="colorPrimaryVariant">@color/color_primary</item>
+        <item name="colorOnPrimary">@color/title_primary</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/color_secondary</item>
+        <item name="colorSecondaryVariant">@color/color_secondary_variant</item>
+        <item name="colorOnSecondary">@color/title_secondary</item>
+        <!-- Status bar color. -->
+        <item name="colorPrimaryDark">@color/color_primary</item>
+        <item name="android:windowContentTransitions">true</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:windowBackground">@color/background_1</item>
+        <item name="android:textColorPrimary">@color/text_primary</item>
+        <item name="android:textColorSecondary">@color/text_secondary</item>
+        <item name="android:actionMenuTextColor">@color/text_secondary</item>
+        <item name="colorAccent">@color/color_on_surface</item>
+        <item name="toolbarStyle">@style/AppTheme.Toolbar</item>
+        <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
+        <item name="android:activityCloseEnterAnimation">@anim/slide_in_right</item>
+        <item name="android:activityCloseExitAnimation">@anim/slide_out_left</item>
+    </style>
+
+    <style name="AppTheme.BottomNavigationView" parent="">
+        <item name="itemIconTint">@color/selector_bottom_bar</item>
+        <item name="itemTextColor">@color/selector_bottom_bar</item>
+        <item name="materialThemeOverlay">@style/AppTheme.BottomNavigationViewColor</item>
+    </style>
+
+    <style name="AppTheme.BottomNavigationViewColor" parent="">
+        <item name="colorOnPrimary">@color/color_primary</item>
+        <item name="colorOnSecondary">@color/text_secondary</item>
+    </style>
+
+    <style name="AppTheme.SplashScreen" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimaryDark">@color/color_primary</item>
+        <item name="colorPrimary">@color/color_primary</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@color/color_primary</item>
+        <item name="android:background">@color/color_primary</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryDark</item>
+    </style>
+
+    <style name="AppTheme.Toolbar" parent="Widget.MaterialComponents.Toolbar">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.Toolbar</item>
+        <item name="titleTextAppearance">@style/AppTheme.TextAppearance.Headline6</item>
+        <item name="background">?attr/colorPrimary</item>
+    </style>
+
+    <style name="ThemeOverlay.Toolbar" parent="ThemeOverlay.MaterialComponents.Toolbar.Primary">
+        <item name="android:textColorPrimary">@color/title_primary</item>
+        <item name="android:textColorSecondary">@color/title_secondary</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="expandedTitleGravity">center</item>
+        <item name="collapsedTitleGravity">center</item>
+    </style>
+
+    <style name="AppTheme.Button" parent="Widget.MaterialComponents.Button">
+        <item name="colorPrimary">@color/color_on_surface</item>
+        <item name="colorOnPrimary">@color/title_primary</item>
+        <item name="backgroundTint">@color/color_on_surface</item>
+        <item name="android:backgroundTint">@color/color_on_surface</item>
+        <item name="elevation">0dp</item>
+        <item name="expandedTitleGravity">center</item>
+        <item name="collapsedTitleGravity">center</item>
+    </style>
+
+    <style name="AppTheme.ImageButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="android:textColor">@color/title_primary</item>
+        <item name="android:tint">@color/color_on_surface</item>
+    </style>
+
+    <style name="AppTheme.TextButton" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:backgroundTint">@android:color/transparent</item>
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:tint">@color/color_on_surface</item>
+    </style>
+
+    <style name="AppTheme.IconLoadingButton" parent="Widget.MaterialComponents.Button.TextButton.Icon">
+        <item name="colorPrimary">@color/color_on_surface</item>
+        <item name="backgroundTint">@color/color_on_surface</item>
+        <item name="android:backgroundTint">@color/color_on_surface</item>
+        <item name="elevation">0dp</item>
+        <item name="expandedTitleGravity">center</item>
+        <item name="collapsedTitleGravity">center</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Subtitle2" parent="TextAppearance.MaterialComponents.Subtitle2">
+        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Disable" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textColor">@color/ripple</item>
+    </style>
+
+    <style name="AppTheme.TextAppearance.Warning" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+
+    <style name="AppTheme.FloatingActionButton" parent="Widget.MaterialComponents.ExtendedFloatingActionButton">
+        <item name="colorOnSecondary">@color/grey_50</item>
+        <item name="background">@drawable/selector_grey</item>
+        <item name="rippleColor">@color/ripple</item>
+    </style>
+
+
+    <style name="AppTheme.MaterialDialog" parent="ThemeOverlay.MaterialComponents.MaterialAlertDialog">
+        <item name="android:textColorSecondary">@color/color_on_surface</item>
+        <item name="buttonBarPositiveButtonStyle">@style/AppTheme.Dialog.PositiveButton</item>
+        <item name="buttonBarNegativeButtonStyle">@style/AppTheme.Dialog.Button</item>
+        <item name="buttonBarNeutralButtonStyle">@style/AppTheme.Dialog.Button</item>
+        <item name="materialAlertDialogTitlePanelStyle">@style/AppTheme.Dialog.DialogPanel</item>
+        <item name="materialAlertDialogTitleIconStyle">@style/AppTheme.Dialog.DialogTitleIcon</item>
+        <item name="materialAlertDialogTitleTextStyle">@style/AppTheme.Dialog.DialogTitleText</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/AppTheme.Dialog.DialogBodyTextStyle
+        </item>
+    </style>
+
+    <style name="AppTheme.DialogError" parent="AppTheme.MaterialDialog">
+        <item name="materialAlertDialogTitleIconStyle">@style/AppTheme.Dialog.DialogErrorTitleIcon
+        </item>
+        <item name="materialAlertDialogTitleTextStyle">@style/AppTheme.Dialog.DialogErrorTitleText
+        </item>
+    </style>
+
+    <style name="AppTheme.Dialog.Button" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <style name="AppTheme.Dialog.PositiveButton" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/color_on_surface</item>
+    </style>
+
+    <style name="AppTheme.Dialog.DialogPanel" parent="MaterialAlertDialog.MaterialComponents.Title.Panel">
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingTop">@dimen/margin_8dp</item>
+    </style>
+
+    <style name="AppTheme.Dialog.DialogTitleText" parent="MaterialAlertDialog.MaterialComponents.Title.Text">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/color_on_surface</item>
+        <item name="android:textSize">@dimen/text_size_16sp</item>
+        <item name="android:paddingTop">@dimen/margin_4dp</item>
+    </style>
+
+    <style name="AppTheme.Dialog.DialogTitleIcon" parent="MaterialAlertDialog.MaterialComponents.Title.Icon">
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:paddingStart">@dimen/margin_8dp</item>
+        <item name="android:tint">@color/color_on_surface</item>
+    </style>
+
+    <style name="AppTheme.Dialog.DialogBodyTextStyle" parent="MaterialAlertDialog.MaterialComponents.Body.Text">
+        <item name="android:textColor">@color/text_secondary</item>
+    </style>
+
+    <style name="AppTheme.Dialog.DialogErrorTitleText" parent="AppTheme.Dialog.DialogTitleText">
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="AppTheme.Dialog.DialogErrorTitleIcon" parent="AppTheme.Dialog.DialogTitleIcon">
+        <item name="android:tint">@color/red</item>
+    </style>
+
+
+    <style name="AppTheme.SettingTitle" parent="AppTheme.TextAppearance.Subtitle1">
+        <item name="android:textColor">@color/text_primary</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="AppTheme.ViewCard" parent="Widget.MaterialComponents.CardView">
+        <item name="cardBackgroundColor">@color/background_2</item>
+        <item name="cardCornerRadius">@dimen/margin_2dp</item>
+        <item name="cardElevation">0dp</item>
+    </style>
+
+    <style name="circleImageStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="AppTheme.TabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <item name="materialThemeOverlay">@style/AppTheme.TabLayout.Overlay</item>
+
+    </style>
+
+    <style name="AppTheme.TabLayout.Overlay" parent="">
+        <item name="colorPrimary">@color/title_primary</item>
+        <item name="colorSurface">@color/text_primary</item>
+        <item name="colorOnSurface">@color/text_secondary</item>
+    </style>
+
+    <style name="AppTheme.TextFieldOutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+    </style>
+
+    <style name="AppTheme.DialogFullScreen" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowNoTitle">false</item>
+        <item name="android:padding">0dp</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowCloseOnTouchOutside">false</item>
+    </style>
+
+</resources>

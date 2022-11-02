@@ -7,7 +7,6 @@ import com.datangic.smartlock.adapter.viewHolder.ItemNullViewHolder
 import com.datangic.smartlock.adapter.viewHolder.WifiViewHolder
 import com.datangic.smartlock.databinding.ComponentScannerWifiBinding
 import com.datangic.smartlock.databinding.ComponentSystemItemNullBinding
-import com.datangic.smartlock.utils.Logger
 
 class RecycleItemAdapter(itemList: List<Any> = ArrayList(), private val itemType: ItemType) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val TAG by lazy { RecycleItemAdapter::class.simpleName }

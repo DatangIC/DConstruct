@@ -4,7 +4,6 @@ import android.app.Application
 import android.bluetooth.BluetoothDevice
 import android.content.Context
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
@@ -18,9 +17,8 @@ import com.datangic.smartlock.dialog.MaterialDialog.setMessage
 import com.datangic.smartlock.dialog.MaterialDialog.setTitle
 import com.datangic.smartlock.liveData.LockBleReceivedLiveData
 import com.datangic.smartlock.parcelable.ExtendedBluetoothDevice
-import com.datangic.smartlock.preference.SharePreferenceUtils
 import com.datangic.smartlock.respositorys.BleManagerApiRepository
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import com.datangic.smartlock.utils.UtilsMessage
 import com.datangic.smartlock.utils.UtilsMessage.displaySnackBar
 import kotlinx.coroutines.launch

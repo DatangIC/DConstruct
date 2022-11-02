@@ -23,8 +23,8 @@ interface BaseDao<T> {
     fun update(vararg obj: T)
 }
 
-fun <T> LiveData<T>.getDistinct(): LiveData<T> {
-    val distinctLiveData = MediatorLiveData<T>()
+fun <T> LiveData<T>.getDistinct(): MediatorLiveData<T?> {
+    val distinctLiveData = MediatorLiveData<T?>()
     distinctLiveData.addSource(this, object : Observer<T> {
         private var initialized = false
         private var lastObj: T? = null

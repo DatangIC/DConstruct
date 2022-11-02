@@ -9,13 +9,13 @@ import android.location.LocationManager
 import android.os.Handler
 import android.os.Looper
 import android.os.ParcelUuid
-import com.datangic.smartlock.Config
-import com.datangic.smartlock.Config.SCAN_DURATION
+import com.datangic.common.Config
+import com.datangic.common.Config.SCAN_DURATION
 import com.datangic.smartlock.ble.LockBleManager.Companion.SERVICE_UUID2
 import com.datangic.smartlock.dialog.MaterialDialog
 import com.datangic.smartlock.liveData.ScannerLiveData
 import com.datangic.smartlock.liveData.ScannerStateLiveData
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import com.datangic.smartlock.utils.UtilsBle
 import no.nordicsemi.android.support.v18.scanner.*
 

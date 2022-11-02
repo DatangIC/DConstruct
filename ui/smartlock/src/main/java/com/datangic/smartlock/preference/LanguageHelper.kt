@@ -12,7 +12,8 @@ import android.os.LocaleList
 import android.text.TextUtils
 import android.util.DisplayMetrics
 import androidx.core.app.ActivityCompat.recreate
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.file.SharePreferenceUtils
+import com.datangic.common.utils.Logger
 import java.util.*
 import java.util.Locale.CHINESE
 import java.util.Locale.ENGLISH
@@ -103,7 +104,8 @@ object LanguageHelper {
     }
 
     private fun getDefaultLanguage(context: Context): Locale {
-        return getLocaleByLanguage(SharePreferenceUtils.getStringValue(context, DefaultLanguage)
+        return getLocaleByLanguage(
+            SharePreferenceUtils.getStringValue(context, DefaultLanguage)
                 ?: Language.CHINESE)
     }
 

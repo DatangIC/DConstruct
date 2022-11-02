@@ -22,7 +22,7 @@ import com.datangic.smartlock.parcelable.IntentExtra
 import com.datangic.smartlock.ui.manager.ManagerActivity
 import com.datangic.smartlock.ui.setting.SettingActivity
 import com.datangic.smartlock.utils.INTENT_EXTRA
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import com.datangic.smartlock.viewModels.FragmentHomeViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ObsoleteCoroutinesApi

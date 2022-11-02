@@ -36,9 +36,11 @@ dependencies {
 //    api config.koin.core
     api config.koin.compose
     api config.koin.workmanager
+    api config.others.utilCode
 
-    implementation project(":libs:common")
-    implementation 'androidx.appcompat:appcompat:1.4.1'
+    api project(":libs:common")
+    api project(":libs:data")
+    implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.4.0'
     implementation project(path: ':libs:network')
     testImplementation 'junit:junit:4.13.2'

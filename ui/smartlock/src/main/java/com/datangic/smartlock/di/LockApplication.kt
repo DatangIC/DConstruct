@@ -6,14 +6,13 @@ import com.datangic.libs.base.IApplication
 import com.datangic.smartlock.preference.ThemeHelper
 import com.datangic.smartlock.request.ApiVolley
 import com.datangic.smartlock.utils.CrashHandler
-import com.datangic.smartlock.utils.LockFile
-import com.datangic.smartlock.utils.Logger
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
+import com.datangic.common.file.LockFile
+import com.datangic.common.utils.Logger
+import kotlinx.coroutines.*
 import org.koin.core.context.loadKoinModules
 
 class LockApplication : IApplication {
+    @OptIn(ObsoleteCoroutinesApi::class, DelicateCoroutinesApi::class)
     override fun onCreate(application: Application) {
         GlobalScope.launch(Dispatchers.Default) {
             // 主题

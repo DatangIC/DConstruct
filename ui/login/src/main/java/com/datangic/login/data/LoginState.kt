@@ -2,7 +2,6 @@ package com.datangic.login.data
 
 import androidx.compose.runtime.mutableStateOf
 import com.datangic.components.data.TipsDialogState
-import com.datangic.login.LoginResult
 
 object LoginState {
     enum class LoginStep {
@@ -21,7 +20,6 @@ object LoginState {
     val mLoadingDialog = mutableStateOf(false)
 
     val loginFormState = mutableStateOf(LoginFormState())
-    val loginResult = mutableStateOf(LoginResult())
 
     fun showLoading(boolean: Boolean) {
         mLoadingDialog.value = boolean

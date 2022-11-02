@@ -13,12 +13,10 @@ import com.datangic.smartlock.ble.ReceivedMessageHandle
 import com.datangic.smartlock.ble.livedata.state.ConnectionState
 import com.datangic.smartlock.databinding.ActivitySettingBinding
 import com.datangic.smartlock.liveData.LockMutableBleStatusLiveData.Companion.getStatusMessage
-import com.datangic.smartlock.parcelable.IntentExtra
 import com.datangic.smartlock.respositorys.BleManagerApiRepository
 import com.datangic.smartlock.respositorys.ToolbarRepository
 import com.datangic.smartlock.ui.scanning.ScanActivity
-import com.datangic.smartlock.utils.INTENT_EXTRA
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 

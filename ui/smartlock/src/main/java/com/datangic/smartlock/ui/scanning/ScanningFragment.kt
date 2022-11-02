@@ -9,8 +9,6 @@ import androidx.fragment.app.Fragment
 import com.datangic.easypermissions.EasyPermissions
 import com.datangic.smartlock.R
 import com.datangic.smartlock.databinding.FragmentScanningBinding
-import com.datangic.smartlock.utils.Logger
-import com.datangic.smartlock.utils.REQUEST_SET_DEVICE_INFO
 import com.datangic.smartlock.utils.REQUEST_SET_SECRET_CODE
 import com.datangic.smartlock.utils.SCAN_FOR_ACTION
 import com.datangic.smartlock.viewModels.FragmentScanningViewModel

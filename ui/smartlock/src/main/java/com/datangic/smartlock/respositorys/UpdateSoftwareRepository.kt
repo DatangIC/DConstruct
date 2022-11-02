@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.datangic.smartlock.R
 import com.datangic.smartlock.request.ApiHttp
 import com.datangic.smartlock.request.LockRequest
-import com.datangic.smartlock.utils.LockFile
+import com.datangic.common.file.LockFile
 import com.datangic.smartlock.utils.ParseFile
 import com.datangic.smartlock.viewModels.UpdateSoftwareViewModel
 import kotlinx.coroutines.GlobalScope

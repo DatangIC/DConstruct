@@ -2,6 +2,7 @@ package com.datangic.common.file
 
 import android.content.Context
 import android.content.SharedPreferences
+import com.datangic.common.Config.SHARE_NAME
 import com.datangic.common.SHARED_PREFERENCES_NAME
 
 
@@ -13,7 +14,7 @@ object SharedPreferencesHelper {
         return if (sharedName == null) {
             sharePreferences ?: let {
                 sharePreferences = context.getSharedPreferences(
-                    sharedName ?: SHARED_PREFERENCES_NAME,
+                    sharedName ?: SHARE_NAME,
                     Context.MODE_PRIVATE
                 )
                 sharePreferences!!

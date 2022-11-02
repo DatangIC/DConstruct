@@ -1,6 +1,5 @@
 package com.datangic.network.chainRequest
 
-import android.util.Log
 import androidx.annotation.MainThread
 import androidx.annotation.WorkerThread
 import androidx.lifecycle.LiveData
@@ -62,7 +61,7 @@ abstract class NetworkBoundResource<ResponseType, ResultType>
             result.removeSource(dbSource)
             when (response) {
                 is ApiSuccessResponse -> {
-                    appExecutors.diskIO().execute {
+                    appExecutors.singleIO().execute {
                         saveCallResult(processResponse(response))
                         appExecutors.mainThread().execute {
                             // we specially request a new live data,

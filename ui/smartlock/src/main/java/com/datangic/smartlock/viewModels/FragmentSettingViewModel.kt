@@ -5,7 +5,7 @@ import android.content.Context
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
-import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.datangic.smartlock.R
 import com.datangic.smartlock.adapter.BottomSelectorAdapter

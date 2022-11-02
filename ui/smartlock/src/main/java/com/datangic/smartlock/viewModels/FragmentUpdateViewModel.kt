@@ -9,6 +9,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import com.datangic.api.smartlock.SmartLockOtaRepository
 import com.datangic.api.smartlock.UpgradeRequest
+import com.datangic.common.utils.Logger
 import com.datangic.network.RequestStatus
 import com.datangic.smartlock.R
 import com.datangic.smartlock.adapter.UpgradeItemAdapter

@@ -62,7 +62,7 @@ android {
 dependencies {
 
 //    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.4.0'
 //    implementation project(":arouter-api")
     implementation project(":libs:base")

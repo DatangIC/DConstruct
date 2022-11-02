@@ -2,12 +2,14 @@ package com.datangic.login
 
 import androidx.lifecycle.LiveData
 import com.datangic.api.login.*
+import com.datangic.libs.base.dataSource.UserSource
 import com.datangic.network.ResponseState
 import io.reactivex.rxjava3.core.Observable
 
-class LoginRepository(private val dataSource: LoginDataSource) {
+class LoginRepository(val dataSource: UserSource) {
 
     private val mLoginApiResource = LoginApiResource(api = LoginApi.create())
+    private val TAG = LoginRepository::class.java.simpleName
 
     fun getVerifyCode(
         phone: String,
@@ -41,10 +43,20 @@ class LoginRepository(private val dataSource: LoginDataSource) {
     }
 
     // updateUser
-    fun updateUser(userData: UserData): Observable<ResponseState<UserData>> = mLoginApiResource.updateUser(userData)
+    fun updateUser(userData: UserData): Observable<ResponseState<UpdateUser>> {
+        return mLoginApiResource.updateUser(userData).map { result ->
+            result.data?.let { dataSource.updateUser(it) }
+            return@map result
+        }
+    }
 
     // LoginOut
-    fun loginOut(): Observable<ResponseState<String>> = mLoginApiResource.loginOut()
+    fun loginOut(): Observable<ResponseState<String>> {
+        return mLoginApiResource.loginOut().map {
+            dataSource.deleteUser()
+            return@map it
+        }
+    }
 
 
 }

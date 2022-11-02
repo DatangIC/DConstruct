@@ -7,7 +7,7 @@ import com.datangic.smartlock.R
 import com.datangic.data.database.table.DeviceEnum.LogState
 import com.datangic.data.database.view.ViewDeviceLog
 import com.datangic.smartlock.databinding.ComponentRecordBinding
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 
 class RecordPagerAdapter(val mTabList: List<Any>) : RecyclerView.Adapter<RecordPagerAdapter.RecordPageViewHolder>() {
     inner class RecordPageViewHolder(val mBinding: ComponentRecordBinding) : RecyclerView.ViewHolder(mBinding.root)

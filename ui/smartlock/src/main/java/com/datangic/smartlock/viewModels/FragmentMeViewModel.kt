@@ -14,12 +14,12 @@ import com.datangic.smartlock.R
 import com.datangic.smartlock.adapter.SystemItemsAdapter
 import com.datangic.smartlock.components.SystemItem
 import com.datangic.smartlock.dialog.MaterialDialog
-import com.datangic.smartlock.respositorys.DatabaseRepository
+import com.datangic.data.DatabaseRepository
 import com.datangic.smartlock.respositorys.MeFragmentRepository
 import com.datangic.smartlock.respositorys.ScanQrCodeHelper
 import com.datangic.smartlock.ui.system.SystemActivity
 import com.datangic.smartlock.utils.FRAGMENT_ID
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
@@ -32,7 +32,7 @@ class FragmentMeViewModel(application: Application, mMeFragmentRepository: MeFra
     }
     val mScanQrCode by lazy { ScanQrCodeHelper }
     val mHandle by lazy { Handler(Looper.myLooper()!!) }
-    val mUserLiveData = mDatabase.appDatabase.userDao().getUser().asLiveData()
+//    val mUserLiveData =
 
     fun setSettingAdapter(view: RecyclerView, context: Context) {
         view.adapter = mSettingItemAdapter.apply {

@@ -10,7 +10,7 @@ import androidx.navigation.NavDestination
 import androidx.navigation.NavOptions
 import androidx.navigation.Navigator
 import androidx.navigation.fragment.FragmentNavigator
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import java.util.ArrayDeque
 
 @Navigator.Name("single_fragment")

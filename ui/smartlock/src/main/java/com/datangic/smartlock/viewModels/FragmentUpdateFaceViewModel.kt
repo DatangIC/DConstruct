@@ -3,6 +3,8 @@ package com.datangic.smartlock.viewModels
 import android.app.Application
 import androidx.fragment.app.Fragment
 import cn.dttsh.dts1586.MSG42
+import com.datangic.common.file.LockFile
+import com.datangic.common.utils.Logger
 import com.datangic.smartlock.R
 import com.datangic.smartlock.ble.CreateMessage
 import com.datangic.smartlock.respositorys.BleManagerApiRepository

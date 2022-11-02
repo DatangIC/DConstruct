@@ -19,12 +19,12 @@ android {
 
     defaultConfig {
         if (config.isDebug) {
-            applicationId "com.datangic.smartlock3"
+            applicationId "com.datangic.smartlock"
         }
         minSdk 23
         targetSdk 31
-        versionCode 1
-        versionName "1.0"
+        versionCode 7
+        versionName "1.0.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -118,13 +118,10 @@ dependencies {
     implementation config.network.volley
     implementation project(":libs:base")
 
-    implementation project(":libs:data")
-
     implementation project(':libs:Zxing')
     implementation project(':libs:RequestPermissions')
     implementation project(':libs:Swipe')
     implementation project(':libs:LocalLock')
-
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

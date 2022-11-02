@@ -23,6 +23,7 @@ object LoginApiDataDeserializer {
             return LoginDataResult(
                 userId = mJson.get("userId")?.asLong,
                 userPhone = mJson.get("userPhone")?.asString,
+                userEmail = mJson.get("userEmail")?.asString,
                 roleId = mJson.get("roleId")?.asInt,
                 roleName = mJson.get("roleName")?.asString,
                 authorization = mJson.get("authorization")?.asString,

@@ -18,7 +18,7 @@ import com.datangic.smartlock.dialog.MaterialDialog
 import com.datangic.smartlock.liveData.LockBleReceivedLiveData
 import com.datangic.smartlock.respositorys.BleManagerApiRepository
 import com.datangic.smartlock.utils.DIALOG_TIMEOUT
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.launch
 

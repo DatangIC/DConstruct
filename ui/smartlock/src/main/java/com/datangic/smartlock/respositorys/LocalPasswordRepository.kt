@@ -10,7 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import com.datangic.localLock.*
 import com.datangic.smartlock.dialog.MaterialDialog
 import com.datangic.smartlock.dialog.MaterialDialog.setTitle
-import com.datangic.smartlock.preference.SharePreferenceUtils
+import com.datangic.common.file.SharePreferenceUtils
 import com.datangic.smartlock.utils.REQUEST_VERIFICATION_PASSWORD
 
 

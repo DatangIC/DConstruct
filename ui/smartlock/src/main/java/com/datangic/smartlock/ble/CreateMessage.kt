@@ -3,7 +3,7 @@ package com.datangic.smartlock.ble
 
 import androidx.annotation.RestrictTo
 import cn.dttsh.dts1586.*
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import com.datangic.smartlock.utils.MSG41_TypeUpgradeAll
 import com.datangic.smartlock.utils.MSG49_VALUE_Default
 
@@ -21,7 +21,7 @@ object CreateMessage {
         secretCode: String? = null,
         timeStamp: Int? = null
     ): Pair<String, MSG> {
-        DTS1586.init(macAddress.hashCode(), macAddress, authCode, secretCode, true)
+        DTS1586.init(macAddress.hashCode(), macAddress, authCode, secretCode)
         val msg = MSG01().apply {
             this.setMark(macAddress.hashCode())
             this.type = type

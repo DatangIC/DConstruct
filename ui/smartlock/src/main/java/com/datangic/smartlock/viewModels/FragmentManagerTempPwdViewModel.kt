@@ -10,7 +10,7 @@ import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import cn.dttsh.dts1586.DTS1586
 import cn.dttsh.dts1586.TEMP_PWD
-import com.datangic.smartlock.Config.TEMP_PASSWORD_LIMIT
+import com.datangic.common.Config.TEMP_PASSWORD_LIMIT
 import com.datangic.smartlock.R
 import com.datangic.smartlock.adapter.TempPwdAdapter
 import com.datangic.smartlock.components.DeviceKeyItem
@@ -18,8 +18,8 @@ import com.datangic.data.database.table.DeviceEnum.KeyType
 import com.datangic.data.database.table.DeviceKey
 import com.datangic.data.database.view.ViewDeviceKey
 import com.datangic.smartlock.dialog.MaterialDialog
-import com.datangic.smartlock.respositorys.DatabaseRepository
-import com.datangic.smartlock.utils.Logger
+import com.datangic.data.DatabaseRepository
+import com.datangic.common.utils.Logger
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlin.collections.ArrayList

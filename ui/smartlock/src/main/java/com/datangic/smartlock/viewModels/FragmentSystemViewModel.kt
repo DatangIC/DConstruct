@@ -7,6 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.datangic.common.utils.Logger
 import com.datangic.localLock.biometricprompt.FingerprintCallback
 import com.datangic.localLock.biometricprompt.FingerprintVerifyManager
 import com.datangic.smartlock.R

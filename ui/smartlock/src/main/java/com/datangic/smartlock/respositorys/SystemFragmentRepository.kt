@@ -1,11 +1,12 @@
 package com.datangic.smartlock.respositorys
 
+import com.datangic.data.DatabaseRepository
 import com.datangic.smartlock.R
 import com.datangic.smartlock.components.LockStatusItem
 import com.datangic.smartlock.components.SwitchItem
 import com.datangic.smartlock.preference.LanguageHelper
 import com.datangic.smartlock.preference.LanguageHelper.DefaultLanguage
-import com.datangic.smartlock.preference.SharePreferenceUtils
+import com.datangic.common.file.SharePreferenceUtils
 import com.datangic.smartlock.preference.ThemeHelper
 import com.datangic.smartlock.preference.ThemeHelper.THEME
 

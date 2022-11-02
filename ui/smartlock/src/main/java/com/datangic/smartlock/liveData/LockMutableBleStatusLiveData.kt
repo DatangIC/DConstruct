@@ -5,7 +5,7 @@ import android.content.Context
 import androidx.lifecycle.LiveData
 import com.datangic.smartlock.R
 import com.datangic.smartlock.ble.livedata.state.ConnectionState
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import no.nordicsemi.android.ble.observer.ConnectionObserver
 
 class LockMutableBleStatusLiveData : LiveData<LockMutableBleStatusLiveData>() {

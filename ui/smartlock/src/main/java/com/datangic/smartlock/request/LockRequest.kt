@@ -4,9 +4,9 @@ import com.android.volley.Request
 import com.android.volley.VolleyError
 import com.android.volley.toolbox.JsonObjectRequest
 import com.datangic.api.smartlock.UpgradeRequest
-import com.datangic.smartlock.BASE_URL
-import com.datangic.smartlock.UPDATE
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.BASE_URL
+import com.datangic.common.UPDATE
+import com.datangic.common.utils.Logger
 import com.google.gson.Gson
 import okhttp3.Call
 import org.json.JSONObject

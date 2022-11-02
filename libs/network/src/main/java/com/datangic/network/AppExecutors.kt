@@ -2,22 +2,30 @@ package com.datangic.network
 
 import android.os.Handler
 import android.os.Looper
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import java.util.concurrent.Executor
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
+import kotlin.coroutines.CoroutineContext
 
 open class AppExecutors(
-    private val diskIO: ExecutorService = Executors.newSingleThreadExecutor(),
-    private val networkIO: ExecutorService = Executors.newFixedThreadPool(5),
-    private val mainThread: Executor = MainThreadExecutor()
+    private val singleIO: ExecutorService = Executors.newSingleThreadExecutor(),
+    private val fixedIO: ExecutorService = Executors.newFixedThreadPool(5),
+    private val mainThread: Executor = MainThreadExecutor(),
 ) {
 
-    fun diskIO(): ExecutorService {
-        return diskIO
+    fun singleIO(): ExecutorService {
+        return singleIO
     }
 
-    fun networkIO(): ExecutorService {
-        return networkIO
+    fun fixedIO(): ExecutorService {
+        return fixedIO
+    }
+
+    fun scopeIo(context: CoroutineContext): CoroutineScope {
+        return CoroutineScope(SupervisorJob() + Dispatchers.Main.immediate)
     }
 
     fun mainThread(): Executor {

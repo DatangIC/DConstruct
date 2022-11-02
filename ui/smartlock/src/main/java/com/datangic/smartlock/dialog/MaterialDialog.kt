@@ -19,7 +19,7 @@ import androidx.annotation.LayoutRes
 import androidx.annotation.StyleRes
 import androidx.appcompat.app.AlertDialog
 import com.datangic.smartlock.R
-import com.datangic.smartlock.utils.LockFile
+import com.datangic.common.file.LockFile
 import com.datangic.smartlock.utils.UtilsFormat.toHtml
 import com.datangic.smartlock.utils.UtilsFormat.toStringWithTime
 import com.datangic.smartlock.utils.UtilsFormat.toTimeStamp
@@ -33,7 +33,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.google.android.material.textfield.TextInputLayout.END_ICON_PASSWORD_TOGGLE
 import com.google.android.material.textview.MaterialTextView
-import java.util.*
 
 object MaterialDialog {
 

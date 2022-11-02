@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "8a41499d096b2286e63964be2465adcc",
+    "identityHash": "b20d581263301086b1f7b2d44e341022",
     "entities": [
       {
         "tableName": "User",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `username` TEXT, `email` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `user_id` INTEGER NOT NULL, `role_name` TEXT, `role_id` INTEGER NOT NULL, `phone` TEXT, `email` TEXT, `avatar` TEXT, `nickname` TEXT, `third_id` TEXT, `home_id` TEXT NOT NULL)",
         "fields": [
           {
             "fieldPath": "uid",
@@ -15,8 +15,26 @@
             "notNull": true
           },
           {
-            "fieldPath": "username",
-            "columnName": "username",
+            "fieldPath": "userId",
+            "columnName": "user_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "roleName",
+            "columnName": "role_name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "roleId",
+            "columnName": "role_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "phone",
+            "columnName": "phone",
             "affinity": "TEXT",
             "notNull": false
           },
@@ -25,6 +43,30 @@
             "columnName": "email",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "avatar",
+            "columnName": "avatar",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "nickname",
+            "columnName": "nickname",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "thirdId",
+            "columnName": "third_id",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "homeIds",
+            "columnName": "home_id",
+            "affinity": "TEXT",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -33,16 +75,38 @@
           ],
           "autoGenerate": true
         },
-        "indices": [],
+        "indices": [
+          {
+            "name": "index_User_uid",
+            "unique": true,
+            "columnNames": [
+              "uid"
+            ],
+            "orders": [],
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_User_uid` ON `${TABLE_NAME}` (`uid`)"
+          }
+        ],
         "foreignKeys": []
       },
       {
         "tableName": "Device",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`did` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT NOT NULL, `type` INTEGER NOT NULL, `serial_number` TEXT NOT NULL, `mac_address` TEXT NOT NULL, `device_user_id` TEXT NOT NULL, `create_at` INTEGER NOT NULL, `update_at` INTEGER NOT NULL, `imei` TEXT NOT NULL, `secret_code` TEXT, `nfc` INTEGER NOT NULL, `face` INTEGER NOT NULL, `wifi` INTEGER NOT NULL, `infrared` INTEGER NOT NULL, `variable_password` INTEGER NOT NULL, `automatic_lock` INTEGER NOT NULL, `self_eject_lock` INTEGER NOT NULL, `permission_switch` INTEGER NOT NULL, `magic_number` INTEGER NOT NULL, `temporary_password` INTEGER NOT NULL, `status_query` INTEGER NOT NULL, `seized_fingerprint` INTEGER NOT NULL, `volume_adjustment` INTEGER NOT NULL, `follow_doorbell` INTEGER NOT NULL, `language_switch` INTEGER NOT NULL, `back_panel_ota` INTEGER NOT NULL, `temp_password_without_asterisk` INTEGER NOT NULL, `lock_keep_open` INTEGER NOT NULL, `lock_cylinder` INTEGER NOT NULL, `software_version` TEXT, `hardware_version` TEXT, `wifi_software_version` TEXT, `back_panel_software_version` TEXT, `fingerprint_software_version` TEXT, `face_software_version` TEXT NOT NULL, `temporary_password_secret_code` TEXT, `min_password_length` INTEGER NOT NULL, `max_password_length` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`did` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `uid` INTEGER NOT NULL, `home_id` INTEGER NOT NULL, `name` TEXT NOT NULL, `type` INTEGER NOT NULL, `serial_number` TEXT NOT NULL, `mac_address` TEXT NOT NULL, `device_user_id` TEXT NOT NULL, `create_at` INTEGER NOT NULL, `update_at` INTEGER NOT NULL, `imei` TEXT NOT NULL, `secret_code` TEXT, `nfc` INTEGER NOT NULL, `face` INTEGER NOT NULL, `wifi` INTEGER NOT NULL, `infrared` INTEGER NOT NULL, `variable_password` INTEGER NOT NULL, `automatic_lock` INTEGER NOT NULL, `self_eject_lock` INTEGER NOT NULL, `permission_switch` INTEGER NOT NULL, `magic_number` INTEGER NOT NULL, `temporary_password` INTEGER NOT NULL, `status_query` INTEGER NOT NULL, `seized_fingerprint` INTEGER NOT NULL, `volume_adjustment` INTEGER NOT NULL, `follow_doorbell` INTEGER NOT NULL, `language_switch` INTEGER NOT NULL, `back_panel_ota` INTEGER NOT NULL, `temp_password_without_asterisk` INTEGER NOT NULL, `lock_keep_open` INTEGER NOT NULL, `lock_cylinder` INTEGER NOT NULL, `software_version` TEXT, `hardware_version` TEXT, `wifi_software_version` TEXT, `back_panel_software_version` TEXT, `fingerprint_software_version` TEXT, `face_software_version` TEXT NOT NULL, `temporary_password_secret_code` TEXT, `min_password_length` INTEGER NOT NULL, `max_password_length` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "did",
             "columnName": "did",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "uid",
+            "columnName": "uid",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "homeId",
+            "columnName": "home_id",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -285,6 +349,15 @@
             ],
             "orders": [],
             "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_Device_serial_number_mac_address` ON `${TABLE_NAME}` (`serial_number`, `mac_address`)"
+          },
+          {
+            "name": "index_Device_uid",
+            "unique": false,
+            "columnNames": [
+              "uid"
+            ],
+            "orders": [],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_Device_uid` ON `${TABLE_NAME}` (`uid`)"
           }
         ],
         "foreignKeys": []
@@ -1036,7 +1109,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8a41499d096b2286e63964be2465adcc')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b20d581263301086b1f7b2d44e341022')"
     ]
   }
 }

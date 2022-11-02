@@ -1,19 +1,10 @@
 package com.datangic.data.database.table
 
 import androidx.room.*
-import kotlinx.coroutines.NonDisposableHandle.parent
 import java.util.*
 
 @Entity(
-    foreignKeys = [
-        ForeignKey(
-            entity = User::class,
-            parentColumns = arrayOf("user_id"),
-            childColumns = arrayOf("uid"),
-            onDelete = ForeignKey.CASCADE,
-            onUpdate = ForeignKey.CASCADE
-        )
-    ], indices = [Index(value = ["serial_number", "mac_address"], unique = true)]
+    indices = [Index(value = ["serial_number", "mac_address"], unique = true), Index(value = ["uid"], unique = false)]
 )
 data class Device(
     @PrimaryKey(autoGenerate = true) val did: Int = 0,

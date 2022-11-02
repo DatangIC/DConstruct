@@ -5,8 +5,8 @@ import cn.dttsh.dts1586.DTS1586
 import cn.dttsh.dts1586.MSG
 import cn.dttsh.dts1586.MSG12
 import com.datangic.smartlock.R
-import com.datangic.smartlock.respositorys.DatabaseRepository
-import com.datangic.smartlock.utils.Logger
+import com.datangic.data.DatabaseRepository
+import com.datangic.common.utils.Logger
 
 /**
  * 该函数用于处理系列操作，如，msg01-msg04的消息组册，OTA等

@@ -6,6 +6,7 @@ import android.os.Build
 import android.os.Handler
 import android.os.Looper
 import androidx.fragment.app.Fragment
+import com.datangic.common.utils.Logger
 import com.datangic.easypermissions.models.PermissionRequest
 import com.datangic.smartlock.R
 import com.datangic.smartlock.dialog.DialogEnableBluetooth
@@ -14,7 +15,6 @@ import com.datangic.smartlock.utils.*
 import com.datangic.easypermissions.EasyPermissions
 import com.datangic.easypermissions.callbacks.PermissionCallbacks
 import com.datangic.easypermissions.dialogs.SettingsDialog
-import java.io.PrintWriter
 
 class ScannerRepository(context: Context) : ScannerHelper(context) {
 

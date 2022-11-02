@@ -5,12 +5,11 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.Message
-import android.os.Parcelable
 import android.view.View
 import android.widget.Toast
 import cn.dttsh.dts1586.DTS1586
 import cn.dttsh.dts1586.PARSER_SHARE
+import com.datangic.common.utils.Logger
 import com.datangic.smartlock.R
 import com.datangic.smartlock.utils.UtilsBle.Companion.checkMac
 import com.datangic.smartlock.utils.UtilsFormat.toHtml

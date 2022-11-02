@@ -1,6 +1,7 @@
 package com.datangic.smartlock.utils
 
 import androidx.lifecycle.MutableLiveData
+import com.datangic.common.utils.Logger
 import com.datangic.smartlock.utils.UtilsFormat.hexStringToBytes
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch

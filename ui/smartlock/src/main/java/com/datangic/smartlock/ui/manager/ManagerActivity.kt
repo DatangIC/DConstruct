@@ -18,7 +18,7 @@ import com.datangic.smartlock.parcelable.IntentExtra
 import com.datangic.smartlock.respositorys.BleManagerApiRepository
 import com.datangic.smartlock.respositorys.ToolbarRepository
 import com.datangic.smartlock.utils.INTENT_EXTRA
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import org.koin.android.ext.android.inject
 
 class ManagerActivity : AppCompatActivity() {

@@ -1,9 +1,9 @@
 package com.datangic.smartlock.viewModels
 
 import android.app.Application
-import android.bluetooth.BluetoothDevice
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.datangic.common.file.LockFile
 import com.datangic.smartlock.R
 import com.datangic.smartlock.request.ApiHttp
 import com.datangic.smartlock.request.LockRequest

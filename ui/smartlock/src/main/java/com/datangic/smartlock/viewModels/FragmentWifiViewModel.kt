@@ -9,7 +9,7 @@ import android.net.wifi.ScanResult
 import android.net.wifi.WifiManager
 import androidx.fragment.app.Fragment
 import androidx.work.impl.utils.ForceStopRunnable
-import com.datangic.smartlock.Config
+import com.datangic.common.Config
 import com.datangic.smartlock.R
 import com.datangic.smartlock.adapter.ItemClickListener
 import com.datangic.smartlock.adapter.RecycleItemAdapter

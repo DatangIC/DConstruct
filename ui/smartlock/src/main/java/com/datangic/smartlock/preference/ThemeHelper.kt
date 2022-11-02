@@ -3,6 +3,7 @@ package com.datangic.smartlock.preference
 import android.content.Context
 import android.os.Build
 import androidx.appcompat.app.AppCompatDelegate
+import com.datangic.common.file.SharePreferenceUtils
 
 object ThemeHelper {
 

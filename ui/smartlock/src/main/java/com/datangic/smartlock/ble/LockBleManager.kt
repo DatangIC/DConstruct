@@ -5,7 +5,7 @@ import android.bluetooth.BluetoothGatt
 import android.bluetooth.BluetoothGattCharacteristic
 import android.content.Context
 import com.datangic.smartlock.ble.livedata.ObservableBleManager
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import no.nordicsemi.android.ble.callback.DataReceivedCallback

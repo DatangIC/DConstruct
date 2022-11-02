@@ -11,20 +11,21 @@ import androidx.navigation.NavController
 import androidx.navigation.Navigation
 import androidx.navigation.ui.setupWithNavController
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.datangic.libs.base.Router
+import com.datangic.common.RouterList
+import com.datangic.common.utils.Logger
 import com.datangic.localLock.*
 import com.datangic.data.database.table.Device
 import com.datangic.smartlock.databinding.ActivityMainBinding
 import com.datangic.smartlock.dialog.MaterialDialog
 import com.datangic.smartlock.preference.LanguageHelper
-import com.datangic.smartlock.respositorys.DatabaseRepository
+import com.datangic.data.DatabaseRepository
 import com.datangic.smartlock.respositorys.LocalPasswordRepository
 import com.datangic.smartlock.ui.scanning.ScanActivity
 import com.datangic.smartlock.utils.*
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
-@Route(path = Router.MAIN_ACTIVITY)
+@Route(path = RouterList.MAIN_ACTIVITY)
 class MainActivity : AppCompatActivity() {
 
     private val TAG = MainActivity::class.java.simpleName
@@ -84,6 +85,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         lifecycleScope.launch {

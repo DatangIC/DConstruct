@@ -3,9 +3,9 @@ package com.datangic.smartlock.respositorys
 import android.bluetooth.BluetoothDevice
 import androidx.lifecycle.LifecycleOwner
 import cn.dttsh.dts1586.MSG
+import com.datangic.data.DatabaseRepository
 import com.datangic.smartlock.ble.*
 import com.datangic.smartlock.liveData.LockBleReceivedLiveData
-import kotlin.reflect.KFunction1
 
 class MessageApi(mDatabaseRepository: DatabaseRepository, execute: (BluetoothDevice, MSG) -> CreateMessage.State) {
     val mSendSuccessCallbacks = SendSuccessCallback()

@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
 import androidx.viewpager2.widget.ViewPager2
+import com.datangic.common.utils.Logger
 import com.datangic.smartlock.R
 import com.datangic.smartlock.adapter.RecordPagerAdapter
 import com.datangic.smartlock.ble.CreateMessage

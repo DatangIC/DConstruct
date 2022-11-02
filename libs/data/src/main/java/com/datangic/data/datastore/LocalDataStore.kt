@@ -6,6 +6,7 @@ import androidx.datastore.core.DataStore
 import com.datangic.data.SecretCodeMap
 import com.datangic.data.SystemSettings
 import com.datangic.data.ThemeType
+import com.datangic.data.UserPrivateInfo
 import kotlinx.coroutines.flow.catch
 import java.io.IOException
 
@@ -27,11 +28,19 @@ class LocalDataStore(val context: Context) {
 
     private val mSecretCodeMapDataStore by lazy { SecretCodeMapDataStore(context) }
     private val mSystemSettingsDataStore by lazy { SystemSettingsDataStore(context) }
+    private val mUserPrivateInfoDataStore by lazy { UserPrivateInfoDataStore(context) }
 
 
     val mSecretCodeFlow = mSecretCodeMapDataStore.mSecretCodeDataStore.data.catch { exception ->
         if (exception is IOException) {
             emit(SecretCodeMap.getDefaultInstance())
+        } else {
+            throw exception
+        }
+    }
+    val mUserPrivateInfoFlow = mUserPrivateInfoDataStore.mUserPrivateInfoDataStore.data.catch { exception ->
+        if (exception is IOException) {
+            emit(UserPrivateInfo.getDefaultInstance())
         } else {
             throw exception
         }
@@ -48,6 +57,10 @@ class LocalDataStore(val context: Context) {
 
     suspend fun setDeleteSecretCode(key: String) {
         mSecretCodeMapDataStore.setDelete(key)
+    }
+
+    suspend fun setUserPrivateInfo(userID: Long, auth: String?, password: String?) {
+        mUserPrivateInfoDataStore.updateUserInfo(userID, auth, password)
     }
 
 

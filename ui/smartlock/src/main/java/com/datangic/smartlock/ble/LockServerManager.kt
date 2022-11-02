@@ -3,7 +3,7 @@ package com.datangic.smartlock.ble
 import android.bluetooth.BluetoothGattCharacteristic
 import android.bluetooth.BluetoothGattService
 import android.content.Context
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import no.nordicsemi.android.ble.BleServerManager
 import java.util.*
 

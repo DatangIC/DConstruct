@@ -2,10 +2,11 @@ package com.datangic.smartlock.ble
 
 import android.bluetooth.BluetoothDevice
 import cn.dttsh.dts1586.*
+import com.datangic.common.utils.Logger
 import com.datangic.data.database.*
 import com.datangic.data.database.table.*
 import com.datangic.smartlock.liveData.LockBleReceivedLiveData
-import com.datangic.smartlock.respositorys.DatabaseRepository
+import com.datangic.data.DatabaseRepository
 import com.datangic.smartlock.utils.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -108,6 +109,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                 data.third.let {
                     val mCmdInfo = DTS1586.getCmdInfo(data.first)
                     val msg04 = data.second as MSG04
+                    Logger.e(TAG, "map =${msg04.allStatus.contentToString()}")
                     if (mRegisterManagers[it.address] in listOf(
                             RegisterType.SCAN_REGISTER,
                             RegisterType.CALLBACK_REGISTER,
@@ -703,6 +705,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
 
     private suspend fun createNewDeviceAndUser(bluetoothDevice: BluetoothDevice, msg04: MSG04, msg26: MSG26, cmdInfo: CmdInfo) {
         val newDevice = Device(
+            uid = 0,
             name = mDatabase.getNewDeviceName(),
             serialNumber = cmdInfo.sn,
             macAddress = bluetoothDevice.address,

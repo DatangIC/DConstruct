@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_16dp">
+
+        <TextView
+            android:id="@+id/title_primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/height_130dp"
+            android:paddingVertical="@dimen/margin_16dp"
+            android:paddingStart="@dimen/margin_16dp"
+            android:text="@string/login"
+            android:textSize="@dimen/text_size_24sp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="RtlSymmetry" />
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/username"
+            style="@style/AppTheme.TextFieldOutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_6dp"
+            android:hint="@string/email_or_phone"
+            android:paddingVertical="@dimen/margin_10dp"
+            app:endIconMode="clear_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title_primary"
+            app:startIconDrawable="@drawable/ic_baseline_email_24"
+            app:startIconTint="@color/color_primary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_username_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColorHint="#616161" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/verify_code"
+            style="@style/AppTheme.TextFieldOutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_6dp"
+            android:hint="@string/verify_code"
+            android:paddingVertical="@dimen/margin_10dp"
+            app:endIconContentDescription="@string/email_or_phone"
+            app:endIconMode="custom"
+            app:endIconTintMode="multiply"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/username"
+            app:startIconDrawable="@drawable/ic_baseline_security_24"
+            app:startIconTint="@color/color_primary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_code_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColorHint="#616161" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password"
+            style="@style/AppTheme.TextFieldOutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="@dimen/margin_6dp"
+            android:hint="@string/password"
+            android:paddingVertical="@dimen/margin_10dp"
+            android:visibility="gone"
+            app:endIconMode="password_toggle"
+            app:endIconTint="@color/color_primary"
+            app:endIconTintMode="multiply"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/verify_code"
+            app:startIconDrawable="@drawable/ic_baseline_lock_24"
+            app:startIconTint="@color/color_primary">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/input_password_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:textColorHint="#616161" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="start"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="64dp"
+            android:enabled="true"
+            android:paddingHorizontal="@dimen/height_50dp"
+            android:paddingVertical="@dimen/margin_12dp"
+            android:text="@string/action_sign_in"
+            android:textSize="@dimen/text_size_18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/password"
+            app:layout_constraintVertical_bias="0.2" />
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/password"
+            app:layout_constraintStart_toStartOf="@+id/password"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.3" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

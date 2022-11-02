@@ -1,5 +1,8 @@
 package com.datangic.smartlock.di
 
+import android.content.Context
+import com.datangic.common.Config
+import com.datangic.data.DatabaseRepository
 import com.datangic.smartlock.respositorys.*
 import com.datangic.smartlock.viewModels.*
 import kotlinx.coroutines.ObsoleteCoroutinesApi
@@ -15,7 +18,11 @@ import org.koin.dsl.module
 @ObsoleteCoroutinesApi
 val repositoryModule: Module = module {
 
-    single { DatabaseRepository(androidContext()) }
+
+    single {
+        if (Config.isDebug(androidContext()))
+            DatabaseRepository(androidApplication())
+    }
 
     factory { ToolbarRepository() }
 

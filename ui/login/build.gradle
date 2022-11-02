@@ -71,18 +71,13 @@ android {
 dependencies {
 
 //    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.0'
-//    implementation 'androidx.core.splashscreen:1.0.0-alpha01'
+    implementation config.androidx.lifecycle_runtime
     implementation config.koin.core
 
     implementation project(":ui:components")
-    implementation project(":libs:common")
     implementation project(":libs:base")
-    implementation project(path: ':libs:api')
 
-//    implementation config.others.arouter
-//    implementation "com.alibaba:arouter-annptation:1.0.6"
-//    implementation project(":arouter-api")
+
     kapt config.kapt.arouter
 
 

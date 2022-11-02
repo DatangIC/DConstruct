@@ -7,21 +7,25 @@ import com.datangic.network.NetworkApi
 import com.datangic.network.impl.IAuthorization
 import com.google.gson.JsonElement
 import io.reactivex.rxjava3.core.Observable
+import okhttp3.Interceptor
 import retrofit2.http.*
 
 
 interface LoginApi {
 
     companion object {
-        private const val LOGIN_BASE_URL = "https://zhwl.dttsh.cn/"
+        private const val LOGIN_BASE_URL = "http://zhwl.dttsh.cn:1130/"
         private const val LOGIN_BASE_URL_T = "http://dttsh.cn:8091/mock/12/"
-        fun create(getAuth: (() -> String)? = null) = NetworkApi.create<LoginApi>(
+        fun create(vararg interceptors: Interceptor, getAuth: (() -> String)? = null) = NetworkApi.create<LoginApi>(
             baseUrl = LOGIN_BASE_URL,
             authorizationInfo = object : IAuthorization {
                 override fun getAuthorization(): String {
                     return getAuth?.let { it() } ?: "app/mobile"
                 }
-            })
+            },
+            isCookie = true,
+            interceptors = interceptors
+        )
     }
 
     enum class LoginType(val value: String) {
@@ -36,7 +40,12 @@ interface LoginApi {
         @Query("type") type: String
     ): Observable<DataResponse<JsonElement>>
 
-    @POST("paas/home/api/login")
+    @GET("paas/home/api/username")
+    fun getUserInfo(
+        @Header("Authorization") auth: String,
+    ): Observable<DataResponse<JsonElement>>
+
+    @POST("paas/home/api/user/login")
     fun loginRegister(
         @Body loginData: LoginData
     ): Observable<DataResponse<JsonElement>>

@@ -21,7 +21,7 @@ class LoginApiResource(
     fun loginOrRegister(loginData: LoginData): Observable<ResponseState<LoginDataResult>> =
         api.loginRegister(loginData).doOnError { throw it }.map { response2observable(it) }
 
-    fun updateUser(userData: UserData): Observable<ResponseState<UserData>> =
+    fun updateUser(userData: UserData): Observable<ResponseState<UpdateUser>> =
         api.updateUser(userData).doOnError { throw it }.map { response2observable(it) }
 
     fun loginOut(): Observable<ResponseState<String>> = api.logout().doOnError { throw it }.map { response2observable(it) }

@@ -210,17 +210,6 @@
     <string name="management_temp_pwd">临时密码</string>
     <string name="management_user">用户</string>
 
-    <!--Database-->
-    <string name="default_device_name">智能门锁</string>
-    <string name="default_admin_name">管理员</string>
-    <string name="default_user_name">用户</string>
-    <string name="default_user_name_with_id" formatted="true">用户 %d</string>
-    <string name="default_key_password_name">密码</string>
-    <string name="default_key_temp_password_name">临时密码</string>
-    <string name="default_key_nfc_name">卡片</string>
-    <string name="default_key_fingerprint_name">指纹</string>
-    <string name="default_key_face_name">人脸信息</string>
-
     <!--BLE    -->
     <string name="ble_initializing">初始化</string>
     <string name="ble_scanning">搜索中…</string>

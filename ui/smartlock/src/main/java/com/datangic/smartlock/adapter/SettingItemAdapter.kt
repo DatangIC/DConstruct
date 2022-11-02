@@ -11,9 +11,7 @@ import com.datangic.smartlock.adapter.viewHolder.BottomLineViewHolder
 import com.datangic.smartlock.adapter.viewHolder.ItemNullViewHolder
 import com.datangic.smartlock.components.LockStatusItem
 import com.datangic.smartlock.components.SwitchItem
-import com.datangic.smartlock.components.SystemItem
 import com.datangic.smartlock.databinding.*
-import com.datangic.smartlock.utils.Logger
 
 class SettingItemAdapter(lockItems: MutableList<Any>) : ListAdapter<Any, RecyclerView.ViewHolder>(
     ListAdapterConfig.getAsyncDifferConfig(

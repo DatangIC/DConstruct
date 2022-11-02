@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.datangic.smartlock.R
 import com.datangic.smartlock.databinding.FragmentLifecycleBinding
 import com.datangic.smartlock.parcelable.IntentExtra
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import com.datangic.smartlock.utils.UtilsFormat.DATE_WITH_YEAR
 import com.datangic.smartlock.utils.UtilsFormat.toDateString
 import com.datangic.smartlock.utils.UtilsFormat.toHtml

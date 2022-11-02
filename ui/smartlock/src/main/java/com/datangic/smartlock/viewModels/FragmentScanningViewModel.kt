@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.findNavController
+import com.datangic.common.utils.Logger
 import com.datangic.smartlock.R
 import com.datangic.smartlock.adapter.ScannerDeviceAdapter
 import com.datangic.smartlock.ble.ReceivedMessageHandle.RegisterType

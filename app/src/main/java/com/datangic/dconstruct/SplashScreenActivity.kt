@@ -11,13 +11,11 @@ import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.datangic.components.rememberRandomSampleImageUrl
+import com.datangic.api.login.LoginApi
+import com.datangic.common.RouterList
 import com.datangic.components.themes.DConstructTheme
-import com.datangic.components.themes.TypeSize
-import com.datangic.components.ui.SplashNavigation
-import com.datangic.libs.base.Router
 
-@Route(path = Router.SPLASH_ACTIVITY)
+@Route(path = RouterList.SPLASH_ACTIVITY)
 @SuppressLint("CustomSplashScreen")
 class SplashScreenActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -26,21 +24,15 @@ class SplashScreenActivity : ComponentActivity() {
             DConstructTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
-                    SplashNavigation(
-                        data = listOf(
-                            rememberRandomSampleImageUrl(width = 1080),
-                            rememberRandomSampleImageUrl(width = 1080),
-                            rememberRandomSampleImageUrl(width = 1080),
-                            rememberRandomSampleImageUrl(width = 1080),
-                        ),
-                        vertical = TypeSize.large_128,
-                        margin = TypeSize.large_36,
-                    ) {
-                        ARouter.getInstance().build(Router.MAIN_ACTIVITY).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION).navigation()
-                        finish()
-                    }
+                    ARouter.getInstance().build(RouterList.LOGIN_ACTIVITY).addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION).navigation()
+//                    ARouter.getInstance().build(RouterList.MAIN_ACTIVITY).navigation()
+//                    finish()
                 }
             }
         }
+    }
+
+    private val navigationToMain = Runnable {
+//        LoginApi.create().getAuthCode() /
     }
 }

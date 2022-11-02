@@ -7,6 +7,7 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import com.datangic.network.NetworkApi
+import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
@@ -28,6 +29,7 @@ abstract class ApplicationProvider : Application() {
         }
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate() {
         super.onCreate()
         GlobalScope.launch(Dispatchers.IO) {

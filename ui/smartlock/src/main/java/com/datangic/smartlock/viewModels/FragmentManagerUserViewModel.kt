@@ -6,10 +6,11 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewModelScope
-import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import cn.dttsh.dts1586.*
+import com.datangic.common.utils.Logger
 import com.datangic.smartlock.R
 import com.datangic.smartlock.adapter.BottomSelectorAdapter
 import com.datangic.smartlock.adapter.ManagerUserAdapter

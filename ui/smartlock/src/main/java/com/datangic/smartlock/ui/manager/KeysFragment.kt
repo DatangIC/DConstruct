@@ -27,8 +27,6 @@ class KeysFragment : Fragment() {
             initWithBundle(it)
         } ?: initWithIntent()
 
-
-
         mViewModel.setDefaultSelect(this, mBinding.pagerLayout, args.selectedType)
         return mBinding.root
     }

@@ -10,7 +10,7 @@ import com.datangic.smartlock.R
 import com.datangic.smartlock.databinding.PagerListViewBinding
 import com.datangic.smartlock.parcelable.IntentExtra
 import com.datangic.smartlock.utils.INTENT_EXTRA
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import com.datangic.smartlock.viewModels.FragmentManagerUserViewModel
 import org.koin.androidx.viewmodel.ext.android.getViewModel
 import org.koin.core.parameter.parametersOf

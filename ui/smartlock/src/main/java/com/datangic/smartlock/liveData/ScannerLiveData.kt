@@ -2,7 +2,7 @@ package com.datangic.smartlock.liveData
 
 import androidx.lifecycle.LiveData
 import com.datangic.smartlock.parcelable.ExtendedBluetoothDevice
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import no.nordicsemi.android.support.v18.scanner.ScanResult
 
 class ScannerLiveData : LiveData<ScannerLiveData>() {

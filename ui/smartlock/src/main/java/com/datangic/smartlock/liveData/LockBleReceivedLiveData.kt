@@ -4,7 +4,7 @@ import android.bluetooth.BluetoothDevice
 import androidx.lifecycle.LiveData
 import cn.dttsh.dts1586.DTS1586
 import cn.dttsh.dts1586.MSG
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import no.nordicsemi.android.ble.utils.ParserUtils
 
 class LockBleReceivedLiveData : LiveData<LockBleReceivedLiveData>() {

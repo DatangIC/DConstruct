@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.pm.PackageInfo
 import android.content.pm.PackageManager
 import android.os.Build
+import com.datangic.common.utils.Logger
 import java.io.PrintWriter
 import java.io.StringWriter
 import java.io.Writer

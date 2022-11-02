@@ -9,7 +9,7 @@ import com.datangic.easypermissions.callbacks.PermissionCallbacks
 import com.datangic.easypermissions.dialogs.SettingsDialog
 import com.datangic.easypermissions.models.PermissionRequest
 import com.datangic.smartlock.R
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import com.datangic.smartlock.utils.REQUEST_CODE_CAMERA_STORAGE_PERMISSION
 import com.datangic.smartlock.utils.REQUEST_SCAN_QRCODE_CODE
 import com.datangic.zxing.ScanActivity as CaptureActivity

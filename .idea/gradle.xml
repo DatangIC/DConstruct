@@ -7,7 +7,7 @@
         <option name="testRunner" value="GRADLE" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleJvm" value="JDK" />
+        <option name="gradleJvm" value="Embedded JDK" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
@@ -25,10 +25,10 @@
             <option value="$PROJECT_DIR$/ui" />
             <option value="$PROJECT_DIR$/ui/components" />
             <option value="$PROJECT_DIR$/ui/login" />
+            <option value="$PROJECT_DIR$/ui/login2" />
             <option value="$PROJECT_DIR$/ui/smartlock" />
           </set>
         </option>
-        <option name="resolveModulePerSourceSet" value="false" />
       </GradleProjectSettings>
     </option>
   </component>

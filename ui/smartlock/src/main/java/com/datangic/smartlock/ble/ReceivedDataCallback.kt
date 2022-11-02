@@ -2,7 +2,7 @@ package com.datangic.smartlock.ble
 
 import android.bluetooth.BluetoothDevice
 import cn.dttsh.dts1586.DTS1586
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import no.nordicsemi.android.ble.callback.profile.ProfileDataCallback
 import no.nordicsemi.android.ble.data.Data
 import no.nordicsemi.android.ble.utils.ParserUtils

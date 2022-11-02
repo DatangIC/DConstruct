@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import cn.dttsh.dts1586.DTS1586
 import cn.dttsh.dts1586.MSG
 import com.datangic.api.smartlock.SmartLockOta
+import com.datangic.data.DatabaseRepository
 import com.datangic.smartlock.R
 import com.datangic.data.SystemSettings
 import com.datangic.smartlock.ble.*
@@ -18,7 +19,7 @@ import com.datangic.smartlock.ble.livedata.state.ConnectionState
 import com.datangic.data.database.table.DeviceEnum
 import com.datangic.data.database.view.ViewManagerDevice
 import com.datangic.smartlock.liveData.*
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import com.datangic.smartlock.utils.UtilsBle.Companion.checkMac
 import com.datangic.smartlock.viewModels.ScannerRepository
 import kotlinx.coroutines.*

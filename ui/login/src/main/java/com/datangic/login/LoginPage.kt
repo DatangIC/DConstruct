@@ -113,7 +113,6 @@ fun LoginPage(
     }
 }
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun InputPhone(mViewModel: LoginViewModel, modifier: Modifier = Modifier) {
     Column(

@@ -1,12 +1,16 @@
 package com.datangic.login
 
 import android.app.Application
+import android.content.Intent
 import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.alibaba.android.arouter.launcher.ARouter
+import com.blankj.utilcode.util.LogUtils
 import com.datangic.api.login.LoginDataResult
+import com.datangic.common.RouterList
 import com.datangic.common.utils.isPhoneNumber
 import com.datangic.libs.base.ApplicationProvider
 import com.datangic.libs.base.ApplicationProvider.Companion.getCurrentActivity
@@ -18,6 +22,8 @@ import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import org.koin.core.logger.Logger
+import java.util.*
 
 class LoginViewModel(application: Application, private val loginRepository: LoginRepository) : AndroidViewModel(application) {
 
@@ -47,7 +53,6 @@ class LoginViewModel(application: Application, private val loginRepository: Logi
         if (state.loginStep.value in listOf(LoginState.LoginStep.INPUT_USER, LoginState.LoginStep.START_LOGIN)) {
             getUsernameDone()
         } else {
-
             if (state.userPhone.value.isNotEmpty() || state.email.value.isNotEmpty()) {
                 if (state.password.value.isNotEmpty() || state.verifyCode.value.isNotEmpty()) {
                     loginRepository.login(
@@ -61,7 +66,17 @@ class LoginViewModel(application: Application, private val loginRepository: Logi
                         }
 
                         override fun onNext(t: ResponseState<LoginDataResult>) {
-                            Log.e(TAG, "result=${t}")
+                            t.data?.let { result ->
+                                LogUtils.i(TAG, "login2")
+                                loginRepository.dataSource.updateUser(result, state.password.value)
+                            }
+                            ARouter.getInstance().build(RouterList.MAIN_ACTIVITY)
+                                .withTransition(org.koin.android.R.anim.abc_popup_enter, org.koin.android.R.anim.abc_popup_exit)
+                                .addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                                .addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                .navigation()
+//                            mActivity.finish()
                         }
 
                         override fun onError(e: Throwable) {
@@ -81,12 +96,12 @@ class LoginViewModel(application: Application, private val loginRepository: Logi
     }
 
     fun getVerifyCode() {
-        loginRepository.getVerifyCode("123434").doOnError {
-            Log.e(TAG, "getVerifyCode =$it")
+        loginRepository.getVerifyCode(state.userPhone.value).doOnError {
+            LogUtils.e(this::getVerifyCode.name, "getVerifyCode =$it")
         }.subscribe {
             when (it.requestStatus) {
                 RequestStatus.SUCCESS -> {
-
+                    LogUtils.i(TAG, "getVerifyCode Done")
                 }
                 else -> {
                 }

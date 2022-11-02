@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
 }
 
+def config = rootProject.ext
+
 android {
     compileSdk 31
 
@@ -31,10 +33,12 @@ android {
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
     implementation 'com.google.android.material:material:1.4.0'
 
+    implementation config.others.arouter
     api project(":libs:network")
+    implementation project(path: ':libs:common')
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.robolectric:robolectric:4.5.1'
 

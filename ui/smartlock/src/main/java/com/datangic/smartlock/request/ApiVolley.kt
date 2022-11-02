@@ -9,7 +9,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.toolbox.BasicNetwork
 import com.android.volley.toolbox.DiskBasedCache
 import com.android.volley.toolbox.HurlStack
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import java.io.File
 
 

@@ -9,10 +9,8 @@ import org.koin.core.context.loadKoinModules
 class LoginApplication : IApplication {
     @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(application: Application) {
-        GlobalScope.launch {
-            withContext(Dispatchers.Default) {
-                loadKoinModules(listOf(repositoryModule, viewModelModule))
-            }
+        GlobalScope.launch(Dispatchers.Default) {
+            loadKoinModules(listOf(repositoryModule, viewModelModule))
         }
     }
 

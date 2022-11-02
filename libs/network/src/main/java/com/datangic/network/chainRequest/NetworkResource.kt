@@ -31,9 +31,9 @@ abstract class NetworkResource<ResponseType, ResultType>
             result.removeSource(apiResponse)
             when (response) {
                 is ApiSuccessResponse -> {
-                    appExecutors.diskIO().execute {
+                    appExecutors.singleIO().execute {
                         val data = processResponse(response)
-                        appExecutors.networkIO().execute {
+                        appExecutors.fixedIO().execute {
                             // we specially request a new live data,
                             // otherwise we will get immediately last cached value,
                             // which may not be updated with latest results received from network.

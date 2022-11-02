@@ -26,7 +26,7 @@ import com.datangic.smartlock.respositorys.BleManagerApiRepository
 import com.datangic.smartlock.respositorys.HomeFragmentRepository
 import com.datangic.smartlock.respositorys.ScanQrCodeHelper
 import com.datangic.smartlock.ui.scanning.ScanActivity
-import com.datangic.smartlock.utils.Logger
+import com.datangic.common.utils.Logger
 import com.datangic.smartlock.utils.UtilsFormat.toDateString
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomsheet.BottomSheetDialog

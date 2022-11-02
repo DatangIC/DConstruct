@@ -7,7 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.viewModelScope
 import androidx.viewpager2.widget.ViewPager2
 import cn.dttsh.dts1586.MSG16
-import com.datangic.smartlock.Config
+import com.datangic.common.Config
+import com.datangic.common.utils.Logger
 import com.datangic.smartlock.R
 import com.datangic.smartlock.adapter.DeviceKeyPagerAdapter
 import com.datangic.smartlock.ble.CreateMessage

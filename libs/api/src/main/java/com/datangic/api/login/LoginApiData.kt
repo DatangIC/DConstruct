@@ -13,6 +13,7 @@ data class LoginData(
 data class LoginDataResult(
     val userId: Long,
     val userPhone: String,
+    val userEmail: String,
     val roleId: Int,
     val roleName: String,
     val authorization: String,
@@ -25,6 +26,7 @@ data class LoginDataResult(
     constructor(
         userId: Long?,
         userPhone: String?,
+        userEmail: String?,
         roleId: Int?,
         roleName: String?,
         authorization: String?,
@@ -36,6 +38,7 @@ data class LoginDataResult(
     ) : this(
         userId = userId ?: 0,
         userPhone = userPhone ?: "",
+        userEmail = userEmail ?: "",
         roleId = roleId ?: 0,
         roleName = roleName ?: "",
         authorization = authorization ?: "",
@@ -71,6 +74,14 @@ data class UserData(
         avatar = avatar ?: ""
     )
 }
+
+data class UpdateUser(
+    val userPhone: String = "",
+    val userPassword: String = "",
+    val userId: Long = 0,
+    val nickname: String = "",
+    val avatar: String = ""
+)
 
 data class VerifyCodeResult(val userPhone: String, val expirationTime: Long) {
     constructor(userPhone: String?, expirationTime: Long?) : this(

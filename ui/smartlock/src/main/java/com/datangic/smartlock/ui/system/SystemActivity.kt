@@ -11,13 +11,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.NavController
 import androidx.navigation.Navigation
+import com.datangic.common.utils.Logger
 import com.datangic.localLock.LOCKER_RESULT
 import com.datangic.localLock.LocalLockResult
 import com.datangic.smartlock.R
 import com.datangic.smartlock.databinding.ActivitySystemBinding
 import com.datangic.smartlock.dialog.MaterialDialog
 import com.datangic.smartlock.parcelable.ExtendedBluetoothDevice
-import com.datangic.smartlock.respositorys.DatabaseRepository
+import com.datangic.data.DatabaseRepository
 import com.datangic.smartlock.respositorys.LocalPasswordRepository
 import com.datangic.smartlock.respositorys.ToolbarRepository
 import com.datangic.smartlock.ui.scanning.ScanActivity

@@ -2,6 +2,7 @@ package com.datangic.api.smartlock
 
 import androidx.lifecycle.LiveData
 import com.datangic.api.DataResponse
+import com.datangic.api.RouteInterceptor
 import com.datangic.api.login.LoginApi
 import com.datangic.network.ApiResponse
 import com.datangic.network.NetworkApi
@@ -14,14 +15,17 @@ import retrofit2.http.POST
 
 interface SmartLockApi {
     companion object {
-        private const val LOGIN_BASE_URL = "https://zhwl.dttsh.cn/"
+        private const val LOGIN_BASE_URL = "http://zhwl.dttsh.cn:1130/"
         fun create(getAuth: () -> String) = NetworkApi.create<LoginApi>(
             baseUrl = LOGIN_BASE_URL,
             authorizationInfo = object : IAuthorization {
                 override fun getAuthorization(): String {
                     return getAuth()
                 }
-            })
+            },
+            isCookie = true,
+            RouteInterceptor()
+        )
     }
 
     @POST("/pass/home/api/devs")
