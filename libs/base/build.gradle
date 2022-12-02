@@ -4,11 +4,11 @@ plugins {
 }
 def config = rootProject.ext
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         minSdk 23
-        targetSdk 31
+        targetSdk 33
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -27,23 +27,28 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'com.datangic.libs.base'
 }
 
 dependencies {
 
     api config.others.arouter
-    //    koin
-//    api config.koin.core
+
     api config.koin.compose
     api config.koin.workmanager
     api config.others.utilCode
 
+    api config.androidx.lifecycle_viewmodel
+
     api project(":libs:common")
     api project(":libs:data")
-    implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'com.google.android.material:material:1.4.0'
+    api config.androidx.paging
+    api config.androidx.paging_rxjava3
+
     implementation project(path: ':libs:network')
+
+    androidTestImplementation 'androidx.work:work-testing:2.7.1'
     testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.4'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.0'
 }

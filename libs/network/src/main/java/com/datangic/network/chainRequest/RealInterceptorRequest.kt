@@ -1,22 +1,22 @@
 package com.datangic.network.chainRequest
 
 import androidx.lifecycle.LiveData
-import com.datangic.network.ResponseState
+import com.datangic.network.ResponseStatus
 
 class RealInterceptorRequest<R, T>(
     private val index: Int,
-    internal val request: LiveData<ResponseState<R>>,
+    internal val request: LiveData<ResponseStatus<R>>,
     private val interceptors: List<Interceptor<R, T>>
 ) : Interceptor.Chain<R, T> {
 
     internal fun copy(
         index: Int,
-        request: LiveData<ResponseState<R>>
+        request: LiveData<ResponseStatus<R>>
     ) = RealInterceptorRequest(index, request, interceptors)
 
-    override fun request(): LiveData<ResponseState<R>> = request
+    override fun request(): LiveData<ResponseStatus<R>> = request
 
-    override fun proceed(request: LiveData<ResponseState<R>>): LiveData<ResponseState<T>> {
+    override fun proceed(request: LiveData<ResponseStatus<R>>): LiveData<ResponseStatus<T>> {
         check(index < interceptors.size)
         val next = copy(index = index + 1, request = request)
         val interceptor = interceptors[index]

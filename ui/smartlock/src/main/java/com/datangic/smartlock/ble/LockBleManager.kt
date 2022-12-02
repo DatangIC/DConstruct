@@ -7,6 +7,7 @@ import android.content.Context
 import com.datangic.smartlock.ble.livedata.ObservableBleManager
 import com.datangic.common.utils.Logger
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 import no.nordicsemi.android.ble.callback.DataReceivedCallback
 import java.util.*
@@ -44,7 +45,7 @@ class LockBleManager(
     }
 
     override fun log(priority: Int, message: String) {
-        GlobalScope.launch {
+        MainScope().launch {
             Logger.v(TAG, "priority=$priority\n message=$message")
         }
     }

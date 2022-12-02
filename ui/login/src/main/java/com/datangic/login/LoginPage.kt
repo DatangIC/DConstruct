@@ -31,11 +31,10 @@ import com.datangic.components.components.Title
 import com.datangic.components.themes.BlueA400
 import com.datangic.components.themes.TypeSize
 import com.datangic.components.themes.withDefaultColor
-import com.datangic.login.data.LoginState
+import com.datangic.login.data.LoginComposeState
 import com.datangic.themes.R
 import org.koin.androidx.compose.get
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun LoginPage(
     viewModel: LoginViewModel = get(),
@@ -48,7 +47,7 @@ fun LoginPage(
             .fillMaxSize()
     ) {
         val (titleIndicator, emailIndicator, textExplain, buttonIndicator) = createRefs()
-        AnimatedVisibility(visible = viewModel.state.loginStep.value != LoginState.LoginStep.START_LOGIN) {
+        AnimatedVisibility(visible = viewModel.loginComposeState.loginStep.value != LoginComposeState.LoginStep.START_LOGIN) {
             Icon(
                 imageVector = Icons.Filled.Close,
                 contentDescription = "Close",
@@ -65,16 +64,16 @@ fun LoginPage(
                 top.linkTo(parent.top)
                 centerHorizontallyTo(parent)
             }
-        when (viewModel.state.loginStep.value) {
-            LoginState.LoginStep.START_LOGIN, LoginState.LoginStep.INPUT_PHONE_DONE -> InputPhone(viewModel, titleModifier)
+        when (viewModel.loginComposeState.loginStep.value) {
+            LoginComposeState.LoginStep.START_LOGIN, LoginComposeState.LoginStep.INPUT_PHONE_DONE -> InputPhone(viewModel, titleModifier)
             else -> InputUser(viewModel, titleModifier)
         }
         ClickableText(
             text = AnnotatedString(
                 stringResource(
-                    id = if (viewModel.state.loginStep.value in listOf(
-                            LoginState.LoginStep.START_LOGIN,
-                            LoginState.LoginStep.INPUT_PHONE_DONE
+                    id = if (viewModel.loginComposeState.loginStep.value in listOf(
+                            LoginComposeState.LoginStep.START_LOGIN,
+                            LoginComposeState.LoginStep.INPUT_PHONE_DONE
                         )
                     ) R.string.login_with_email_explain else R.string.login_with_phone_explain
                 ),
@@ -85,7 +84,7 @@ fun LoginPage(
                 .constrainAs(emailIndicator) {
                     top.linkTo(titleIndicator.bottom)
                 },
-            onClick = { viewModel.state.stateChange(true) },
+            onClick = { viewModel.loginComposeState.stateChange(true) },
         )
         AlphaText(ContentAlpha.disabled) {
             Text(
@@ -124,9 +123,9 @@ fun InputPhone(mViewModel: LoginViewModel, modifier: Modifier = Modifier) {
             color = MaterialTheme.colors.primary
         )
         TextInput(
-            text = mViewModel.state.userPhone.value,
-            onValueChange = { mViewModel.state.userPhone.value = it },
-            clear = mViewModel.state.loginStep.value == LoginState.LoginStep.START_LOGIN,
+            text = mViewModel.loginComposeState.userPhone.value,
+            onValueChange = { mViewModel.loginComposeState.userPhone.value = it },
+            clear = mViewModel.loginComposeState.loginStep.value == LoginComposeState.LoginStep.START_LOGIN,
             label = stringResource(id = R.string.uphone),
             keyboardActions = KeyboardActions() {
                 mViewModel.getUsernameDone()
@@ -135,10 +134,10 @@ fun InputPhone(mViewModel: LoginViewModel, modifier: Modifier = Modifier) {
             imeAction = ImeAction.Go,
             keyboardType = KeyboardType.Phone,
             modifier = Modifier.fillMaxWidth(),
-            enable = mViewModel.state.loginStep.value == LoginState.LoginStep.START_LOGIN
+            enable = mViewModel.loginComposeState.loginStep.value == LoginComposeState.LoginStep.START_LOGIN
         )
         AnimatedVisibility(
-            mViewModel.state.loginStep.value == LoginState.LoginStep.INPUT_PHONE_DONE,
+            mViewModel.loginComposeState.loginStep.value == LoginComposeState.LoginStep.INPUT_PHONE_DONE,
             enter = expandVertically(
                 // Expand from the top.
                 expandFrom = Alignment.Top
@@ -149,8 +148,8 @@ fun InputPhone(mViewModel: LoginViewModel, modifier: Modifier = Modifier) {
             exit = slideOutVertically() + shrinkVertically() + fadeOut()
         ) {
             TextInput(
-                text = mViewModel.state.verifyCode.value,
-                onValueChange = { mViewModel.state.verifyCode.value = it },
+                text = mViewModel.loginComposeState.verifyCode.value,
+                onValueChange = { mViewModel.loginComposeState.verifyCode.value = it },
                 label = stringResource(id = R.string.verification_code),
                 leadingIcon = {
                     Icon(
@@ -171,7 +170,6 @@ fun InputPhone(mViewModel: LoginViewModel, modifier: Modifier = Modifier) {
 }
 
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun InputUser(mViewModel: LoginViewModel, modifier: Modifier = Modifier) {
     Column(
@@ -183,20 +181,20 @@ fun InputUser(mViewModel: LoginViewModel, modifier: Modifier = Modifier) {
             color = MaterialTheme.colors.primary
         )
         TextInput(
-            text = mViewModel.state.email.value,
-            onValueChange = { mViewModel.state.email.value = it },
-            clear = mViewModel.state.loginStep.value == LoginState.LoginStep.INPUT_USER,
+            text = mViewModel.loginComposeState.email.value,
+            onValueChange = { mViewModel.loginComposeState.email.value = it },
+            clear = mViewModel.loginComposeState.loginStep.value == LoginComposeState.LoginStep.INPUT_USER,
             label = stringResource(id = R.string.email),
             leadingIcon = { Icon(imageVector = Icons.Filled.Email, contentDescription = "Email") },
             keyboardType = KeyboardType.Email,
             modifier = Modifier
                 .fillMaxWidth(),
-            enable = mViewModel.state.loginStep.value == LoginState.LoginStep.INPUT_USER
+            enable = mViewModel.loginComposeState.loginStep.value == LoginComposeState.LoginStep.INPUT_USER
         )
 
         TextInput(
-            text = mViewModel.state.password.value,
-            onValueChange = { mViewModel.state.password.value = it },
+            text = mViewModel.loginComposeState.password.value,
+            onValueChange = { mViewModel.loginComposeState.password.value = it },
             label = stringResource(id = R.string.upassword),
             leadingIcon = {
                 Icon(

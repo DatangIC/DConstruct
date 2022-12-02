@@ -39,7 +39,7 @@ class UserPrivateInfoDataStore(val context: Context) {
         serializer = UserPrivateInfoData
     )
 
-    suspend fun updateUserInfo(userID: Long, auth: String?, password: String?) {
+    suspend fun updateUserInfo(userID:Int, auth: String?, password: String?) {
         mUserPrivateInfoDataStore.updateData {
             it.toBuilder()
                 .setUserId(userID)

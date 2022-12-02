@@ -11,20 +11,21 @@ data class LoginData(
 
 //@JsonAdapter(LoginApiDataDeserializer.LoginDataResultDeserializer::class)
 data class LoginDataResult(
-    val userId: Long,
+    val userId: Int,
     val userPhone: String,
     val userEmail: String,
     val roleId: Int,
     val roleName: String,
-    val authorization: String,
+    var authorization: String,
     val userPlatform: String = "lockWiFiTuYa",
     val homeIds: MutableList<Int>,
     val thirdPartyPlatformUid: String,
     val nickname: String,
-    val avatar: String
+    val avatar: String,
+    val extraRoleIds: MutableList<Int>
 ) {
     constructor(
-        userId: Long?,
+        userId: Int?,
         userPhone: String?,
         userEmail: String?,
         roleId: Int?,
@@ -34,7 +35,8 @@ data class LoginDataResult(
         homeIds: MutableList<Int>?,
         thirdPartyPlatformUid: String?,
         nickname: String?,
-        avatar: String?
+        avatar: String?,
+        extraRoleIds: MutableList<Int>?
     ) : this(
         userId = userId ?: 0,
         userPhone = userPhone ?: "",
@@ -46,7 +48,8 @@ data class LoginDataResult(
         homeIds = homeIds ?: mutableListOf(),
         thirdPartyPlatformUid = thirdPartyPlatformUid ?: "",
         nickname = nickname ?: "",
-        avatar = avatar ?: ""
+        avatar = avatar ?: "",
+        extraRoleIds = extraRoleIds ?: mutableListOf()
     )
 }
 
@@ -83,9 +86,10 @@ data class UpdateUser(
     val avatar: String = ""
 )
 
-data class VerifyCodeResult(val userPhone: String, val expirationTime: Long) {
-    constructor(userPhone: String?, expirationTime: Long?) : this(
+data class VerifyCodeResult(val userPhone: String, val expirationTime: Long, val smsCode: String) {
+    constructor(userPhone: String?, expirationTime: Long?, smsCode: String?) : this(
         userPhone = userPhone ?: "",
-        expirationTime = expirationTime ?: 0
+        expirationTime = expirationTime ?: 0,
+        smsCode = smsCode ?: ""
     )
 }

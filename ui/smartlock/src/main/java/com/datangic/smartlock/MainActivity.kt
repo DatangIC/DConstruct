@@ -13,12 +13,12 @@ import androidx.navigation.ui.setupWithNavController
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.datangic.common.RouterList
 import com.datangic.common.utils.Logger
-import com.datangic.localLock.*
+import com.datangic.data.DatabaseRepository
 import com.datangic.data.database.table.Device
+import com.datangic.localLock.*
 import com.datangic.smartlock.databinding.ActivityMainBinding
 import com.datangic.smartlock.dialog.MaterialDialog
 import com.datangic.smartlock.preference.LanguageHelper
-import com.datangic.data.DatabaseRepository
 import com.datangic.smartlock.respositorys.LocalPasswordRepository
 import com.datangic.smartlock.ui.scanning.ScanActivity
 import com.datangic.smartlock.utils.*

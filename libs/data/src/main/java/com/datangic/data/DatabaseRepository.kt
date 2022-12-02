@@ -3,6 +3,7 @@ package com.datangic.data
 import android.app.Application
 import androidx.lifecycle.*
 import com.datangic.common.file.SharePreferenceUtils
+import com.datangic.common.utils.Logger
 import com.datangic.data.database.AppDatabase
 import com.datangic.data.database.DeviceUserWithChildUsers
 import com.datangic.data.database.dao.BaseDao
@@ -12,33 +13,39 @@ import com.datangic.data.database.view.ViewDeviceLog
 import com.datangic.data.database.view.ViewDeviceStatus
 import com.datangic.data.database.view.ViewManagerDevice
 import com.datangic.data.datastore.LocalDataStore
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.newSingleThreadContext
+import kotlinx.coroutines.*
+import java.util.concurrent.Executors
 
 class DatabaseRepository(val context: Application) {
 
     private val TAG = DatabaseRepository::class.simpleName
 
-    private val singerThread = newSingleThreadContext("Database")
+    private val singerThread = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
 
-    val appDatabase = AppDatabase.getInstance(context)
+    val mDatabase = AppDatabase.getInstance(context)
 
-    val dataStore = LocalDataStore.getInstance(context)
+    val mDataStore = LocalDataStore.getInstance(context)
+
+    val mViewManagerDevicesLiveData: MutableLiveData<List<ViewManagerDevice>?> = liveData(singerThread) {
+        mDataStore.mUserPrivateInfoFlow.collect { user ->
+            if (user.userId != 0) {
+                if (user.userId != mLogUser.value?.userId || this.latestValue == null)
+                    MainScope().launch(Dispatchers.IO) {
+                        mDatabase.deviceDao().getManagerDevices(user.userId).collect {
+                            mViewManagerDevices = it
+                            emit(it)
+                        }
+                    }
+            } else {
+                emit(null)
+            }
+        }
+    } as MutableLiveData<List<ViewManagerDevice>?>
+
+    private val mLogUser: MutableLiveData<LogUser> = MutableLiveData<LogUser>(LogUser())
 
     var mViewManagerDevices: List<ViewManagerDevice> = mutableListOf()
         private set
-
-    val mViewManagerDevicesLiveData: LiveData<List<ViewManagerDevice>> by lazy {
-        appDatabase.deviceDao().getManagerDevices().apply {
-            GlobalScope.launch(Dispatchers.IO) {
-                this@apply.collect {
-                    mViewManagerDevices = it
-                }
-            }
-        }.asLiveData()
-    }
 
     val mDefaultViewDevice: ViewManagerDevice?
         get() {
@@ -62,17 +69,38 @@ class DatabaseRepository(val context: Application) {
         get() = mSecretCodeMap.secretCodeMap[mSecretCodeMap.default] ?: ""
 
     val mSystemSettingsLiveData: LiveData<SystemSettings> by lazy {
-        dataStore.mSystemSettingsFlow.asLiveData()
+        mDataStore.mSystemSettingsFlow.asLiveData()
     }
 
 
     init {
-        dataStore.mSecretCodeFlow.asLiveData(singerThread).observeForever {
+        mDataStore.mSecretCodeFlow.asLiveData(singerThread).observeForever {
             mSecretCodeMap = it
         }
     }
 
-    fun setManagerDevicesViewObserver(lifecycleOwner: LifecycleOwner?, observer: Observer<List<ViewManagerDevice>>) {
+
+    fun updateLogUser(logUser: LogUser) {
+        mLogUser.postValue(logUser)
+    }
+
+    fun updateLogUserStatus(status: LogStatus) {
+        mLogUser.postValue(mLogUser.value?.apply {
+            this.status = status
+        })
+    }
+
+    fun getLogUser() = mLogUser.value
+
+    fun setLogUserObservable(lifecycleOwner: LifecycleOwner?, observer: Observer<LogUser>) {
+        if (lifecycleOwner == null) {
+            mLogUser.observeForever(observer)
+        } else {
+            mLogUser.observe(lifecycleOwner, observer)
+        }
+    }
+
+    fun setManagerDevicesViewObserver(lifecycleOwner: LifecycleOwner?, observer: Observer<List<ViewManagerDevice>?>) {
         if (lifecycleOwner == null) {
             mViewManagerDevicesLiveData.observeForever(observer)
         } else {
@@ -89,10 +117,10 @@ class DatabaseRepository(val context: Application) {
 
 
     suspend fun getNewDeviceName(): String {
-        val count = appDatabase.deviceDao().getCount()
+        val count = mDatabase.deviceDao().getCount()
         var name = context.getString(R.string.default_device_name)
         for (i in 1..count + 3) {
-            if (appDatabase.deviceDao().getNameCount(name) != 0) {
+            if (mDatabase.deviceDao().getNameCount(name) != 0) {
                 name = context.getString(R.string.default_device_name) + i
             } else {
                 break
@@ -159,14 +187,20 @@ class DatabaseRepository(val context: Application) {
         }
     }
 
-    fun <T> update(item: T) {
+    fun <T> update(item: T, dirty: Boolean = true) {
         when (item) {
-            is Device -> appDatabase.deviceDao()
-            is DeviceUser -> appDatabase.deviceUserDao()
-            is DeviceLog -> appDatabase.deviceLogDao()
+            is Device -> {
+                item.dirty = dirty
+                mDatabase.deviceDao()
+            }
+            is DeviceUser -> {
+                item.dirty = dirty
+                mDatabase.deviceUserDao()
+            }
+            is DeviceLog -> mDatabase.deviceLogDao()
             else -> null
         }?.let {
-            appDatabase.update(it as BaseDao<T>, item)
+            mDatabase.update(it as BaseDao<T>, item)
         }
     }
 
@@ -174,120 +208,118 @@ class DatabaseRepository(val context: Application) {
         when (item) {
             is Device -> {
                 SharePreferenceUtils.saveDefaultDevice(context, Pair(item.serialNumber, item.macAddress))
-                appDatabase.deviceDao()
+                mDatabase.deviceDao()
             }
-            is DeviceUser -> appDatabase.deviceUserDao()
-            is DeviceLog -> appDatabase.deviceLogDao()
+            is DeviceUser -> mDatabase.deviceUserDao()
+            is DeviceLog -> mDatabase.deviceLogDao()
             else -> null
         }?.let {
-            appDatabase.insert(it as BaseDao<T>, item)
+            mDatabase.insert(it as BaseDao<T>, item)
         }
+    }
+
+    fun synUpdate(serialNumber: String, macAddress: String, deviceUserId: Int, dirty: Boolean = true) {
+        mDatabase.getDeviceUser(serialNumber, macAddress, deviceUserId)?.let { deviceUser -> update(deviceUser, dirty) }
+        mDatabase.getDevice(serialNumber, macAddress)?.let { device -> update(device, dirty) }
     }
 
     //Device
 
-    fun getDeviceByMac(macAddress: String) = appDatabase.getDeviceByMac(macAddress)
+    fun getDeviceByMac(macAddress: String) = mDatabase.getDeviceByMac(macAddress)
 
     fun getDeviceLiveData(serialNumber: String? = null, macAddress: String? = null): LiveData<Device> {
         return getMarkPair(serialNumber, macAddress)?.let {
-            appDatabase.getDeviceLiveData(it.first, it.second)
+            mDatabase.getDeviceLiveData(it.first, it.second)
         } ?: MutableLiveData()
     }
 
     fun updateDeviceName(newName: String, serialNumber: String? = null, macAddress: String? = null) {
         if (serialNumber != null && macAddress != null) {
-            appDatabase.getDevice(
+            mDatabase.getDevice(
                 serialNumber, macAddress
             )?.let { device ->
                 device.name = newName
-                appDatabase.update(appDatabase.deviceDao(), device)
+                mDatabase.update(mDatabase.deviceDao(), device)
             }
-        } else
-            mDefaultViewDevice?.let {
-                appDatabase.getDevice(
-                    it.serialNumber, it.macAddress
-                )?.let { device ->
-                    device.name = newName
-                    appDatabase.update(appDatabase.deviceDao(), device)
-                }
+        } else mDefaultViewDevice?.let {
+            mDatabase.getDevice(
+                it.serialNumber, it.macAddress
+            )?.let { device ->
+                device.name = newName
+                mDatabase.update(mDatabase.deviceDao(), device)
             }
+        }
     }
 
     fun deleteDevice(serialNumber: String, macAddress: String) {
-        appDatabase.deleteDevice(serialNumber, macAddress)
+        mDatabase.deleteDevice(serialNumber, macAddress)
     }
 
     // Device Logs
     fun getDeviceLogsLiveData(userId: Int = 0, serialNumber: String? = null, macAddress: String? = null): LiveData<List<ViewDeviceLog>> {
         return getMarkPair(serialNumber, macAddress)?.let {
-            appDatabase.getDeviceLogsLiveData(it.first, it.second, userId)
+            mDatabase.getDeviceLogsLiveData(it.first, it.second, userId)
         } ?: MutableLiveData()
     }
 
     fun deleteDeviceLog(userId: Int, logId: Int, logState: DeviceEnum.LogState, serialNumber: String?, macAddress: String?) {
         getMarkPair(serialNumber, macAddress)?.let {
-            appDatabase.deleteDeviceLog(it.first, it.second, userId, logId, logState)
+            mDatabase.deleteDeviceLog(it.first, it.second, userId, logId, logState)
         }
     }
     // User
 
-    fun getUserWithChildUsersLiveData(userID: Int, serialNumber: String? = null, macAddress: String? = null): LiveData<DeviceUserWithChildUsers> {
+    fun getUserWithChildUsersLiveData(
+        userID: Int, serialNumber: String? = null, macAddress: String? = null
+    ): LiveData<DeviceUserWithChildUsers> {
         return getMarkPair(serialNumber, macAddress)?.let {
-            appDatabase.getUserWithChildUsersLiveData(it.first, it.second, userID)
+            mDatabase.getUserWithChildUsersLiveData(it.first, it.second, userID)
         } ?: MutableLiveData()
     }
 
     fun getDeviceUserLiveData(userID: Int, serialNumber: String? = null, macAddress: String? = null): LiveData<DeviceUser?> {
         return getMarkPair(serialNumber, macAddress)?.let {
-            appDatabase.getDeviceUserLiveData(it.first, it.second, userID)
+            mDatabase.getDeviceUserLiveData(it.first, it.second, userID)
         } ?: MutableLiveData()
     }
 
 
     fun updateDeviceUserName(newName: String, userID: Int, serialNumber: String? = null, macAddress: String? = null) {
         if (serialNumber != null && macAddress != null) {
-            appDatabase.getDeviceUser(
+            mDatabase.getDeviceUser(
                 serialNumber, macAddress, userID
             )?.let { deviceUser ->
                 deviceUser.deviceUsername = newName
-                appDatabase.update(appDatabase.deviceUserDao(), deviceUser)
+                mDatabase.update(mDatabase.deviceUserDao(), deviceUser)
             }
-        } else
-            mDefaultViewDevice?.let {
-                appDatabase.getDeviceUser(
-                    it.serialNumber, it.macAddress, userID
-                )?.let { deviceUser ->
-                    deviceUser.deviceUsername = newName
-                    appDatabase.update(appDatabase.deviceUserDao(), deviceUser)
-                }
+        } else mDefaultViewDevice?.let {
+            mDatabase.getDeviceUser(
+                it.serialNumber, it.macAddress, userID
+            )?.let { deviceUser ->
+                deviceUser.deviceUsername = newName
+                mDatabase.update(mDatabase.deviceUserDao(), deviceUser)
             }
+        }
     }
 
     //View of Device Keys
     fun getViewDeviceKeysLiveData(
-        userID: Int,
-        types: List<DeviceEnum.KeyType>,
-        serialNumber: String?,
-        macAddress: String?
+        userID: Int, types: List<DeviceEnum.KeyType>, serialNumber: String?, macAddress: String?
     ): LiveData<List<ViewDeviceKey>> {
         return getMarkPair(serialNumber, macAddress)?.let {
-            appDatabase.getViewDeviceKeysLiveData(
-                it.first, it.second,
-                Pair(userID, it.first),
-                types
+            mDatabase.getViewDeviceKeysLiveData(
+                it.first, it.second, Pair(userID, it.first), types
             )
         } ?: MutableLiveData()
     }
 
     fun updateDeviceKeyName(userID: Int, keyId: Int, keyType: DeviceEnum.KeyType, newName: String) {
         mDefaultViewDevice?.let {
-            appDatabase.getDeviceKey(
-                keyType, it.serialNumber, it.macAddress,
-                Pair(userID, it.serialNumber),
-                keyId
+            mDatabase.getDeviceKey(
+                keyType, it.serialNumber, it.macAddress, Pair(userID, it.serialNumber), keyId
             )?.let { deviceKey ->
                 deviceKey.keyName = newName
-                appDatabase.update(appDatabase.deviceKeyDao(), deviceKey)
+                mDatabase.update(mDatabase.deviceKeyDao(), deviceKey)
             }
         }
     }
@@ -296,7 +328,7 @@ class DatabaseRepository(val context: Application) {
     val mViewDevicesStatusLiveData: LiveData<ViewDeviceStatus>
         get() {
             return mDefaultViewDevice?.let {
-                appDatabase.getViewDevicesStatusLiveData(it.serialNumber, it.macAddress)
+                mDatabase.getViewDevicesStatusLiveData(it.serialNumber, it.macAddress)
             } ?: MutableLiveData()
         }
 }

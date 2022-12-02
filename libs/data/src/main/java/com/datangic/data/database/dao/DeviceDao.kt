@@ -15,8 +15,8 @@ interface DeviceDao : BaseDao<Device> {
     @Query("SELECT * FROM Device")
     fun getDevices(): Flow<List<Device>>
 
-    @Query("SELECT * FROM ViewManagerDevice")
-    fun getManagerDevices(): Flow<List<ViewManagerDevice>>
+    @Query("SELECT * FROM ViewManagerDevice WHERE uid =(:userId)")
+    fun getManagerDevices(userId: Int): Flow<List<ViewManagerDevice>>
 
     @Query("SELECT * FROM ViewManagerDevice WHERE macAddress = (:macAddress) LIMIT 1")
     fun getManagerDevices(macAddress: String): ViewManagerDevice?

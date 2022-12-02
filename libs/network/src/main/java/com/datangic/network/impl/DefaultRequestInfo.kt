@@ -1,5 +1,6 @@
 package com.datangic.network.impl
 
+import android.os.Build.VERSION.RELEASE
 import com.datangic.network.BuildConfig
 
 class DefaultRequestInfo : IRequestInfo {

@@ -20,14 +20,14 @@ abstract class NetworkBoundResource<ResponseType, ResultType>
 @MainThread constructor(private val appExecutors: AppExecutors) {
     private val TAG = "NetworkBoundResource"
 
-    private val result = MediatorLiveData<ResponseState<ResultType>>()
+    private val result = MediatorLiveData<ResponseStatus<ResultType>>()
 
     init {
-        result.value = ResponseState.loading(null)
+        result.value = ResponseStatus.loading(null)
         @Suppress("LeakingThis")
         val dbSource = loadFromDb()
         if (dbSource is AbsentLiveData) {
-            setValue(ResponseState.loading(null))
+            setValue(ResponseStatus.loading(null))
             fetchFromNetwork(dbSource)
         } else {
             result.addSource(dbSource) { data ->
@@ -36,7 +36,7 @@ abstract class NetworkBoundResource<ResponseType, ResultType>
                     fetchFromNetwork(dbSource)
                 } else {
                     result.addSource(dbSource) { newData ->
-                        setValue(ResponseState.success(newData))
+                        setValue(ResponseStatus.success(newData))
                     }
                 }
             }
@@ -44,7 +44,7 @@ abstract class NetworkBoundResource<ResponseType, ResultType>
     }
 
     @MainThread
-    private fun setValue(newValue: ResponseState<ResultType>) {
+    private fun setValue(newValue: ResponseStatus<ResultType>) {
         if (result.value != newValue) {
             result.value = newValue
         }
@@ -54,7 +54,7 @@ abstract class NetworkBoundResource<ResponseType, ResultType>
         val apiResponse = createCall()
         // we re-attach dbSource as a new source, it will dispatch its latest value quickly
         result.addSource(dbSource) { newData ->
-            setValue(ResponseState.loading(newData))
+            setValue(ResponseStatus.loading(newData))
         }
         result.addSource(apiResponse) { response ->
             result.removeSource(apiResponse)
@@ -68,7 +68,7 @@ abstract class NetworkBoundResource<ResponseType, ResultType>
                             // otherwise we will get immediately last cached value,
                             // which may not be updated with latest results received from network.
                             result.addSource(loadFromDb()) { newData ->
-                                setValue(ResponseState.success(newData))
+                                setValue(ResponseStatus.success(newData))
                             }
                         }
                     }
@@ -77,14 +77,14 @@ abstract class NetworkBoundResource<ResponseType, ResultType>
                     appExecutors.mainThread().execute {
                         // reload from disk whatever we had
                         result.addSource(loadFromDb()) { newData ->
-                            setValue(ResponseState.success(newData))
+                            setValue(ResponseStatus.success(newData))
                         }
                     }
                 }
                 is ApiErrorResponse -> {
                     onFetchFailed()
                     result.addSource(dbSource) { newData ->
-                        setValue(ResponseState.error(response.errorMessage, newData))
+                        setValue(ResponseStatus.error(response.errorMessage, data = newData))
                     }
                 }
                 else -> {
@@ -95,7 +95,7 @@ abstract class NetworkBoundResource<ResponseType, ResultType>
 
     protected open fun onFetchFailed() {}
 
-    fun asLiveData() = result as LiveData<ResponseState<ResultType>>
+    fun asLiveData() = result as LiveData<ResponseStatus<ResultType>>
 
     @WorkerThread
     protected open fun processResponse(response: ApiSuccessResponse<ResponseType>): ResponseType {
@@ -124,5 +124,5 @@ abstract class NetworkBoundResource<ResponseType, ResultType>
      * 接口调用
      */
     @MainThread
-    protected abstract fun createCall(): LiveData<ApiResponse<ResponseType>>
+    protected abstract fun createCall(): LiveData<ApiResponse<ResponseType, Any?>>
 }

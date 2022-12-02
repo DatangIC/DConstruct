@@ -8,11 +8,11 @@ plugins {
 def config = rootProject.ext
 
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         minSdk 23
-        targetSdk 31
+        targetSdk 33
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -45,13 +45,14 @@ android {
             }
         }
     }
+    namespace 'com.datangic.data'
 }
 
 dependencies {
 
     kapt config.kapt.room
 
-    implementation config.androidx.livedata
+    implementation config.androidx.lifecycle_livedata
     implementation config.google.gson
 
     api config.room.runtime

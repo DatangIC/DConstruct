@@ -8,6 +8,7 @@ import com.datangic.data.SystemSettings
 import com.datangic.data.ThemeType
 import com.datangic.data.UserPrivateInfo
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.first
 import java.io.IOException
 
 class LocalDataStore(val context: Context) {
@@ -59,7 +60,7 @@ class LocalDataStore(val context: Context) {
         mSecretCodeMapDataStore.setDelete(key)
     }
 
-    suspend fun setUserPrivateInfo(userID: Long, auth: String?, password: String?) {
+    suspend fun setUserPrivateInfo(userID: Int, auth: String?, password: String?) {
         mUserPrivateInfoDataStore.updateUserInfo(userID, auth, password)
     }
 

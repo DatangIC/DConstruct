@@ -6,6 +6,7 @@ import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.graphics.Color
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 
@@ -35,6 +36,12 @@ private val LightColorPalette = lightColors(
     primaryVariant = Blue400,
     secondary = Teal200,
     onSurface = Blue400,
+)
+val TransparentColorPalette = lightColors(
+    primary = Color.Transparent,
+    primaryVariant = Color.Transparent,
+    secondary = Color.Transparent,
+    onSurface = Color.Transparent,
 )
 
 @Composable

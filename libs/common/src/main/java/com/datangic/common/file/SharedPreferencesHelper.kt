@@ -3,7 +3,6 @@ package com.datangic.common.file
 import android.content.Context
 import android.content.SharedPreferences
 import com.datangic.common.Config.SHARE_NAME
-import com.datangic.common.SHARED_PREFERENCES_NAME
 
 
 object SharedPreferencesHelper {

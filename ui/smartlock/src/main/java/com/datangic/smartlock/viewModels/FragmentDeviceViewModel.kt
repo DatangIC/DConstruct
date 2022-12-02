@@ -6,6 +6,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import cn.dttsh.dts1586.MSG14
+import com.datangic.api.response2observable
+import com.datangic.api.smartlock.DeleteDevUser
+import com.datangic.api.smartlock.DeviceUserId
+import com.datangic.data.database.view.ViewManagerDevice
+import com.datangic.network.RequestStatus
 import com.datangic.smartlock.R
 import com.datangic.smartlock.adapter.BottomSelectorAdapter
 import com.datangic.smartlock.adapter.DeviceSettingAdapter
@@ -15,7 +20,6 @@ import com.datangic.smartlock.ble.ReceivedMessageHandle.RegisterType
 import com.datangic.smartlock.components.DeviceKeyItem
 import com.datangic.smartlock.components.DeviceWithBluetooth
 import com.datangic.smartlock.components.SelectorItem
-import com.datangic.data.database.view.ViewManagerDevice
 import com.datangic.smartlock.dialog.MaterialDialog
 import com.datangic.smartlock.parcelable.ExtendedBluetoothDevice
 import com.datangic.smartlock.respositorys.BleManagerApiRepository
@@ -24,10 +28,10 @@ import com.datangic.smartlock.ui.scanning.ScanActivity
 import com.datangic.smartlock.ui.system.SystemActivity
 import com.datangic.smartlock.utils.*
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.gson.JsonElement
 
 class FragmentDeviceViewModel(application: Application, bleManagerApiRepository: BleManagerApiRepository) :
     BaseViewModel(application, bleManagerApiRepository) {
-
 
     val mTitle = DeviceKeyItem(R.drawable.ic_ble_lock_36dp, name = R.string.new_device)
     val mAdapter = DeviceSettingAdapter()
@@ -114,8 +118,10 @@ class FragmentDeviceViewModel(application: Application, bleManagerApiRepository:
                 }
             }
         }
-        mBleManagerApi.mViewDevicesLiveData.observe(fragment.viewLifecycleOwner) { devices ->
-            updateDevicesStatus(devices)
+        mBleManagerApi.mViewDevicesLiveData.observe(fragment.viewLifecycleOwner) {
+            it?.let { devices ->
+                updateDevicesStatus(devices)
+            }
         }
         mBleManagerApi.mDefaultDeviceInfoLiveData.observe(fragment.viewLifecycleOwner) {
             updateDevicesStatus(mBleManagerApi.mViewDevices)
@@ -138,6 +144,7 @@ class FragmentDeviceViewModel(application: Application, bleManagerApiRepository:
                 deviceName = device.name,
                 serialNumber = device.serialNumber,
                 macAddress = device.macAddress,
+                deviceUserId = device.deviceUserID.first,
                 connect = mBleManagerApi.isConnected(device.macAddress),
                 isSelected = mBleManagerApi.mDefaultDeviceView?.serialNumber == device.serialNumber
             )
@@ -202,7 +209,16 @@ class FragmentDeviceViewModel(application: Application, bleManagerApiRepository:
                                 this.setCanceledOnTouchOutside(true)
                             }.show()
                         } else {
-                            mBleManagerApi.deleteDevice(any.serialNumber, any.macAddress)
+                            mLockApi?.deleteUser(
+                                DeleteDevUser(
+                                    devNo = any.serialNumber,
+                                    productResource = DeviceUserId(any.deviceUserId)
+                                )
+                            )?.map { response2observable<JsonElement>(it) }?.subscribe {
+                                if (it.requestStatus == RequestStatus.SUCCESS) {
+                                    mBleManagerApi.deleteDevice(any.serialNumber, any.macAddress)
+                                }
+                            }
                         }
                     }
                 }).show()

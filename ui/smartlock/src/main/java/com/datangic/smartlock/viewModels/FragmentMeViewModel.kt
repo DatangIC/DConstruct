@@ -7,7 +7,6 @@ import android.content.Intent
 import android.os.Handler
 import android.os.Looper
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
 import com.datangic.smartlock.R
@@ -20,7 +19,10 @@ import com.datangic.smartlock.respositorys.ScanQrCodeHelper
 import com.datangic.smartlock.ui.system.SystemActivity
 import com.datangic.smartlock.utils.FRAGMENT_ID
 import com.datangic.common.utils.Logger
-import kotlinx.coroutines.GlobalScope
+import com.datangic.libs.base.ApplicationProvider.Companion.getCurrentActivity
+import com.datangic.libs.base.services.NetworkDataService
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
 class FragmentMeViewModel(application: Application, mMeFragmentRepository: MeFragmentRepository, val mDatabase: DatabaseRepository) :
@@ -32,7 +34,15 @@ class FragmentMeViewModel(application: Application, mMeFragmentRepository: MeFra
     }
     val mScanQrCode by lazy { ScanQrCodeHelper }
     val mHandle by lazy { Handler(Looper.myLooper()!!) }
-//    val mUserLiveData =
+    val mNetworkServiceConnection = com.datangic.libs.base.services.NetworkServiceConnection
+
+    init {
+        application.bindService(
+            Intent(application.getCurrentActivity(), NetworkDataService::class.java),
+            mNetworkServiceConnection,
+            0
+        )
+    }
 
     fun setSettingAdapter(view: RecyclerView, context: Context) {
         view.adapter = mSettingItemAdapter.apply {
@@ -43,8 +53,8 @@ class FragmentMeViewModel(application: Application, mMeFragmentRepository: MeFra
     fun operationOnDialog(context: Context) = object : MaterialDialog.OnMaterialConfirmationForSecretCodeDialogListener {
         override fun onSelected(selected: String) {
             Logger.e(TAG, "Selected=$selected")
-            viewModelScope.launch {
-                mDatabase.dataStore.setDefaultSecretCode(selected)
+            viewModelScope.launch(Dispatchers.IO) {
+                mDatabase.mDataStore.setDefaultSecretCode(selected)
             }
         }
 
@@ -53,8 +63,8 @@ class FragmentMeViewModel(application: Application, mMeFragmentRepository: MeFra
         }
 
         override fun onDelete(selected: String) {
-            GlobalScope.launch {
-                mDatabase.dataStore.setDeleteSecretCode(selected)
+            MainScope().launch(Dispatchers.IO) {
+                mDatabase.mDataStore.setDeleteSecretCode(selected)
             }
         }
 
@@ -84,7 +94,7 @@ class FragmentMeViewModel(application: Application, mMeFragmentRepository: MeFra
                 }
                 R.drawable.ic_about_us -> {
 //                    context.startActivity(Intent(context, ScanActivity::class.java))
-                    Logger.e(TAG, "getDefaultView = ${mDatabase.mDefaultViewDevice?.serialNumber}")
+                    Logger.e(TAG, "getDefaultView = ${mDatabase.mDefaultViewDevice?.serialNumber} ThreadName =${Thread.currentThread().name}")
                 }
             }
         }
@@ -118,8 +128,8 @@ class FragmentMeViewModel(application: Application, mMeFragmentRepository: MeFra
                 mHandle.postDelayed({ showSecretSelected(context) }, 50)
             }
         ) { key, value ->
-            GlobalScope.launch {
-                mDatabase.dataStore.addSecretCode(key, value)
+            MainScope().launch(Dispatchers.IO) {
+                mDatabase.mDataStore.addSecretCode(key, value)
                 showSecretSelected(context)
             }
         }

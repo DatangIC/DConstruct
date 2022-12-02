@@ -65,11 +65,11 @@ class MeFragment : Fragment() {
                 mUser?.let { user ->
                     user.nickname = str
                     lifecycleScope.launch {
-                        mViewModel.mDatabase.appDatabase.userDao().update(user)
+                        mViewModel.mDatabase.mDatabase.userDao().update(user)
                     }
                 } ?: let {
                     lifecycleScope.launch {
-                        mViewModel.mDatabase.appDatabase.userDao().insert(
+                        mViewModel.mDatabase.mDatabase.userDao().insert(
                             User(userId = 0, nickname = str, email = null, avatar = null)
                         )
                     }

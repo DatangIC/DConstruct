@@ -20,11 +20,11 @@ interface UserDao : BaseDao<User> {
     @Query("SELECT * FROM User WHERE user_id=(:userId) LIMIT 1")
     fun getUserWithDevice(userId: Long): Flow<UserWithDevice>
 
-    @Query("SELECT * FROM user WHERE uid IN (:userIds)")
+    @Query("SELECT * FROM user WHERE user_id IN (:userIds)")
     fun loadAllByIds(userIds: IntArray): List<User>
 
     @Query("SELECT * FROM User WHERE user_id =(:userId)LIMIT 1")
-    fun getUser(userId: Long = 0): User?
+    fun getUser(userId: Int = 0): User?
 
     @Query("SELECT * FROM User WHERE user_id =(:userId)LIMIT 1")
     fun getUserWithFlow(userId: Long = 0): Flow<User>?

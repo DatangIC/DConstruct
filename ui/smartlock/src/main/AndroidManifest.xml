@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.datangic.smartlock"
     android:installLocation="auto">
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION"
+        tools:ignore="CoarseFineLocation" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.NFC" />
@@ -31,60 +32,74 @@
             android:launchMode="singleTop"
             android:noHistory="false"
             android:theme="@style/AppTheme.SplashScreen">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!--            <intent-filter>-->
+            <!--                <action android:name="android.intent.action.MAIN" />-->
+            <!--                <category android:name="android.intent.category.LAUNCHER" />-->
+            <!--            </intent-filter>-->
         </activity>
 
         <activity
             android:name=".MainActivity"
             android:exported="true"
+            android:fitsSystemWindows="true"
             android:label="@string/app_name"
             android:launchMode="singleTask"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:windowTranslucentStatus="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="com.datangic.smartLock.LAUNCHER" />
             </intent-filter>
-<!--            <meta-data-->
-<!--                android:name="android.support.PARENT_ACTIVITY"-->
-<!--                android:value=".MainActivity" />-->
+            <!--            <meta-data-->
+            <!--                android:name="android.support.PARENT_ACTIVITY"-->
+            <!--                android:value=".MainActivity" />-->
         </activity>
         <activity
             android:name=".ui.scanning.ScanActivity"
+            android:fitsSystemWindows="true"
             android:label="@string/title_scanning"
             android:singleUser="true"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowTranslucentStatus="true" />
         <activity
             android:name=".ui.setting.SettingActivity"
+            android:fitsSystemWindows="true"
             android:label="@string/title_setting"
             android:singleUser="true"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowTranslucentStatus="true" />
         <activity
             android:name=".ui.manager.ManagerActivity"
+            android:fitsSystemWindows="true"
             android:label="@string/title_setting"
             android:singleUser="true"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowTranslucentStatus="true" />
         <activity
             android:name=".ui.system.SystemActivity"
+            android:fitsSystemWindows="true"
             android:label="@string/title_setting"
             android:singleUser="true"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowTranslucentStatus="true" />
 
         <activity
             android:name="com.datangic.localLock.LockerActivity"
+            android:fitsSystemWindows="true"
             android:noHistory="false"
             android:screenOrientation="portrait"
             android:singleUser="true"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowTranslucentStatus="true" />
 
         <activity
             android:name="com.datangic.zxing.ScanActivity"
+            android:fitsSystemWindows="true"
             android:noHistory="true"
             android:screenOrientation="portrait"
             android:singleUser="true"
-            android:theme="@style/AppTheme" />
+            android:theme="@style/AppTheme"
+            android:windowTranslucentStatus="true" />
     </application>
 
 </manifest>

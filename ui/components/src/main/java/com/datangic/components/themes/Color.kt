@@ -23,7 +23,7 @@ val Purple200 = Color(0xFFCE93D8)
 val Purple500 = Color(0xFF9C27B0)
 val Purple700 = Color(0xFF7B1FA2)
 val Teal200 = Color(0xFF03DAC5)
-val vols=Color(0xFF018786)
+val vols = Color(0xFF018786)
 val Blue50 = Color(0xFFE3F2FD)
 val Blue100 = Color(0xFFBBDEFB)
 val Blue200 = Color(0xFF90CAF9)
@@ -51,6 +51,8 @@ val Grey300 = Color(0xFFE0E0E0)
 val Grey100 = Color(0xFFF5F5F5)
 val Grey50 = Color(0xFFFAFAFA)
 val White = Color(0xFFFFFFFF)
+
+val Transparent = Color(0xFF000000)
 
 
 /**

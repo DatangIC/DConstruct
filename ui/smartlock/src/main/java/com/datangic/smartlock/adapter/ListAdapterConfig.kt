@@ -11,7 +11,7 @@ import java.util.concurrent.Executors
 object ListAdapterConfig {
 
     @SuppressLint("RestrictedApi")
-    fun <T> getAsyncDifferConfig(diffCallback: DiffUtil.ItemCallback<T> = getDiffCallback<T>()) = AsyncDifferConfig
+    fun <T : Any> getAsyncDifferConfig(diffCallback: DiffUtil.ItemCallback<T> = getDiffCallback()) = AsyncDifferConfig
         .Builder(diffCallback)
         .setMainThreadExecutor(object : Executor {
             private val mainThreadHandler = Handler(Looper.getMainLooper())
@@ -22,7 +22,7 @@ object ListAdapterConfig {
         .setBackgroundThreadExecutor(Executors.newFixedThreadPool(3))
         .build()
 
-    private fun <T> getDiffCallback() = object : DiffUtil.ItemCallback<T>() {
+    private fun <T : Any> getDiffCallback() = object : DiffUtil.ItemCallback<T>() {
         override fun areItemsTheSame(oldItem: T, newItem: T): Boolean {
             return oldItem == newItem
         }

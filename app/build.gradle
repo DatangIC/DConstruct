@@ -13,15 +13,17 @@ kapt {
 }
 
 android {
-    compileSdk 31
+    compileSdk config.versions.targetSdk
 
     defaultConfig {
-        applicationId "com.datangic.dconstruct2"
-        minSdk 23
-        targetSdk 31
-        versionCode 1
-        versionName "1.0"
-
+        applicationId config.applicationId
+        minSdk config.versions.minSdk
+        targetSdk config.versions.targetSdk
+        versionCode config.versions.VERSION_CODE
+        versionName config.versions.VERSION_NAME
+        manifestPlaceholders = [
+                isRelease: false
+        ]
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -30,6 +32,9 @@ android {
             minifyEnabled true
             signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            manifestPlaceholders = [
+                    isRelease: true
+            ]
         }
         debug {
             minifyEnabled false
@@ -56,29 +61,23 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    namespace 'com.datangic.dconstruct'
 }
 
 
 dependencies {
 
 //    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'com.google.android.material:material:1.4.0'
 //    implementation project(":arouter-api")
     implementation project(":libs:base")
     implementation project(":ui:components")
 
-    if(!config.isDebug) {
+    if (!config.isDebug) {
         implementation project(":ui:login")
         implementation project(":ui:smartlock")
     }
 
 //    implementation config.others.arouter
     kapt config.kapt.arouter
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-    androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
-    debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
+
 }

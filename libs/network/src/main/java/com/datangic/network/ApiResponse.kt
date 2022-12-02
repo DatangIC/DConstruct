@@ -10,13 +10,13 @@ import java.util.regex.Pattern
  * @param <T> the type of the response object
 </T> */
 @Suppress("unused") // T is used in extending classes
-sealed class ApiResponse<T> {
+sealed class ApiResponse<T, U> {
     companion object {
         fun <T> create(error: Throwable): ApiErrorResponse<T> {
             return ApiErrorResponse(error.message ?: "unknown error")
         }
 
-        fun <T> create(response: Response<T>): ApiResponse<T> {
+        fun <T> create(response: Response<T>): ApiResponse<T, Any?> {
             return if (response.isSuccessful) {
                 val body = response.body()
                 if (body == null || response.code() == 204) {
@@ -43,12 +43,12 @@ sealed class ApiResponse<T> {
 /**
  * separate class for HTTP 204 responses so that we can make ApiSuccessResponse's body non-null.
  */
-class ApiEmptyResponse<T> : ApiResponse<T>()
+class ApiEmptyResponse<T> : ApiResponse<T, Any?>()
 
 data class ApiSuccessResponse<T>(
     val body: T,
     val links: Map<String, String>
-) : ApiResponse<T>() {
+) : ApiResponse<T, Any?>() {
     constructor(body: T, linkHeader: String?) : this(
         body = body,
         links = linkHeader?.extractLinks() ?: emptyMap()
@@ -91,4 +91,4 @@ data class ApiSuccessResponse<T>(
     }
 }
 
-data class ApiErrorResponse<T>(val errorMessage: String) : ApiResponse<T>()
+data class ApiErrorResponse<T>(val errorMessage: String) : ApiResponse<T, Any?>()

@@ -17,7 +17,8 @@ open class RequestInterceptor(
         builder.addHeader("Date", UtilsFormat.getGMTDate())
         builder.addHeader("Content-Type", "application/json")
         requestInfo?.let {
-            builder.addHeader("appVersion", it.getVersionCode())
+            builder.addHeader("VersionCode", it.getVersionCode())
+            builder.addHeader("VersionName", it.getVersionName())
         }
         authorization?.let {
             builder.addHeader("Authorization", it.getAuthorization())

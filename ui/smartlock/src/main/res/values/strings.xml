@@ -446,6 +446,7 @@
     <string name="system_fingerprint">Fingerprint Verification</string>
     <string name="system_password">Set Password</string>
     <string name="system_password_change">Change Password</string>
+    <string name="system_logout">Logout</string>
 
     <string name="new_device">New Device</string>
     <string name="scan_for_add">Scan the QR code to add a device</string>

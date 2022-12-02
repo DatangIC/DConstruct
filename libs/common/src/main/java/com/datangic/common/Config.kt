@@ -2,6 +2,8 @@ package com.datangic.common
 
 import android.content.Context
 import android.content.pm.ApplicationInfo
+import android.content.pm.PackageManager
+import android.os.Build
 import android.provider.Settings
 import com.datangic.common.utils.Logger
 import java.util.UUID
@@ -35,7 +37,8 @@ object Config {
     val FILTER_BLE_NAME_WRITE = listOf("DTWRITER")
 
     val FILTER_BLE_SERVER_DATA_UUID = mapOf(
-            UUID.fromString("0000109B-0000-1000-8000-00805F9B34FB") to byteArrayOf(1, 89, 0, 0, 1, 0))
+        UUID.fromString("0000109B-0000-1000-8000-00805F9B34FB") to byteArrayOf(1, 89, 0, 0, 1, 0)
+    )
 
     val FINGERPRINT_CALLBACK = listOf("HXZHJJHPL1")
     val HAS_SERVER_IP = listOf("HXZHJJHPL1")
@@ -51,6 +54,23 @@ object Config {
         return try {
             val version = context.packageManager.getPackageInfo(context.packageName, 0)
             version.versionName
+        } catch (e: Exception) {
+            Logger.e(TAG, "Exception $e")
+            null
+        }
+    }
+
+    /**
+     * @Description getVersionCode
+     * @Return Version Code
+     */
+    fun getVersionCode(context: Context): Long? {
+        return try {
+            val version = context.packageManager.getPackageInfo(context.packageName, 0)
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                version.longVersionCode
+            } else
+                version.versionCode.toLong()
         } catch (e: Exception) {
             Logger.e(TAG, "Exception $e")
             null
@@ -76,5 +96,17 @@ object Config {
      */
     fun isUsbDebug(context: Context): Boolean {
         return Settings.Global.getInt(context.contentResolver, Settings.Global.ADB_ENABLED, 0) > 0
+    }
+
+    fun isRelease(context: Context): Boolean {
+        return try {
+            return context.packageManager.getApplicationInfo(
+                context.packageName,
+                PackageManager.GET_META_DATA
+            ).metaData.getBoolean("isRelease", false)
+        } catch (e: Exception) {
+            Logger.e(TAG, "Exception $e")
+            false
+        }
     }
 }

@@ -27,12 +27,11 @@ internal class NetworkCallbackImpl : ConnectivityManager.NetworkCallback() {
             when {
                 networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> {
                     NetworkApi.logger?.log(TAG, "transport wifi")
-                    NetworkState.networkType = NetworkCapabilities.TRANSPORT_WIFI
-
+                    NetworkState.onNetworkChange(NetworkType.TRANSPORT_WIFI)
                 }
                 networkCapabilities.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> {
                     NetworkApi.logger?.log(TAG, "transport cellular")
-                    NetworkState.networkType = NetworkCapabilities.TRANSPORT_CELLULAR
+                    NetworkState.onNetworkChange(NetworkType.TRANSPORT_CELLULAR)
                 }
                 else -> {
                     NetworkState.networkType = 4

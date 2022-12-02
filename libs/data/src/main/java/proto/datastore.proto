@@ -31,7 +31,7 @@ message LocalPassword{
 }
 // 这里是用户敏感数据，不能查看
 message UserPrivateInfo{
-  int64 userId = 1;
+  int32 userId = 1;
   string authentication = 2;
   string password = 3;
 }

@@ -16,5 +16,5 @@ sealed interface SmartLockOta {
     @POST("/api/v1.0/firmware/update")
     fun updateFirmware(
         @Body postFirmware: UpgradeRequest.UpdateRequestData
-    ): LiveData<ApiResponse<JsonElement>>
+    ): LiveData<ApiResponse<JsonElement, Any?>>
 }

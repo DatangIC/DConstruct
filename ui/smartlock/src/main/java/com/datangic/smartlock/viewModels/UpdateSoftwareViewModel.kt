@@ -9,7 +9,9 @@ import com.datangic.smartlock.request.ApiHttp
 import com.datangic.smartlock.request.LockRequest
 import com.datangic.smartlock.respositorys.BleManagerApiRepository
 import com.datangic.smartlock.utils.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
 open class UpdateSoftwareViewModel(
@@ -33,7 +35,7 @@ open class UpdateSoftwareViewModel(
         for (i in pathList) {
             LockFile.getSoftwareFile(i.key)?.let { file ->
                 if (file.length() <= 1000) {
-                    GlobalScope.launch {
+                    MainScope().launch(Dispatchers.IO) {
                         ApiHttp.enqueue(
                             LockRequest.downloadForHttp(
                                 i.value,

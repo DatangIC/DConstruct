@@ -35,6 +35,7 @@ android {
             }
         }
     }
+    namespace 'com.datangic.localLock'
 }
 
 dependencies {
@@ -46,7 +47,8 @@ dependencies {
 
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.5'
 
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+//    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
     // Kotlin
     implementation "androidx.biometric:biometric:1.1.0"
 

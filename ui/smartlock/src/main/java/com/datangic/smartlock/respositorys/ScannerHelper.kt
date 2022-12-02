@@ -129,14 +129,6 @@ open class ScannerHelper(val mContext: Context) {
         }
     }
 
-    fun getWriteFilters(): MutableList<ScanFilter> {
-        val filters: MutableList<ScanFilter> = ArrayList()
-        for (i in Config.FILTER_BLE_NAME_WRITE) {
-            filters.add(ScanFilter.Builder().setDeviceName(i).build())
-        }
-        return filters
-    }
-
     private fun getDefaultFilters(): MutableList<ScanFilter> {
         val filters: MutableList<ScanFilter> = ArrayList()
         filters.add(ScanFilter.Builder().setServiceUuid(ParcelUuid(SERVICE_UUID2)).build())

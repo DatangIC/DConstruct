@@ -1,17 +1,14 @@
 package com.datangic.api
 
 import android.util.Log
-import androidx.annotation.MainThread
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.datangic.api.login.LoginApi
 import com.datangic.api.login.VerifyCodeResult
-import com.datangic.network.AppExecutors
 import com.datangic.network.NetworkApi
-import com.datangic.network.ResponseState
+import com.datangic.network.ResponseStatus
 import io.reactivex.rxjava3.core.Observer
 import io.reactivex.rxjava3.disposables.Disposable
-import org.junit.Assert.assertFalse
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -25,13 +22,13 @@ class AndroidLoginApiTest {
         NetworkApi.init(appContext)
         LoginApi.create().getAuthCode("1233434", LoginApi.LoginType.RegisterORLogin.value).map { response2observable<VerifyCodeResult>(it) }
             .subscribe {
-                object : Observer<ResponseState<VerifyCodeResult>> {
+                object : Observer<ResponseStatus<VerifyCodeResult>> {
                     override fun onSubscribe(d: Disposable) {
                         println("onSubscribe")
                         Log.e("useAppContext", "onSubscribe")
                     }
 
-                    override fun onNext(t: ResponseState<VerifyCodeResult>) {
+                    override fun onNext(t: ResponseStatus<VerifyCodeResult>) {
                         println("onNext")
                         Log.e("useAppContext", "onNext")
                     }

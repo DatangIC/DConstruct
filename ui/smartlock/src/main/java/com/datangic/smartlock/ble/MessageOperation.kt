@@ -22,7 +22,7 @@ class MessageOperation(mDatabaseRepository: DatabaseRepository, execute: (Blueto
                 register(RegisterType.SCAN_REGISTER, device)
             }
             RegisterType.NORMAL_REGISTER -> {
-                mDatabase.appDatabase.deviceDao().getManagerDevices(device.address)?.let {
+                mDatabase.mDatabase.deviceDao().getManagerDevices(device.address)?.let {
                     register(
                         RegisterType.NORMAL_REGISTER,
                         device,

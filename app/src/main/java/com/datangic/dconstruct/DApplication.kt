@@ -7,10 +7,12 @@ import com.datangic.smartlock.di.LockApplication
 
 class DApplication : ApplicationProvider() {
     init {
-        moduleList.addAll(linkedSetOf(
-            LoginApplication(),
-            LockApplication()
-        ))
+        moduleList.addAll(
+            linkedSetOf(
+                LoginApplication(),
+                LockApplication()
+            )
+        )
     }
 
     override fun onCreate() {

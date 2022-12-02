@@ -9,20 +9,22 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.Observer
 import androidx.lifecycle.viewModelScope
 import cn.dttsh.dts1586.*
+import com.datangic.api.smartlock.SmartLockApi
+import com.datangic.common.utils.Logger
+import com.datangic.data.SystemSettings
 import com.datangic.libs.base.ApplicationProvider.Companion.getCurrentActivity
 import com.datangic.smartlock.R
-import com.datangic.data.SystemSettings
 import com.datangic.smartlock.ble.CreateMessage
 import com.datangic.smartlock.ble.ReceivedMessageHandle
 import com.datangic.smartlock.dialog.MaterialDialog
 import com.datangic.smartlock.liveData.LockBleReceivedLiveData
 import com.datangic.smartlock.respositorys.BleManagerApiRepository
 import com.datangic.smartlock.utils.DIALOG_TIMEOUT
-import com.datangic.common.utils.Logger
-import kotlinx.coroutines.ObsoleteCoroutinesApi
+import com.datangic.smartlock.utils.RequestPermissions
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
-@ObsoleteCoroutinesApi
 open class BaseViewModel constructor(application: Application, val mBleManagerApi: BleManagerApiRepository) : AndroidViewModel(application) {
 
     private val TAG = BaseViewModel::class.simpleName
@@ -34,6 +36,9 @@ open class BaseViewModel constructor(application: Application, val mBleManagerAp
         get() = mApplication.getCurrentActivity() as AppCompatActivity
 
     var onSecretCodeSelectedAction: (() -> Unit)? = null
+
+    var mLockApi: SmartLockApi? = null
+
 
     protected val mHandler by lazy {
         Handler(Looper.getMainLooper())
@@ -51,11 +56,13 @@ open class BaseViewModel constructor(application: Application, val mBleManagerAp
                 }
 
                 override fun onConfirm() {
-                    mBleManagerApi.connectWithRegister(
-                        mBleManagerApi.mDefaultDeviceInfo?.second!!,
-                        mActivity,
-                        ReceivedMessageHandle.RegisterType.NORMAL_REGISTER
-                    )
+                    RequestPermissions.requestPermissions(mActivity) {
+                        mBleManagerApi.connectWithRegister(
+                            mBleManagerApi.mDefaultDeviceInfo?.second!!,
+                            mActivity,
+                            ReceivedMessageHandle.RegisterType.NORMAL_REGISTER
+                        )
+                    }
                 }
             })
     }
@@ -110,6 +117,11 @@ open class BaseViewModel constructor(application: Application, val mBleManagerAp
             mSystemSetting = settings
         }
         mBleManagerApi.getReceivedMessageLiveData().observeForever(mMessageListenerObserver)
+        MainScope().launch(Dispatchers.IO) {
+            mBleManagerApi.mDatabase.mDataStore.mUserPrivateInfoFlow.collect {
+                mLockApi = SmartLockApi.create { return@create it.authentication }
+            }
+        }
     }
 
     fun Pair<String, MSG>.execute(): CreateMessage.State {
@@ -167,7 +179,7 @@ open class BaseViewModel constructor(application: Application, val mBleManagerAp
         if (error != null) {
             if (errorCode in listOf(7, 10)) {
                 mBleManagerApi.mSecretCodeMap.let { secretCodeMap ->
-                    Logger.e(TAG,"New Dialog SecretCodeMap")
+                    Logger.e(TAG, "New Dialog SecretCodeMap")
                     MaterialDialog.getConfirmationForSecretCodeDialog(
                         mActivity,
                         icon = R.drawable.ic_secret,

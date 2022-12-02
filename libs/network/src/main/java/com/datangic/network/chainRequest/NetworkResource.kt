@@ -8,17 +8,17 @@ import com.datangic.network.*
 
 abstract class NetworkResource<ResponseType, ResultType>
 @MainThread constructor(private val appExecutors: AppExecutors) {
-    private val result = MediatorLiveData<ResponseState<ResultType>>()
+    private val result = MediatorLiveData<ResponseStatus<ResultType>>()
     private var index = 0
 
     init {
-        result.postValue(ResponseState.loading(null))
-        setValue(ResponseState.loading(null))
+        result.postValue(ResponseStatus.loading(null))
+        setValue(ResponseStatus.loading(null))
         fetchFromNetwork()
     }
 
     @MainThread
-    private fun setValue(newValue: ResponseState<ResultType>) {
+    private fun setValue(newValue: ResponseStatus<ResultType>) {
         if (result.value != newValue) {
             result.postValue(newValue)
         }
@@ -39,7 +39,7 @@ abstract class NetworkResource<ResponseType, ResultType>
                             // which may not be updated with latest results received from network.
                             if (hasNextCall(index)) {
                                 fetchFromNetwork()
-                                setValue(ResponseState.loading(data.data))
+                                setValue(ResponseStatus.loading(data.data))
                             } else {
                                 setValue(data)
                             }
@@ -47,22 +47,22 @@ abstract class NetworkResource<ResponseType, ResultType>
                     }
                 }
                 is ApiEmptyResponse -> {
-                    setValue(ResponseState.empty("Empty", null))
+                    setValue(ResponseStatus.empty("Empty", null))
                 }
                 is ApiErrorResponse -> {
-                    setValue(ResponseState.error(response.errorMessage, null))
+                    setValue(ResponseStatus.error(response.errorMessage, null))
                 }
             }
         }
     }
 
-    fun asLiveData() = result as LiveData<ResponseState<ResultType>>
+    fun asLiveData() = result as LiveData<ResponseStatus<ResultType>>
 
     /**
      * 根据成功返回的数据，自定义ResultType输出，
      */
     @WorkerThread
-    protected abstract fun processResponse(response: ApiSuccessResponse<ResponseType>): ResponseState<ResultType>
+    protected abstract fun processResponse(response: ApiSuccessResponse<ResponseType>): ResponseStatus<ResultType>
 
     /**
      * 检测是否继续请求，默认只请求一次
@@ -71,5 +71,5 @@ abstract class NetworkResource<ResponseType, ResultType>
     protected open fun hasNextCall(index: Int): Boolean = false
 
     @WorkerThread
-    protected abstract fun createCall(index: Int): LiveData<ApiResponse<ResponseType>>
+    protected abstract fun createCall(index: Int): LiveData<ApiResponse<ResponseType, Any?>>
 }

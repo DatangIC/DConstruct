@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="http_err_401">Not Authorized</string>
+    <string name="http_token_err">Token is error</string>
+    <string name="http_token_empty">Token is empty</string>
+    <string name="http_no_permission">Has no permission</string>
+    <string name="http_token_expired">Token is expired</string>
+    <string name="http_api_not_exist">Api not exist</string>
+    <string name="http_param_missing">Param is missing</string>
+    <string name="http_no_resource">No resource</string>
+
+    <string name="http_dev_not_exist">Device is not exist</string>
+</resources>

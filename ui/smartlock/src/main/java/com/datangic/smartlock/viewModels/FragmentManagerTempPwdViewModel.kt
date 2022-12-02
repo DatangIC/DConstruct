@@ -33,7 +33,7 @@ class FragmentManagerTempPwdViewModel(
 ) : AndroidViewModel(application) {
     private val TAG = FragmentManagerTempPwdViewModel::class.simpleName
     val mTitle = DeviceKeyItem(R.drawable.ic_management_temp_pwd, name = R.string.management_temp_pwd)
-    private val mTempPwdListLiveData = mDatabase.appDatabase.deviceKeyDao().getViewDeviceTempKeys(
+    private val mTempPwdListLiveData = mDatabase.mDatabase.deviceKeyDao().getViewDeviceTempKeys(
         serialNumber, macAddress, deviceUserId = Pair(userID, serialNumber)
     ).asLiveData()
 
@@ -86,7 +86,7 @@ class FragmentManagerTempPwdViewModel(
 
                 viewModelScope.launch(Dispatchers.IO) {
                     try {
-                        mDatabase.appDatabase.deviceKeyDao()
+                        mDatabase.mDatabase.deviceKeyDao()
                             .insertOrUpdate(deviceKey, mDatabase.getDeviceKeyName(KeyType.TEMPORARY_PASSWORD, mLogList.size))
                     } catch (e: Exception) {
                         Logger.e(TAG, "Add Temp Pwd Error =$e")
@@ -140,7 +140,7 @@ class FragmentManagerTempPwdViewModel(
 
             override fun onDeleteClick(item: ViewDeviceKey) {
                 viewModelScope.launch(Dispatchers.IO) {
-                    mDatabase.appDatabase.deviceKeyDao().deleteTempPwd(
+                    mDatabase.mDatabase.deviceKeyDao().deleteTempPwd(
                         item.serialNumber,
                         item.macAddress,
                         item.deviceUserID,

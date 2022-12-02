@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="http_err_401">认证失败</string>
+    <string name="http_token_err">消息指令错误</string>
+    <string name="http_token_empty">消息指令为空</string>
+    <string name="http_no_permission">无权限</string>
+    <string name="http_token_expired">消息指令已过期</string>
+    <string name="http_api_not_exist">访问不存在</string>
+    <string name="http_param_missing">参数错误</string>
+    <string name="http_no_resource">无该资源</string>
+    <!-- 设备相关-->
+    <string name="http_dev_not_exist">设备不存在</string>
+</resources>

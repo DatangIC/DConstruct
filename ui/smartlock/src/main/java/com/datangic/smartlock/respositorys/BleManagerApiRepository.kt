@@ -5,6 +5,7 @@ import android.bluetooth.BluetoothGatt
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import cn.dttsh.dts1586.DTS1586
@@ -25,11 +26,10 @@ import com.datangic.smartlock.viewModels.ScannerRepository
 import kotlinx.coroutines.*
 import no.nordicsemi.android.support.v18.scanner.ScanFilter
 
-@ObsoleteCoroutinesApi
 class BleManagerApiRepository constructor(
     val mContext: Context,
     val mScannerRepository: ScannerRepository,
-    private val mDatabase: DatabaseRepository
+    val mDatabase: DatabaseRepository
 ) {
 
     private val TAG = BleManagerApiRepository::class.simpleName
@@ -211,7 +211,7 @@ class BleManagerApiRepository constructor(
     /**
      *  View of Devices
      */
-    fun setDevicesViewObserver(lifecycleOwner: LifecycleOwner?, observer: Observer<List<ViewManagerDevice>>) =
+    fun setDevicesViewObserver(lifecycleOwner: LifecycleOwner?, observer: Observer<List<ViewManagerDevice>?>) =
         mDatabase.setManagerDevicesViewObserver(lifecycleOwner, observer)
 
     fun updateDeviceName(newName: String, serialNumber: String? = null, macAddress: String? = null) =
@@ -255,7 +255,7 @@ class BleManagerApiRepository constructor(
      */
     fun setDefaultSecretCode(defaultKey: String) {
         MainScope().launch(Dispatchers.IO) {
-            mDatabase.dataStore.setDefaultSecretCode(defaultKey)
+            mDatabase.mDataStore.setDefaultSecretCode(defaultKey)
         }
     }
 
@@ -365,12 +365,12 @@ class BleManagerApiRepository constructor(
             .before { Logger.v(TAG, "Start Connect") }
             .done {
                 Logger.v(TAG, "Connected")
-                if (mReadyConnectMac.isNullOrEmpty())
+                if (mReadyConnectMac.isEmpty())
                     mHandler.postDelayed({ mScannerRepository.stopScan(true) }, 3000)
             }
             .fail { it, _ ->
                 Logger.v(TAG, "Connect Failure")
-                if (mReadyConnectMac.isNullOrEmpty())
+                if (mReadyConnectMac.isEmpty())
                     mHandler.postDelayed({ mScannerRepository.stopScan(true) }, 3000)
                 mManagerDevices.remove(it)
                 mBleManagers.remove(it)

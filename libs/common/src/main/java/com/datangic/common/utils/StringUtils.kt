@@ -52,5 +52,4 @@ fun String.isPhoneNumber(zone: Int = 86): Boolean {
             false
         }
     }
-
 }

@@ -34,4 +34,5 @@ data class DeviceUser(
     @ColumnInfo(name = "enable_period_start") var enablePeriodStart: List<Int> = listOf(0, 0, 0),
     @ColumnInfo(name = "enable_period_end") var enablePeriodEnd: List<Int> = listOf(0, 0, 0),
     @ColumnInfo(name = "share_code_picture_path") val shareCodePicturePath: String? = null,
+    @ColumnInfo(name = "dirty") var dirty: Boolean = true
 )

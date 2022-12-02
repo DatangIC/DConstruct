@@ -15,14 +15,14 @@ kapt {
     }
 }
 android {
-    compileSdk 31
+    compileSdk 33
 
     defaultConfig {
         if (config.isDebug) {
             applicationId "com.datangic.smartlock"
         }
         minSdk 23
-        targetSdk 31
+        targetSdk 33
         versionCode 7
         versionName "1.0.7"
 
@@ -76,6 +76,7 @@ android {
             }
         }
     }
+    namespace 'com.datangic.smartlock'
 }
 
 dependencies {
@@ -87,9 +88,12 @@ dependencies {
     implementation config.androidx.layout
     implementation config.androidx.navigation_fragment
     implementation config.androidx.navigation_ui
-    implementation config.androidx.livedata
-    implementation config.androidx.viewmodel
+    implementation config.androidx.lifecycle_livedata
+    implementation config.androidx.lifecycle_viewmodel
+//    implementation config.androidx.lifecycle_extensions
     implementation config.androidx.coordinator
+
+    implementation config.androidx.paging_runtime
 
 //    implementation config.room.runtime
 //    implementation config.room.ktx

@@ -38,7 +38,7 @@ class FragmentSystemViewModel(
     val mItemList = mRepository.systemItem
     val mAdapter = SettingItemAdapter(mItemList)
     var isDebug = false
-    fun setObserver(fragment: Fragment) {
+    fun setObserver(fragment: Fragment, logout: () -> Unit) {
         mRepository.mDatabase.mSystemSettingsLiveData.observe(fragment.viewLifecycleOwner) {
             if (isDebug) {
                 mItemList.forEach { item ->
@@ -83,7 +83,7 @@ class FragmentSystemViewModel(
                 }
             }
         }
-        mAdapter.setOnSettingItemListener(getOnItemClickListener(fragment))
+        mAdapter.setOnSettingItemListener(getOnItemClickListener(fragment, logout))
     }
 
     fun addTestItem() {
@@ -95,7 +95,7 @@ class FragmentSystemViewModel(
         }
     }
 
-    private fun getOnItemClickListener(fragment: Fragment) = object : SettingItemAdapter.OnSettingItemListener {
+    private fun getOnItemClickListener(fragment: Fragment, logout: () -> Unit) = object : SettingItemAdapter.OnSettingItemListener {
         override fun onClick(systemItem: Any) {
             when (systemItem) {
                 is SwitchItem -> {
@@ -106,12 +106,12 @@ class FragmentSystemViewModel(
 
                         R.string.debug_ota -> {
                             viewModelScope.launch {
-                                mRepository.mDatabase.dataStore.updateOTADebug(!systemItem.checked)
+                                mRepository.mDatabase.mDataStore.updateOTADebug(!systemItem.checked)
                             }
                         }
                         R.string.debug -> {
                             viewModelScope.launch {
-                                mRepository.mDatabase.dataStore.updateDebug(!systemItem.checked)
+                                mRepository.mDatabase.mDataStore.updateDebug(!systemItem.checked)
                             }
                         }
                     }
@@ -156,6 +156,9 @@ class FragmentSystemViewModel(
                         ).show()
                     }
                 }
+                R.string.system_logout -> {
+                    logout()
+                }
             }
         }
     }
@@ -163,7 +166,7 @@ class FragmentSystemViewModel(
     val selectCodeOnDialog = object : MaterialDialog.OnMaterialConfirmationForSecretCodeDialogListener {
         override fun onSelected(selected: String) {
             viewModelScope.launch {
-                mRepository.mDatabase.dataStore.setDefaultSecretCode(selected)
+                mRepository.mDatabase.mDataStore.setDefaultSecretCode(selected)
             }
         }
 

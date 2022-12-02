@@ -3,7 +3,7 @@ package com.datangic.login.data
 import androidx.compose.runtime.mutableStateOf
 import com.datangic.components.data.TipsDialogState
 
-object LoginState {
+object LoginComposeState {
     enum class LoginStep {
         START_LOGIN, START_REGISTER, EDIT_DETAIL,
         INPUT_USER,
@@ -20,6 +20,15 @@ object LoginState {
     val mLoadingDialog = mutableStateOf(false)
 
     val loginFormState = mutableStateOf(LoginFormState())
+
+    init {
+        loginStep.value = LoginStep.START_LOGIN
+        email.value = ""
+        userPhone.value = ""
+        password.value = ""
+        verifyCode.value = ""
+        mLoadingDialog.value = false
+    }
 
     fun showLoading(boolean: Boolean) {
         mLoadingDialog.value = boolean
@@ -51,5 +60,14 @@ object LoginState {
             else -> {
             }
         }
+    }
+
+    fun clearData() {
+        loginStep.value = LoginStep.START_LOGIN
+        email.value = ""
+        userPhone.value = ""
+        password.value = ""
+        verifyCode.value = ""
+        mLoadingDialog.value = false
     }
 }

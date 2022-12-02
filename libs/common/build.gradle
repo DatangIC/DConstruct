@@ -33,23 +33,17 @@ android {
             returnDefaultValues = true
         }
     }
+    namespace 'com.datangic.common'
 }
 
 dependencies {
+    api config.kotlin.coroutines_android
+    api config.kotlin.coroutines_core
 
-    api 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.1'
-    api 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.1'
-    // lifecycleScope(可选)
-    api "androidx.lifecycle:lifecycle-runtime-ktx:2.5.1"
-    api "com.tencent:mmkv:1.2.12"
-    api config.others.rxjava
-    api config.others.rxjava_android
-    api config.androidx.datastore
     api config.androidx.datastore_preferences
-//    api project(":libs:data")
-//    implementation 'androidx.core:core-ktx:1.7.0'
-    implementation 'androidx.appcompat:appcompat:1.4.2'
-    implementation 'com.google.android.material:material:1.6.1'
+    api config.androidx.appcompat
+    api config.google.material
+
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.mockito:mockito-core:3.7.7'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

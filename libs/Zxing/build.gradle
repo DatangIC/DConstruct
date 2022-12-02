@@ -4,12 +4,12 @@ plugins {
 }
 def config = rootProject.ext
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         minSdkVersion 23
-        targetSdkVersion 32
+        targetSdkVersion 33
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -28,12 +28,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    namespace 'com.datangic.zxing'
 }
 
 dependencies {
 
     implementation config.androidx.appcompat
-    implementation config.androidx.lifecycle_extensions
     implementation config.androidx.lifecycle_runtime
 
     implementation config.google.material
@@ -46,7 +46,7 @@ dependencies {
     implementation config.androidx.camera_lifecycle
     implementation config.androidx.camera_camera2
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+//    testImplementation 'junit:junit:4.13.2'
+//    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+//    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 }

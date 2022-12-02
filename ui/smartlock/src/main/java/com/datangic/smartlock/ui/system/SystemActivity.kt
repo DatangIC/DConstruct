@@ -1,6 +1,7 @@
 package com.datangic.smartlock.ui.system
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +20,8 @@ import com.datangic.smartlock.databinding.ActivitySystemBinding
 import com.datangic.smartlock.dialog.MaterialDialog
 import com.datangic.smartlock.parcelable.ExtendedBluetoothDevice
 import com.datangic.data.DatabaseRepository
+import com.datangic.libs.base.services.NetworkDataService
+import com.datangic.libs.base.services.NetworkServiceConnection
 import com.datangic.smartlock.respositorys.LocalPasswordRepository
 import com.datangic.smartlock.respositorys.ToolbarRepository
 import com.datangic.smartlock.ui.scanning.ScanActivity
@@ -38,7 +41,6 @@ class SystemActivity : AppCompatActivity() {
     var doNewDevice: ((ExtendedBluetoothDevice) -> Unit)? = null
 
     var mRetrieveClick: (() -> Unit)? = null
-    var count = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = DataBindingUtil.setContentView(this, R.layout.activity_system)
@@ -59,6 +61,7 @@ class SystemActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         if (mToolbarRepository.mOnBackPressed != null) {
             mToolbarRepository.mOnBackPressed?.let {
@@ -95,6 +98,7 @@ class SystemActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
@@ -145,7 +149,7 @@ class SystemActivity : AppCompatActivity() {
         }
     }
 
-    fun handleScanResult(value: String, requestCode: Int) {
+    private fun handleScanResult(value: String, requestCode: Int) {
         var error = R.string.dialog_error_message_wrong_qr_code
         when (UtilsMessage.isQrCodeValid(value).first) {
             0 -> {
@@ -159,7 +163,7 @@ class SystemActivity : AppCompatActivity() {
         showErrorDialog(error)
     }
 
-    fun handleResult(value: String, requestCode: Int) {
+    private fun handleResult(value: String, requestCode: Int) {
         when (requestCode) {
             REQUEST_RETRIEVE -> {
                 doRetrieve?.let {
@@ -196,4 +200,5 @@ class SystemActivity : AppCompatActivity() {
             isError = true
         ).show()
     }
+
 }

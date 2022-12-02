@@ -7,9 +7,8 @@ import kotlinx.coroutines.*
 import org.koin.core.context.loadKoinModules
 
 class LoginApplication : IApplication {
-    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(application: Application) {
-        GlobalScope.launch(Dispatchers.Default) {
+        MainScope().launch(Dispatchers.Default) {
             loadKoinModules(listOf(repositoryModule, viewModelModule))
         }
     }

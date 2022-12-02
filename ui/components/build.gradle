@@ -36,6 +36,7 @@ android {
         kotlinCompilerExtensionVersion compose_version
         kotlinCompilerVersion kotlin_version
     }
+    namespace 'com.datangic.themes'
 }
 
 dependencies {

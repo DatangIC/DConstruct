@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.datangic.libs.base">
+    xmlns:tools="http://schemas.android.com/tools">
 
+<!--    <provider-->
+<!--        android:name="androidx.startup.InitializationProvider"-->
+<!--        android:authorities="${applicationId}.androidx-startup"-->
+<!--        tools:node="remove"-->
+<!--        tools:ignore="WrongManifestParent" />-->
+    <application>
+        <service android:name=".services.NetworkDataService" />
+    </application>
 </manifest>

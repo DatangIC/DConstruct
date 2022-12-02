@@ -12,9 +12,8 @@ import kotlinx.coroutines.*
 import org.koin.core.context.loadKoinModules
 
 class LockApplication : IApplication {
-    @OptIn(ObsoleteCoroutinesApi::class, DelicateCoroutinesApi::class)
     override fun onCreate(application: Application) {
-        GlobalScope.launch(Dispatchers.Default) {
+        MainScope().launch(Dispatchers.Default) {
             // 主题
             ThemeHelper.applyTheme(application)
             // 语言

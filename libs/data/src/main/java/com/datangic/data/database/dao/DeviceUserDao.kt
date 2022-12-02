@@ -27,12 +27,11 @@ interface DeviceUserDao : BaseDao<DeviceUser> {
     @Query("SELECT * FROM DeviceUser WHERE serial_number=:serialNumber and mac_address = (:macAddress) and device_user_id=:userID ORDER BY device_user_id")
     fun getDeviceUserWithChildAsLiveData(serialNumber: String, macAddress: String, userID: Pair<Int, String>): LiveData<DeviceUserWithChildUsers>
 
-    fun updateOrInsertUser(deviceUser: DeviceUser) {
+    fun updateOrInsertUser(deviceUser: DeviceUser, dirty: Boolean = true) {
         getChildDeviceUser(deviceUser.serialNumber, deviceUser.macAddress, deviceUser.deviceUserId, deviceUser.parentUserId)?.let { user ->
             user.userStatus = deviceUser.userStatus
+            user.dirty = dirty
             update(user)
         } ?: insert(deviceUser)
     }
-
-
 }

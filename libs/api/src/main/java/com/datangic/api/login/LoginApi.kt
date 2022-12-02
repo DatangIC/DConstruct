@@ -40,7 +40,7 @@ interface LoginApi {
         @Query("type") type: String
     ): Observable<DataResponse<JsonElement>>
 
-    @GET("paas/home/api/username")
+    @GET("paas/home/api/userme")
     fun getUserInfo(
         @Header("Authorization") auth: String,
     ): Observable<DataResponse<JsonElement>>
@@ -55,7 +55,7 @@ interface LoginApi {
         @Body newUser: UserData
     ): Observable<DataResponse<JsonElement>>
 
-    @GET("paas/home/api/logout")
+    @GET("/paas/home/api/user/logout")
     fun logout(): Observable<DataResponse<JsonElement>>
 
 
@@ -63,20 +63,25 @@ interface LoginApi {
     fun getAuthCode2Live(
         @Query("userPhone") phone: String,
         @Query("type") type: String
-    ): LiveData<ApiResponse<DataResponse<JsonElement>>>
+    ): LiveData<ApiResponse<DataResponse<JsonElement>, Any?>>
 
 
-    @POST("paas/home/api/login")
+    @POST("paas/home/api/user/login")
     fun loginRegister2Live(
         @Body loginData: LoginData
-    ): LiveData<ApiResponse<DataResponse<JsonElement>>>
+    ): LiveData<ApiResponse<DataResponse<JsonElement>, Any?>>
 
 
     @PATCH("paas/home/api/user")
     fun updateUser2Live(
         @Body newUser: UserData
-    ): LiveData<ApiResponse<DataResponse<JsonElement>>>
+    ): LiveData<ApiResponse<DataResponse<JsonElement>, Any?>>
 
-    @GET("paas/home/api/logout")
-    fun logout2Live(): LiveData<ApiResponse<DataResponse<JsonElement>>>
+    @GET("paas/home/api/userme")
+    fun getUserInfo2Live(
+        @Header("Authorization") auth: String,
+    ): LiveData<ApiResponse<DataResponse<JsonElement>, Any?>>
+
+    @GET("/paas/home/api/user/logout")
+    fun logout2Live(): LiveData<ApiResponse<DataResponse<JsonElement>, Any?>>
 }

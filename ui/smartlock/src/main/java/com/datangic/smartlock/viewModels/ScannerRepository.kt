@@ -15,6 +15,7 @@ import com.datangic.smartlock.utils.*
 import com.datangic.easypermissions.EasyPermissions
 import com.datangic.easypermissions.callbacks.PermissionCallbacks
 import com.datangic.easypermissions.dialogs.SettingsDialog
+import no.nordicsemi.android.support.v18.scanner.ScanFilter
 
 class ScannerRepository(context: Context) : ScannerHelper(context) {
 
@@ -61,45 +62,16 @@ class ScannerRepository(context: Context) : ScannerHelper(context) {
 
     }
 
-    fun startScan(fragment: Fragment, writer: Boolean = false) {
+    fun startScan(fragment: Fragment, filters: MutableList<ScanFilter>? = null) {
         Logger.v(TAG, "Start Scan")
         this.mFragment = fragment
-        if (EasyPermissions.hasPermissions(fragment.context, Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_ADMIN)) {
-            if (UtilsBle.isBleEnabled()) {
-                startBLEScan(context = fragment.requireContext(), if (writer) getWriteFilters() else null)
-                mHandler.postDelayed({
-                    if (!mScannerStateLiveData.isScanning()) {
-                        startBLEScan(context = fragment.requireContext(), if (writer) getWriteFilters() else null)
-                    }
-                }, 2 * 1000)
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    val request = PermissionRequest.Builder(fragment.context)
-                        .code(REQUEST_CODE_CAMERA_STORAGE_PERMISSION)
-                        .theme(R.style.AppTheme_MaterialDialog)
-                        .positiveButtonText(R.string.grant_permission)
-                        .negativeButtonText(R.string.cancel)
-                        .title(R.string.location_permission_title)
-                        .icon(R.drawable.ic_location_off)
-                        .rationale(R.string.location_permission_info)
-                        .perms(arrayOf(Manifest.permission.ACCESS_FINE_LOCATION))
-                        .build()
-                    EasyPermissions.requestPermissions(fragment, request)
+        RequestPermissions.requestPermissions(fragment) {
+            startBLEScan(context = fragment.requireContext(), filters)
+            mHandler.postDelayed({
+                if (!mScannerStateLiveData.isScanning()) {
+                    startBLEScan(context = fragment.requireContext(), filters)
                 }
-            } else {
-                DialogEnableBluetooth.newInstance().show(fragment.childFragmentManager, DIALOG_ENABLE_BLUETOOTH_PERMISSION)
-            }
-        } else {
-            val request = PermissionRequest.Builder(fragment.context)
-                .code(REQUEST_CODE_CAMERA_STORAGE_PERMISSION)
-                .theme(R.style.AppTheme_MaterialDialog)
-                .positiveButtonText(R.string.grant_permission)
-                .negativeButtonText(R.string.cancel)
-                .title(R.string.bluetooth_disabled_title)
-                .icon(R.drawable.ic_bluetooth_disabled)
-                .rationale(R.string.bluetooth_disabled_info)
-                .perms(arrayOf(Manifest.permission.BLUETOOTH, Manifest.permission.BLUETOOTH_ADMIN))
-                .build()
-            EasyPermissions.requestPermissions(fragment, request)
+            }, 2 * 1000)
         }
 
     }

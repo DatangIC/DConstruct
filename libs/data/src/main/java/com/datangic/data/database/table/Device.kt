@@ -4,12 +4,12 @@ import androidx.room.*
 import java.util.*
 
 @Entity(
-    indices = [Index(value = ["serial_number", "mac_address"], unique = true), Index(value = ["uid"], unique = false)]
+    indices = [Index(value = ["serial_number", "mac_address"], unique = true)]
 )
 data class Device(
     @PrimaryKey(autoGenerate = true) val did: Int = 0,
     @ColumnInfo(name = "uid") val uid: Int,
-    @ColumnInfo(name = "home_id") val homeId: Int = 1,
+    @ColumnInfo(name = "syn_network") val synNetwork: Boolean = false,
     @ColumnInfo(name = "name") var name: String,
     @ColumnInfo(name = "type") var type: DeviceEnum.LockType = DeviceEnum.LockType.NORMAL,
     @ColumnInfo(name = "serial_number") val serialNumber: String,
@@ -47,4 +47,5 @@ data class Device(
     @ColumnInfo(name = "temporary_password_secret_code") var temporaryPasswordSecretCode: String? = null,
     @ColumnInfo(name = "min_password_length") val minPasswordLength: Int = 6,
     @ColumnInfo(name = "max_password_length") val maxPasswordLength: Int = 6,
+    @ColumnInfo(name = "dirty") var dirty: Boolean = true
 )

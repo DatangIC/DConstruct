@@ -1,36 +1,31 @@
 package com.datangic.smartlock.di
 
-import android.content.Context
-import com.datangic.common.Config
-import com.datangic.data.DatabaseRepository
-import com.datangic.smartlock.respositorys.*
-import com.datangic.smartlock.viewModels.*
-import kotlinx.coroutines.ObsoleteCoroutinesApi
-import org.koin.android.ext.koin.androidApplication
 //import com.datangic.smartlock.viewModels.FragmentScanningViewModel
 //import com.datangic.smartlock.viewModels.FragmentVerifyingViewModel
+import com.datangic.common.Config
+import com.datangic.data.DatabaseRepository
+import com.datangic.libs.base.dataSource.DeviceSource
+import com.datangic.smartlock.respositorys.*
+import com.datangic.smartlock.viewModels.*
+import org.koin.android.ext.koin.androidApplication
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
 
-@ObsoleteCoroutinesApi
 val repositoryModule: Module = module {
-
-
-    single {
-        if (Config.isDebug(androidContext()))
-            DatabaseRepository(androidApplication())
-    }
 
     factory { ToolbarRepository() }
 
-    single { LocalPasswordRepository(get()) }
+    single {
+        LocalPasswordRepository(get())
+    }
 
     factory { ScannerRepository(androidContext()) }
 
     factory { (macAddress: String, serialNumber: String) -> UpdateSoftwareRepository(macAddress, serialNumber) }
+
 
     // Ble
     single { BleManagerApiRepository(androidContext(), get(), get()) }

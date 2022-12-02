@@ -2,15 +2,15 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "b20d581263301086b1f7b2d44e341022",
+    "identityHash": "977b8f646460b74294389b437c0c58f1",
     "entities": [
       {
         "tableName": "User",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `user_id` INTEGER NOT NULL, `role_name` TEXT, `role_id` INTEGER NOT NULL, `phone` TEXT, `email` TEXT, `avatar` TEXT, `nickname` TEXT, `third_id` TEXT, `home_id` TEXT NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `user_id` INTEGER NOT NULL, `role_name` TEXT, `role_id` INTEGER NOT NULL, `phone` TEXT, `email` TEXT, `avatar` TEXT, `nickname` TEXT, `third_id` TEXT)",
         "fields": [
           {
-            "fieldPath": "uid",
-            "columnName": "uid",
+            "fieldPath": "id",
+            "columnName": "id",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -61,36 +61,30 @@
             "columnName": "third_id",
             "affinity": "TEXT",
             "notNull": false
-          },
-          {
-            "fieldPath": "homeIds",
-            "columnName": "home_id",
-            "affinity": "TEXT",
-            "notNull": true
           }
         ],
         "primaryKey": {
           "columnNames": [
-            "uid"
+            "id"
           ],
           "autoGenerate": true
         },
         "indices": [
           {
-            "name": "index_User_uid",
+            "name": "index_User_user_id",
             "unique": true,
             "columnNames": [
-              "uid"
+              "user_id"
             ],
             "orders": [],
-            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_User_uid` ON `${TABLE_NAME}` (`uid`)"
+            "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_User_user_id` ON `${TABLE_NAME}` (`user_id`)"
           }
         ],
         "foreignKeys": []
       },
       {
         "tableName": "Device",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`did` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `uid` INTEGER NOT NULL, `home_id` INTEGER NOT NULL, `name` TEXT NOT NULL, `type` INTEGER NOT NULL, `serial_number` TEXT NOT NULL, `mac_address` TEXT NOT NULL, `device_user_id` TEXT NOT NULL, `create_at` INTEGER NOT NULL, `update_at` INTEGER NOT NULL, `imei` TEXT NOT NULL, `secret_code` TEXT, `nfc` INTEGER NOT NULL, `face` INTEGER NOT NULL, `wifi` INTEGER NOT NULL, `infrared` INTEGER NOT NULL, `variable_password` INTEGER NOT NULL, `automatic_lock` INTEGER NOT NULL, `self_eject_lock` INTEGER NOT NULL, `permission_switch` INTEGER NOT NULL, `magic_number` INTEGER NOT NULL, `temporary_password` INTEGER NOT NULL, `status_query` INTEGER NOT NULL, `seized_fingerprint` INTEGER NOT NULL, `volume_adjustment` INTEGER NOT NULL, `follow_doorbell` INTEGER NOT NULL, `language_switch` INTEGER NOT NULL, `back_panel_ota` INTEGER NOT NULL, `temp_password_without_asterisk` INTEGER NOT NULL, `lock_keep_open` INTEGER NOT NULL, `lock_cylinder` INTEGER NOT NULL, `software_version` TEXT, `hardware_version` TEXT, `wifi_software_version` TEXT, `back_panel_software_version` TEXT, `fingerprint_software_version` TEXT, `face_software_version` TEXT NOT NULL, `temporary_password_secret_code` TEXT, `min_password_length` INTEGER NOT NULL, `max_password_length` INTEGER NOT NULL)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`did` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `uid` INTEGER NOT NULL, `syn_network` INTEGER NOT NULL, `name` TEXT NOT NULL, `type` INTEGER NOT NULL, `serial_number` TEXT NOT NULL, `mac_address` TEXT NOT NULL, `device_user_id` TEXT NOT NULL, `create_at` INTEGER NOT NULL, `update_at` INTEGER NOT NULL, `imei` TEXT NOT NULL, `secret_code` TEXT, `nfc` INTEGER NOT NULL, `face` INTEGER NOT NULL, `wifi` INTEGER NOT NULL, `infrared` INTEGER NOT NULL, `variable_password` INTEGER NOT NULL, `automatic_lock` INTEGER NOT NULL, `self_eject_lock` INTEGER NOT NULL, `permission_switch` INTEGER NOT NULL, `magic_number` INTEGER NOT NULL, `temporary_password` INTEGER NOT NULL, `status_query` INTEGER NOT NULL, `seized_fingerprint` INTEGER NOT NULL, `volume_adjustment` INTEGER NOT NULL, `follow_doorbell` INTEGER NOT NULL, `language_switch` INTEGER NOT NULL, `back_panel_ota` INTEGER NOT NULL, `temp_password_without_asterisk` INTEGER NOT NULL, `lock_keep_open` INTEGER NOT NULL, `lock_cylinder` INTEGER NOT NULL, `software_version` TEXT, `hardware_version` TEXT, `wifi_software_version` TEXT, `back_panel_software_version` TEXT, `fingerprint_software_version` TEXT, `face_software_version` TEXT NOT NULL, `temporary_password_secret_code` TEXT, `min_password_length` INTEGER NOT NULL, `max_password_length` INTEGER NOT NULL, `dirty` INTEGER NOT NULL)",
         "fields": [
           {
             "fieldPath": "did",
@@ -105,8 +99,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "homeId",
-            "columnName": "home_id",
+            "fieldPath": "synNetwork",
+            "columnName": "syn_network",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -331,6 +325,12 @@
             "columnName": "max_password_length",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "dirty",
+            "columnName": "dirty",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -349,15 +349,6 @@
             ],
             "orders": [],
             "createSql": "CREATE UNIQUE INDEX IF NOT EXISTS `index_Device_serial_number_mac_address` ON `${TABLE_NAME}` (`serial_number`, `mac_address`)"
-          },
-          {
-            "name": "index_Device_uid",
-            "unique": false,
-            "columnNames": [
-              "uid"
-            ],
-            "orders": [],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_Device_uid` ON `${TABLE_NAME}` (`uid`)"
           }
         ],
         "foreignKeys": []
@@ -826,7 +817,7 @@
       },
       {
         "tableName": "DeviceUser",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `parent_user_id` TEXT NOT NULL, `serial_number` TEXT NOT NULL, `mac_address` TEXT NOT NULL, `device_user_id` TEXT NOT NULL, `all_user_id` TEXT NOT NULL, `active_at` INTEGER NOT NULL, `create_at` INTEGER NOT NULL, `update_at` INTEGER NOT NULL, `device_username` TEXT NOT NULL, `administrator` INTEGER NOT NULL, `user_status` INTEGER NOT NULL, `auth_code` TEXT, `lifecycle_start` INTEGER NOT NULL, `lifecycle_end` INTEGER NOT NULL, `enable_period_start` TEXT NOT NULL, `enable_period_end` TEXT NOT NULL, `share_code_picture_path` TEXT, FOREIGN KEY(`serial_number`, `mac_address`) REFERENCES `Device`(`serial_number`, `mac_address`) ON UPDATE CASCADE ON DELETE CASCADE )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`uid` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `parent_user_id` TEXT NOT NULL, `serial_number` TEXT NOT NULL, `mac_address` TEXT NOT NULL, `device_user_id` TEXT NOT NULL, `all_user_id` TEXT NOT NULL, `active_at` INTEGER NOT NULL, `create_at` INTEGER NOT NULL, `update_at` INTEGER NOT NULL, `device_username` TEXT NOT NULL, `administrator` INTEGER NOT NULL, `user_status` INTEGER NOT NULL, `auth_code` TEXT, `lifecycle_start` INTEGER NOT NULL, `lifecycle_end` INTEGER NOT NULL, `enable_period_start` TEXT NOT NULL, `enable_period_end` TEXT NOT NULL, `share_code_picture_path` TEXT, `dirty` INTEGER NOT NULL, FOREIGN KEY(`serial_number`, `mac_address`) REFERENCES `Device`(`serial_number`, `mac_address`) ON UPDATE CASCADE ON DELETE CASCADE )",
         "fields": [
           {
             "fieldPath": "uid",
@@ -935,6 +926,12 @@
             "columnName": "share_code_picture_path",
             "affinity": "TEXT",
             "notNull": false
+          },
+          {
+            "fieldPath": "dirty",
+            "columnName": "dirty",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -1092,7 +1089,7 @@
     "views": [
       {
         "viewName": "ViewManagerDevice",
-        "createSql": "CREATE VIEW `${VIEW_NAME}` AS SELECT Device.name,Device.type,Device.serial_number AS serialNumber,Device.mac_address AS macAddress,Device.imei,Device.nfc,Device.face,Device.seized_fingerprint AS seizedFingerprint,Device.permission_switch AS permissionSwitch,Device.secret_code AS secretCode,DeviceUser.device_user_id AS deviceUserID,DeviceUser.administrator,DeviceUser.auth_code AS authCode,DeviceUser.user_status AS userStatus,DeviceStatus.battery,DeviceStatus.update_at AS updateAt  FROM Device  INNER JOIN DeviceUser ON Device.serial_number = DeviceUser.serial_number  AND Device.mac_address = DeviceUser.mac_address  AND Device.device_user_id = DeviceUser.device_user_id INNER JOIN DeviceStatus ON Device.serial_number = DeviceStatus.serial_number  AND Device.mac_address = DeviceStatus.mac_address  AND Device.device_user_id = DeviceStatus.device_user_id"
+        "createSql": "CREATE VIEW `${VIEW_NAME}` AS SELECT Device.uid,Device.syn_network AS synNetwork,Device.name,Device.type,Device.serial_number AS serialNumber,Device.mac_address AS macAddress,Device.imei,Device.nfc,Device.face,Device.seized_fingerprint AS seizedFingerprint,Device.permission_switch AS permissionSwitch,Device.secret_code AS secretCode,Device.dirty AS deviceDirty,DeviceUser.device_user_id AS deviceUserID,DeviceUser.administrator,DeviceUser.auth_code AS authCode,DeviceUser.user_status AS userStatus,DeviceUser.dirty AS deviceUserDirty,DeviceStatus.battery,DeviceStatus.create_at AS createAt,DeviceStatus.update_at AS updateAt  FROM Device  INNER JOIN DeviceUser ON Device.serial_number = DeviceUser.serial_number  AND Device.mac_address = DeviceUser.mac_address  AND Device.device_user_id = DeviceUser.device_user_id INNER JOIN DeviceStatus ON Device.serial_number = DeviceStatus.serial_number  AND Device.mac_address = DeviceStatus.mac_address  AND Device.device_user_id = DeviceStatus.device_user_id"
       },
       {
         "viewName": "ViewDeviceStatus",
@@ -1109,7 +1106,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'b20d581263301086b1f7b2d44e341022')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '977b8f646460b74294389b437c0c58f1')"
     ]
   }
 }

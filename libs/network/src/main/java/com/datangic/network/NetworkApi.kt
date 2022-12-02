@@ -4,17 +4,20 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import com.datangic.network.impl.*
 import com.datangic.network.interceptor.RequestInterceptor
 import com.datangic.network.interceptor.ResponseInterceptor
 import com.datangic.network.livedata.LiveData2CallAdapterFactory
 import com.datangic.network.networkState.NetworkState
+import io.reactivex.rxjava3.plugins.RxJavaPlugins
 import okhttp3.*
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
+import java.io.UnsupportedEncodingException
 import java.util.concurrent.TimeUnit
 
 @SuppressLint("StaticFieldLeak")
@@ -46,6 +49,12 @@ object NetworkApi {
 
             override fun saveFromResponse(url: HttpUrl, cookies: List<Cookie>) {
                 SharePrefer.saveCookies(url.topPrivateDomain(), cookies)
+            }
+        }
+        RxJavaPlugins.setErrorHandler { error ->
+            when (error) {
+                is UnsupportedEncodingException -> Log.e("RxJava Error", "error=${error}")
+                else -> Log.e("RxJava Error", "error2=${error}")
             }
         }
         return this
@@ -98,7 +107,6 @@ object NetworkApi {
                 if (interceptor is RequestInterceptor) hasRequestInterceptor = true
                 addInterceptor(interceptor)
             }
-            logger?.log(" Create API", "mInterceptor.size =${interceptors.size}")
             addInterceptor(RequestInterceptor(requestInfo, authorizationInfo))
             connectTimeout(60, TimeUnit.SECONDS)
             readTimeout(60, TimeUnit.SECONDS)

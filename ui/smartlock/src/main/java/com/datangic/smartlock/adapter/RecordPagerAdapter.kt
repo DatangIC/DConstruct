@@ -34,15 +34,16 @@ class RecordPagerAdapter(val mTabList: List<Any>) : RecyclerView.Adapter<RecordP
     }
 
     fun setLogList(logs: List<ViewDeviceLog>) {
-        Logger.e("TAG", "logs=${logs.size}")
         mUserLogList.clear()
         mLockLogList.clear()
         logs.forEach {
             if (it.logState in listOf(
-                            LogState.ADD_KEY,
-                            LogState.ADD_USER,
-                            LogState.DELETE_KEY,
-                            LogState.DELETE_USER)) {
+                    LogState.ADD_KEY,
+                    LogState.ADD_USER,
+                    LogState.DELETE_KEY,
+                    LogState.DELETE_USER
+                )
+            ) {
                 if (!mUserLogList.contains(it)) {
                     mUserLogList.add(0, it)
                     mUserAdapter.setLogList(mUserLogList)

@@ -12,6 +12,8 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
+import com.datangic.common.utils.Logger
+import com.datangic.data.database.view.ViewManagerDevice
 import com.datangic.smartlock.R
 import com.datangic.smartlock.adapter.BannerImageAdapter
 import com.datangic.smartlock.adapter.DeviceWithBluetoothAdapter
@@ -19,14 +21,12 @@ import com.datangic.smartlock.adapter.ManagerPagerAdapter
 import com.datangic.smartlock.ble.CreateMessage
 import com.datangic.smartlock.components.CardSetting
 import com.datangic.smartlock.components.DeviceWithBluetooth
-import com.datangic.data.database.view.ViewManagerDevice
 import com.datangic.smartlock.dialog.MaterialDialog
 import com.datangic.smartlock.liveData.LockMutableBleStatusLiveData
 import com.datangic.smartlock.respositorys.BleManagerApiRepository
 import com.datangic.smartlock.respositorys.HomeFragmentRepository
 import com.datangic.smartlock.respositorys.ScanQrCodeHelper
 import com.datangic.smartlock.ui.scanning.ScanActivity
-import com.datangic.common.utils.Logger
 import com.datangic.smartlock.utils.UtilsFormat.toDateString
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -39,9 +39,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 class FragmentHomeViewModel(
-    application: Application,
-    val mHomeFragmentRepository: HomeFragmentRepository,
-    mBleManagerApi: BleManagerApiRepository
+    application: Application, val mHomeFragmentRepository: HomeFragmentRepository, mBleManagerApi: BleManagerApiRepository
 ) : BaseViewModel(application, mBleManagerApi) {
     private val TAG = FragmentHomeViewModel::class.simpleName
 
@@ -86,17 +84,13 @@ class FragmentHomeViewModel(
 
     fun getOnScanClick(fragment: Fragment): View.OnClickListener {
         return View.OnClickListener {
-            Logger.i(TAG, "OnScan")
             mScanQRCode.onScanQrCode(fragment.requireActivity())
         }
     }
 
 
     fun managerDeviceObserverHandle(
-        pager: ViewPager2,
-        fragment: Fragment,
-        list: List<ViewManagerDevice>,
-        mManagerPagerClick: ManagerPagerAdapter.OnManagerPagerClick
+        pager: ViewPager2, fragment: Fragment, list: List<ViewManagerDevice>, mManagerPagerClick: ManagerPagerAdapter.OnManagerPagerClick
     ) {
         mViewManagerDeviceList = list
         if (pager.adapter == null) {
@@ -131,22 +125,17 @@ class FragmentHomeViewModel(
 
     private fun getCardSetting(list: List<ViewManagerDevice>): List<CardSetting> {
         if (list.size == mCardSettingList.size) {
-            if (list.size == mCardSettingList.size) {
-                for (i in mCardSettingList.indices) {
-                    mCardSettingList[i].lockName = list[i].name
-                    mCardSettingList[i].battery = list[i].battery
-                    mCardSettingList[i].syncAt = list[i].updateAt.toDateString()
-                }
+            for (i in mCardSettingList.indices) {
+                mCardSettingList[i].lockName = list[i].name
+                mCardSettingList[i].battery = list[i].battery
+                mCardSettingList[i].syncAt = list[i].updateAt.toDateString()
             }
         } else {
             mCardSettingList.clear()
             for (i in list) {
                 mCardSettingList.add(
                     CardSetting(
-                        macAddress = i.macAddress,
-                        lockName = i.name,
-                        battery = i.battery,
-                        bleStatus = mBleManagerApi.getBleState(i.macAddress)
+                        macAddress = i.macAddress, lockName = i.name, battery = i.battery, bleStatus = mBleManagerApi.getBleState(i.macAddress)
                     )
                 )
             }
@@ -164,6 +153,7 @@ class FragmentHomeViewModel(
                     deviceName = i.name,
                     serialNumber = i.serialNumber,
                     macAddress = i.macAddress,
+                    deviceUserId =i.deviceUserID.first,
                     isSelected = i.macAddress == deviceViewManagerDevice.macAddress,
                     connect = mBleManagerApi.isConnected(i.macAddress)
                 )
@@ -178,7 +168,7 @@ class FragmentHomeViewModel(
     }
 
     fun setDefaultDevice(lifecycleOwner: LifecycleOwner, pager: ViewPager2) {
-        mBleManagerApi.mDefaultDeviceInfoLiveData.observe(lifecycleOwner) { pair ->
+        mBleManagerApi.mDefaultDeviceInfoLiveData.observe(lifecycleOwner) {
             if (pager.isVisible) {
                 exchangeView(pager)
             } else {
@@ -203,8 +193,7 @@ class FragmentHomeViewModel(
             } catch (e: Exception) {
                 Logger.e(TAG, "Default Info =${e.message}")
             }
-            if (delay)
-                delay(500)
+            if (delay) delay(500)
             withContext(Dispatchers.Main) {
                 if (newPosition != -1 && pager.currentItem != newPosition) {
                     pager.setCurrentItem(newPosition, true)

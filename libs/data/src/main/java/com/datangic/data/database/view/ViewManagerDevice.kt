@@ -5,6 +5,8 @@ import com.datangic.data.database.table.DeviceEnum
 
 @DatabaseView(
     "SELECT " +
+            "Device.uid," +
+            "Device.syn_network AS synNetwork," +
             "Device.name," +
             "Device.type," +
             "Device.serial_number AS serialNumber," +
@@ -15,11 +17,14 @@ import com.datangic.data.database.table.DeviceEnum
             "Device.seized_fingerprint AS seizedFingerprint," +
             "Device.permission_switch AS permissionSwitch," +
             "Device.secret_code AS secretCode," +
+            "Device.dirty AS deviceDirty," +
             "DeviceUser.device_user_id AS deviceUserID," +
             "DeviceUser.administrator," +
             "DeviceUser.auth_code AS authCode," +
             "DeviceUser.user_status AS userStatus," +
+            "DeviceUser.dirty AS deviceUserDirty," +
             "DeviceStatus.battery," +
+            "DeviceStatus.create_at AS createAt," +
             "DeviceStatus.update_at AS updateAt " +
             " FROM Device " +
             " INNER JOIN DeviceUser ON Device.serial_number = DeviceUser.serial_number " +
@@ -30,6 +35,8 @@ import com.datangic.data.database.table.DeviceEnum
             " AND Device.device_user_id = DeviceStatus.device_user_id"
 )
 data class ViewManagerDevice(
+    val uid: Int,
+    val synNetwork: Boolean,
     val name: String,
     val type: DeviceEnum.LockType,
     val serialNumber: String,
@@ -45,5 +52,8 @@ data class ViewManagerDevice(
     val authCode: String,
     val userStatus: DeviceEnum.DeviceUserStatus,
     val battery: Int,
-    val updateAt: Long
+    val createAt: Long,
+    val updateAt: Long,
+    val deviceDirty: Boolean,
+    val deviceUserDirty: Boolean
 )

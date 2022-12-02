@@ -442,5 +442,6 @@
     <string name="fingerprint_is_exists">一个用户最多设置五个指纹信息.</string>
     <string name="is_once">单次</string>
     <string name="is_more">多次</string>
+    <string name="system_logout">退出登录</string>
 
 </resources>

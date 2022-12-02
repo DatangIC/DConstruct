@@ -3,6 +3,8 @@ package com.datangic.smartlock.viewModels
 import android.app.Application
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LiveData
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
 import androidx.viewpager2.widget.ViewPager2
 import com.datangic.common.utils.Logger
 import com.datangic.smartlock.R
@@ -18,6 +20,7 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
 class FragmentRecordViewModel(
@@ -32,6 +35,10 @@ class FragmentRecordViewModel(
     val adapter = RecordPagerAdapter(mTabList)
     private val mDeviceUserLiveData = mBleManagerApi.getDeviceUserLiveData(userID)
     var mDeviceUser: DeviceUser? = null
+
+//    val mLogPagingFlow = Pager(PagingConfig(pageSize = 15)){
+//
+//    }
 
 
     val onTabSelectedListener = object : TabLayout.OnTabSelectedListener {
@@ -97,7 +104,7 @@ class FragmentRecordViewModel(
                     userID,
                     item.logId
                 ).execute()
-                GlobalScope.launch(Dispatchers.IO) {
+                MainScope().launch(Dispatchers.IO) {
                     mBleManagerApi.deleteDeviceLog(item.deviceUserID.first, item.logId, item.logState)
                 }
             }

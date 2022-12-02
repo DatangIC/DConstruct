@@ -119,11 +119,11 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                     ) {
                         mNewRegisterDevice[it] = TempMessage(msg04 = msg04)
                     } else {
-                        mDatabase.appDatabase.deviceDao().getDeviceWithStatusByMac(mCmdInfo.sn, it.address)?.let { deviceAndStatus ->
+                        mDatabase.mDatabase.deviceDao().getDeviceWithStatusByMac(mCmdInfo.sn, it.address)?.let { deviceAndStatus ->
                             mDeviceManagers[it] = deviceAndStatus
                             syncDeviceAndStatusWithMessage04(deviceAndStatus, msg04)
-                            mDatabase.appDatabase.deviceDao().update(deviceAndStatus.device)
-                            mDatabase.appDatabase.deviceStatusDao().update(deviceAndStatus.deviceStatus)
+                            mDatabase.mDatabase.deviceDao().update(deviceAndStatus.device)
+                            mDatabase.mDatabase.deviceStatusDao().update(deviceAndStatus.deviceStatus)
                             synChildUser(
                                 deviceAndStatus.device.serialNumber,
                                 deviceAndStatus.device.macAddress,
@@ -160,11 +160,11 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                     mNewRegisterDevice[bluetooth]?.let { tempMessage ->
                         tempMessage.msg12 = msg12
                     }
-                    mDatabase.appDatabase.deviceUserDao().getDeviceUser(mCmdInfo.sn, bluetooth.address, Pair(msg12.userID, mCmdInfo.sn))
+                    mDatabase.mDatabase.deviceUserDao().getDeviceUser(mCmdInfo.sn, bluetooth.address, Pair(msg12.userID, mCmdInfo.sn))
                         ?.let { deviceUser ->
                             deviceUser.authCode = msg12.authCode
                             deviceUser.activeAt = msg12.activeTime
-                            mDatabase.appDatabase.deviceUserDao().update(deviceUser)
+                            mDatabase.mDatabase.deviceUserDao().update(deviceUser)
                         } ?: let {
                         if (msg12.userID != mCmdInfo.userID) {
                             val newUser = DeviceUser(
@@ -176,7 +176,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                                 authCode = msg12.authCode,
                                 deviceUsername = mDatabase.getNewUserName(msg12.userID)
                             )
-                            mDatabase.appDatabase.deviceUserDao().insert(newUser)
+                            mDatabase.mDatabase.deviceUserDao().insert(newUser)
                         }
                     }
                 }
@@ -194,11 +194,11 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                     mNewRegisterDevice[bluetooth]?.let { tempMessage ->
                         tempMessage.msg14 = msg14
                     }
-                    mDatabase.appDatabase.deviceUserDao().getDeviceUser(bluetooth.address, mCmdInfo.sn, Pair(msg14.userID, mCmdInfo.sn))
+                    mDatabase.mDatabase.deviceUserDao().getDeviceUser(bluetooth.address, mCmdInfo.sn, Pair(msg14.userID, mCmdInfo.sn))
                         ?.let { deviceUser ->
                             deviceUser.authCode = msg14.authCode
                             deviceUser.activeAt = msg14.activeTime
-                            mDatabase.appDatabase.deviceUserDao().update(deviceUser)
+                            mDatabase.mDatabase.deviceUserDao().update(deviceUser)
                         } ?: let {
                         if (msg14.userID != mCmdInfo.userID) {
                             val newUser = DeviceUser(
@@ -210,7 +210,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                                 authCode = msg14.authCode,
                                 deviceUsername = mDatabase.getNewUserName(msg14.userID)
                             )
-                            mDatabase.appDatabase.deviceUserDao().insert(newUser)
+                            mDatabase.mDatabase.deviceUserDao().insert(newUser)
                         }
                     }
                 }
@@ -234,14 +234,14 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                             MSG15_TypeSeizedFingerprint -> DeviceEnum.KeyType.SEIZED_FINGERPRINT
                             else -> return@updateDevice
                         }
-                        mDatabase.appDatabase.deviceUserDao().getDeviceUser(mCmdInfo.sn, mCmdInfo.macAddress, Pair(it.userID, mCmdInfo.sn))
+                        mDatabase.mDatabase.deviceUserDao().getDeviceUser(mCmdInfo.sn, mCmdInfo.macAddress, Pair(it.userID, mCmdInfo.sn))
                             ?.let { user ->
                                 if (user.userStatus in listOf(DeviceEnum.DeviceUserStatus.INACTIVATED, DeviceEnum.DeviceUserStatus.UNKNOWN)) {
                                     user.userStatus = DeviceEnum.DeviceUserStatus.ACTIVATED
-                                    mDatabase.appDatabase.deviceUserDao().update(user)
+                                    mDatabase.mDatabase.deviceUserDao().update(user)
                                 }
                             }
-                        mDatabase.appDatabase.deviceKeyDao().insertOrUpdate(
+                        mDatabase.mDatabase.deviceKeyDao().insertOrUpdate(
                             item = DeviceKey(
                                 serialNumber = mCmdInfo.sn,
                                 macAddress = mCmdInfo.macAddress,
@@ -271,7 +271,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
             if (data.second.tag == MSG.M1C) {
                 val msg1C = data.second as MSG1C
                 val mCmdInfo = DTS1586.getCmdInfo(data.first)
-                val device = mDatabase.appDatabase.deviceDao().getDeviceByMac(mCmdInfo.macAddress)
+                val device = mDatabase.mDatabase.deviceDao().getDeviceByMac(mCmdInfo.macAddress)
                 device?.let {
                     it.updateAt = (System.currentTimeMillis() / 1000)
                     if (msg1C.type == MSG1C.Type.Lock) {
@@ -280,7 +280,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                     } else {
                         it.fingerprintSoftwareVersion = msg1C.swVer
                     }
-                    mDatabase.appDatabase.deviceDao().update(it)
+                    mDatabase.mDatabase.deviceDao().update(it)
                 }
             }
         }
@@ -291,9 +291,9 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
             if (data.second.tag == MSG.M1E) {
                 val msg1E = data.second as MSG1E
                 val mCmdInfo = DTS1586.getCmdInfo(data.first)
-                val deviceStatus = if (mCmdInfo.macAddress.length > 10 && mCmdInfo.sn.length > 10) mDatabase.appDatabase.deviceStatusDao()
+                val deviceStatus = if (mCmdInfo.macAddress.length > 10 && mCmdInfo.sn.length > 10) mDatabase.mDatabase.deviceStatusDao()
                     .getDeviceStatus(mCmdInfo.sn, mCmdInfo.macAddress) else null
-                val deviceUser = mDatabase.appDatabase.deviceUserDao()
+                val deviceUser = mDatabase.mDatabase.deviceUserDao()
                     .getDeviceUser(mCmdInfo.sn, mCmdInfo.macAddress, Pair(mCmdInfo.operateUserID, mCmdInfo.sn))
                 when (msg1E.errCode) {
                     MSG1E_SuspendedUserDone -> {
@@ -301,7 +301,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                     }
                     MSG1E_SuspendedUserFailed -> {
                     }
-                    MSG1E_DeleteUserDone -> deviceUser?.let { mDatabase.appDatabase.deviceUserDao().delete(it) }
+                    MSG1E_DeleteUserDone -> deviceUser?.let { mDatabase.mDatabase.deviceUserDao().delete(it) }
                     MSG1E_EnableUserDone -> {
                         deviceUser?.userStatus = DeviceEnum.DeviceUserStatus.ACTIVATED
                     }
@@ -319,7 +319,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                                     MSG15_TypeSeizedFingerprint -> DeviceEnum.KeyType.SEIZED_FINGERPRINT
                                     else -> return@updateDevice
                                 }
-                                mDatabase.appDatabase.deviceKeyDao().insertOrUpdate(
+                                mDatabase.mDatabase.deviceKeyDao().insertOrUpdate(
                                     item = DeviceKey(
                                         serialNumber = mCmdInfo.sn,
                                         macAddress = mCmdInfo.macAddress,
@@ -348,14 +348,14 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                                     else -> return@updateDevice
                                 }
                                 GlobalScope.launch {
-                                    mDatabase.appDatabase.deviceKeyDao().getDeviceKey(
+                                    mDatabase.mDatabase.deviceKeyDao().getDeviceKey(
                                         keyType = keyType,
                                         serialNumber = mCmdInfo.sn,
                                         macAddress = mCmdInfo.macAddress,
                                         deviceUserId = Pair(it.userID, mCmdInfo.sn),
                                         keyId = it.lockID.toInt()
                                     )?.let { deleteKey ->
-                                        mDatabase.appDatabase.deviceKeyDao().delete(deleteKey)
+                                        mDatabase.mDatabase.deviceKeyDao().delete(deleteKey)
                                     }
                                 }
                             }
@@ -390,9 +390,9 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                         }
                     }
                     MSG1E_RestoreFactorySettingsDone -> {
-                        val device = mDatabase.appDatabase.deviceDao().getDeviceByMac(mCmdInfo.macAddress)
+                        val device = mDatabase.mDatabase.deviceDao().getDeviceByMac(mCmdInfo.macAddress)
                         device?.let {
-                            mDatabase.appDatabase.deviceDao().delete(it)
+                            mDatabase.mDatabase.deviceDao().delete(it)
                         }
                     }
                     MSG1E_SecurityNFCDone -> {
@@ -413,10 +413,10 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                     MSG1E_UnableTempPwdDone -> deviceStatus?.enableTemporaryPassword = false
                 }
                 deviceStatus?.let {
-                    mDatabase.appDatabase.deviceStatusDao().update(it)
+                    mDatabase.mDatabase.deviceStatusDao().update(it)
                 }
                 deviceUser?.let {
-                    mDatabase.appDatabase.deviceUserDao().update(it)
+                    mDatabase.mDatabase.deviceUserDao().update(it)
                 }
             }
         }
@@ -448,13 +448,13 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                         }
                         mNewRegisterDevice.remove(it)
                         mRegisterManagers.remove(it.address)
-                        mDatabase.appDatabase.deviceDao().getDeviceWithStatusByMac(mCmdInfo.sn, it.address)?.let { deviceAndStatus ->
+                        mDatabase.mDatabase.deviceDao().getDeviceWithStatusByMac(mCmdInfo.sn, it.address)?.let { deviceAndStatus ->
                             mDeviceManagers[it] = deviceAndStatus
                         }
                     } else {
                         mDeviceManagers[it]?.let { viewDevice ->
                             syncDeviceKeyWithMessage26(msg26, mCmdInfo, viewDevice.device.macAddress, viewDevice.device.face)
-                            mDatabase.appDatabase.deviceUserDao().getDeviceUser(
+                            mDatabase.mDatabase.deviceUserDao().getDeviceUser(
                                 viewDevice.device.serialNumber,
                                 viewDevice.device.macAddress,
                                 if (mCmdInfo.operateUserID != 0) Pair(mCmdInfo.operateUserID, mCmdInfo.sn) else Pair(mCmdInfo.userID, mCmdInfo.sn)
@@ -470,7 +470,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                                 )
                                 user.enablePeriodStart = msg26.tsBegin.toList()
                                 user.enablePeriodEnd = msg26.tsEnd.toList()
-                                mDatabase.appDatabase.deviceUserDao().update(user)
+                                mDatabase.mDatabase.deviceUserDao().update(user)
                             }
                         }
                     }
@@ -484,9 +484,9 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
             if (data.second is MSG2E) {
                 val msg2E = data.second as MSG2E
                 val mCmdInfo = DTS1586.getCmdInfo(data.first)
-                val deviceStatus = if (mCmdInfo.macAddress.length > 10 && mCmdInfo.sn.length > 10) mDatabase.appDatabase.deviceStatusDao()
+                val deviceStatus = if (mCmdInfo.macAddress.length > 10 && mCmdInfo.sn.length > 10) mDatabase.mDatabase.deviceStatusDao()
                     .getDeviceStatus(mCmdInfo.sn, mCmdInfo.macAddress) else null
-                val deviceUser = mDatabase.appDatabase.deviceUserDao()
+                val deviceUser = mDatabase.mDatabase.deviceUserDao()
                     .getDeviceUser(mCmdInfo.sn, mCmdInfo.macAddress, Pair(mCmdInfo.operateUserID, mCmdInfo.sn))
                 when (msg2E.errCode) {
                     MSG2E_PowerSavingDone -> {
@@ -515,10 +515,10 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                     }
                 }
                 if (deviceStatus != null) {
-                    mDatabase.appDatabase.deviceStatusDao().update(deviceStatus)
+                    mDatabase.mDatabase.deviceStatusDao().update(deviceStatus)
                 }
                 if (deviceUser != null) {
-                    mDatabase.appDatabase.deviceUserDao().update(deviceUser)
+                    mDatabase.mDatabase.deviceUserDao().update(deviceUser)
                 }
             }
         }
@@ -535,11 +535,11 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                 val mCmdInfo = DTS1586.getCmdInfo(data.first)
                 when (msg32.state) {
                     DeviceEnum.setLogState(DeviceEnum.LogState.BATTERY) -> {
-                        val deviceStatus = if (mCmdInfo.macAddress.length > 10 && mCmdInfo.sn.length > 10) mDatabase.appDatabase.deviceStatusDao()
+                        val deviceStatus = if (mCmdInfo.macAddress.length > 10 && mCmdInfo.sn.length > 10) mDatabase.mDatabase.deviceStatusDao()
                             .getDeviceStatus(mCmdInfo.sn, mCmdInfo.macAddress) else null
                         deviceStatus?.let { status ->
                             status.battery = msg32.lockID
-                            mDatabase.appDatabase.deviceStatusDao().update(status)
+                            mDatabase.mDatabase.deviceStatusDao().update(status)
                         }
                     }
                     else -> {
@@ -554,7 +554,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                             logLockId = msg32.lockID,
                             logCreateAt = msg32.time.toLong()
                         )
-                        mDatabase.appDatabase.deviceLogDao().insertOrUpdate(log)
+                        mDatabase.mDatabase.deviceLogDao().insertOrUpdate(log)
                     }
                 }
             }
@@ -580,7 +580,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                     "44Version scpu=${msg44.sCpuVer} \n ncpu=${msg44.nCpuVer} model=${msg44.modelVer} main=${msg44.majorVer} \n ui=${msg44.uiVer}"
                 )
                 val mCmdInfo = DTS1586.getCmdInfo(data.first)
-                val device = mDatabase.appDatabase.deviceDao().getDeviceByMac(mCmdInfo.macAddress)
+                val device = mDatabase.mDatabase.deviceDao().getDeviceByMac(mCmdInfo.macAddress)
                 device?.let {
                     it.updateAt = (System.currentTimeMillis() / 1000)
                     val versionMap: MutableMap<DeviceEnum.FaceVersion, String> = EnumMap(DeviceEnum.FaceVersion::class.java)
@@ -590,7 +590,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                     versionMap[DeviceEnum.FaceVersion.MODEL] = msg44.modelVer
                     versionMap[DeviceEnum.FaceVersion.UI] = msg44.uiVer
                     it.faceSoftwareVersion = versionMap
-                    mDatabase.appDatabase.deviceDao().update(it)
+                    mDatabase.mDatabase.deviceDao().update(it)
                 }
             }
         }
@@ -601,7 +601,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
             if (data.second is MSG4A) {
                 val msg4A = data.second as MSG4A
                 val mCmdInfo = DTS1586.getCmdInfo(data.first)
-                val deviceStatus = if (mCmdInfo.macAddress.length > 10 && mCmdInfo.sn.length > 10) mDatabase.appDatabase.deviceStatusDao()
+                val deviceStatus = if (mCmdInfo.macAddress.length > 10 && mCmdInfo.sn.length > 10) mDatabase.mDatabase.deviceStatusDao()
                     .getDeviceStatus(mCmdInfo.sn, mCmdInfo.macAddress) else null
                 when (msg4A.type) {
                     MSG4A_TYPE_Volume -> deviceStatus?.volume = msg4A.value
@@ -613,7 +613,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                     MSG4A_TYPE_WifiPower -> deviceStatus?.enableWifi = msg4A.value == MSG4A_VALUE_WifiOn
                 }
                 if (deviceStatus != null) {
-                    mDatabase.appDatabase.deviceStatusDao().update(deviceStatus)
+                    mDatabase.mDatabase.deviceStatusDao().update(deviceStatus)
                 }
             }
         }
@@ -629,7 +629,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
             if (data.second is MSG4E) {
                 val msg4E = data.second as MSG4E
                 val mCmdInfo = DTS1586.getCmdInfo(data.first)
-                val deviceStatus = if (mCmdInfo.macAddress.length > 10 && mCmdInfo.sn.length > 10) mDatabase.appDatabase.deviceStatusDao()
+                val deviceStatus = if (mCmdInfo.macAddress.length > 10 && mCmdInfo.sn.length > 10) mDatabase.mDatabase.deviceStatusDao()
                     .getDeviceStatus(mCmdInfo.sn, mCmdInfo.macAddress) else null
                 when (msg4E.errCode) {
                     MSG4E_SetVolumeDone -> {
@@ -652,7 +652,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                         ?: true)
                 }
                 if (deviceStatus != null) {
-                    mDatabase.appDatabase.deviceStatusDao().update(deviceStatus)
+                    mDatabase.mDatabase.deviceStatusDao().update(deviceStatus)
                 }
             }
         }
@@ -662,12 +662,12 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
         GlobalScope.launch(Dispatchers.IO) {
             if (data.second is MSG52) {
                 val msg52 = data.second as MSG52
-                mDatabase.appDatabase.deviceDao().getDeviceByMac(
+                mDatabase.mDatabase.deviceDao().getDeviceByMac(
                     data.third.address
                         ?: ""
                 )?.let { device ->
                     device.wifiSoftwareVersion = msg52.version
-                    mDatabase.appDatabase.deviceDao().update(device)
+                    mDatabase.mDatabase.deviceDao().update(device)
                 }
             }
         }
@@ -691,13 +691,13 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
             if (data.second is MSG5F) {
                 val msg5F = data.second as MSG5F
                 val mCmdInfo = DTS1586.getCmdInfo(data.first)
-                val device = mDatabase.appDatabase.deviceDao().getDeviceByMac(mCmdInfo.macAddress)
+                val device = mDatabase.mDatabase.deviceDao().getDeviceByMac(mCmdInfo.macAddress)
                 device?.let {
                     it.updateAt = (System.currentTimeMillis() / 1000)
                     if (msg5F.type == MSG5F_VersionBackPanel) {
                         it.backPanelSoftwareVersion = msg5F.swVer
                     }
-                    mDatabase.appDatabase.deviceDao().update(it)
+                    mDatabase.mDatabase.deviceDao().update(it)
                 }
             }
         }
@@ -705,7 +705,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
 
     private suspend fun createNewDeviceAndUser(bluetoothDevice: BluetoothDevice, msg04: MSG04, msg26: MSG26, cmdInfo: CmdInfo) {
         val newDevice = Device(
-            uid = 0,
+            uid = mDatabase.getLogUser()?.userId?:0,
             name = mDatabase.getNewDeviceName(),
             serialNumber = cmdInfo.sn,
             macAddress = bluetoothDevice.address,
@@ -724,8 +724,8 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
             updateAt = (System.currentTimeMillis() / 1000)
         )
         syncDeviceStatusWithMessage04(newDeviceStatus, msg04)
-        mDatabase.appDatabase.deviceDao().insert(newDevice)
-        mDatabase.appDatabase.deviceStatusDao().insert(newDeviceStatus)
+        mDatabase.mDatabase.deviceDao().insert(newDevice)
+        mDatabase.mDatabase.deviceStatusDao().insert(newDeviceStatus)
         val newDeviceUser = DeviceUser(
             deviceUsername = mDatabase.getNewUserName(if (cmdInfo.operateUserID == 0) cmdInfo.userID else cmdInfo.operateUserID, msg26.userType),
             serialNumber = cmdInfo.sn,
@@ -743,7 +743,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
             updateAt = (System.currentTimeMillis() / 1000)
         )
         Logger.e(TAG, "Insert DeviceUser")
-        mDatabase.appDatabase.deviceUserDao().insert(newDeviceUser)
+        mDatabase.mDatabase.deviceUserDao().insert(newDeviceUser)
         syncDeviceKeyWithMessage26(msg26, cmdInfo, bluetoothDevice.address, (msg04.enableStatus1 and 2.toByte()) == 2.toByte())
         synChildUser(cmdInfo.sn, bluetoothDevice.address, Pair(cmdInfo.userID, cmdInfo.sn), msg04.allUserWithStatus)
     }
@@ -818,7 +818,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
         if (msg26.key != 0.toByte()) {
             insertDeviceKey(temp, DeviceEnum.KeyType.PASSWORD, msg26.key.toInt())
         } else {
-            mDatabase.appDatabase.deviceKeyDao().deleteByType(
+            mDatabase.mDatabase.deviceKeyDao().deleteByType(
                 temp.serialNumber,
                 temp.macAddress,
                 temp.deviceUserId,
@@ -829,7 +829,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
         if (msg26.nfc != 0.toByte()) {
             insertDeviceKey(temp, DeviceEnum.KeyType.NFC, msg26.nfc.toInt())
         } else {
-            mDatabase.appDatabase.deviceKeyDao().deleteByType(
+            mDatabase.mDatabase.deviceKeyDao().deleteByType(
                 temp.serialNumber,
                 temp.macAddress,
                 temp.deviceUserId,
@@ -840,7 +840,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
         if (msg26.face != 0.toByte()) {
             insertDeviceKey(temp, DeviceEnum.KeyType.FACE, msg26.face.toInt())
         } else {
-            mDatabase.appDatabase.deviceKeyDao().deleteByType(
+            mDatabase.mDatabase.deviceKeyDao().deleteByType(
                 temp.serialNumber,
                 temp.macAddress,
                 temp.deviceUserId,
@@ -848,14 +848,14 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
             )
         }
 
-        mDatabase.appDatabase.deviceKeyDao().getDeviceFPKeys(
+        mDatabase.mDatabase.deviceKeyDao().getDeviceFPKeys(
             temp.serialNumber,
             temp.macAddress,
             temp.deviceUserId
         )?.let { keyList ->
             for (key in keyList) {
                 if (!msg26.fp.contains(key.keyLockId.toByte())) {
-                    mDatabase.appDatabase.deviceKeyDao().delete(key)
+                    mDatabase.mDatabase.deviceKeyDao().delete(key)
                 }
             }
         }
@@ -867,23 +867,23 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
     }
 
     private fun synChildUser(serialNumber: String, macAddress: String, parentId: Pair<Int, String>, userMap: MutableMap<Int, Int>) {
-        mDatabase.appDatabase.deviceUserDao().getDeviceUser(
+        mDatabase.mDatabase.deviceUserDao().getDeviceUser(
             serialNumber = serialNumber,
             macAddress = macAddress,
             userID = parentId
         )?.let { deviceUser ->
             deviceUser.allUserId = userMap
             deviceUser.userStatus = DeviceEnum.getDeviceUserStatus(userMap[parentId.first] ?: 0)
-            mDatabase.appDatabase.deviceUserDao().update(deviceUser)
+            mDatabase.mDatabase.deviceUserDao().update(deviceUser)
         }
-        mDatabase.appDatabase.deviceUserDao().getDeviceUserWithChild(
+        mDatabase.mDatabase.deviceUserDao().getDeviceUserWithChild(
             serialNumber = serialNumber,
             macAddress = macAddress,
             userID = parentId,
         )?.let {
             it.childUsers.forEach { child ->
                 if (!userMap.contains(child.deviceUserId.first)) {
-                    mDatabase.appDatabase.deviceUserDao().delete(child)
+                    mDatabase.mDatabase.deviceUserDao().delete(child)
                 }
             }
             userMap.forEach { entry ->
@@ -896,7 +896,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
                         userStatus = DeviceEnum.getDeviceUserStatus(entry.value),
                         deviceUsername = mDatabase.getNewUserName(entry.key)
                     )
-                    mDatabase.appDatabase.deviceUserDao().updateOrInsertUser(newUser)
+                    mDatabase.mDatabase.deviceUserDao().updateOrInsertUser(newUser)
                 }
             }
         }
@@ -913,7 +913,7 @@ abstract class ReceivedMessageHandle(val mDatabase: DatabaseRepository, val mSen
             keyType = type
             keyLockId = id
         }
-        mDatabase.appDatabase.deviceKeyDao().insertOrUpdate(key, mDatabase.getDeviceKeyName(type, id))
+        mDatabase.mDatabase.deviceKeyDao().insertOrUpdate(key, mDatabase.getDeviceKeyName(type, id))
         with(baseKey) {
             keyType = DeviceEnum.KeyType.UNKNOWN
             keyLockId = 0

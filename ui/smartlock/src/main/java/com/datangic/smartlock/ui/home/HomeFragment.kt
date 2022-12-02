@@ -9,23 +9,22 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import com.datangic.common.utils.Logger
+import com.datangic.data.database.view.ViewManagerDevice
 import com.datangic.easypermissions.EasyPermissions
 import com.datangic.smartlock.MainActivity
-import com.datangic.smartlock.R
 import com.datangic.smartlock.adapter.ManagerPagerAdapter
 import com.datangic.smartlock.ble.ReceivedMessageHandle
 import com.datangic.smartlock.components.CardSetting
 import com.datangic.smartlock.components.DeviceItem
-import com.datangic.data.database.view.ViewManagerDevice
 import com.datangic.smartlock.databinding.FragmentHomeBinding
 import com.datangic.smartlock.parcelable.IntentExtra
 import com.datangic.smartlock.ui.manager.ManagerActivity
 import com.datangic.smartlock.ui.setting.SettingActivity
 import com.datangic.smartlock.utils.INTENT_EXTRA
-import com.datangic.common.utils.Logger
+import com.datangic.smartlock.utils.RequestPermissions
 import com.datangic.smartlock.viewModels.FragmentHomeViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.sharedViewModel
 
@@ -89,11 +88,13 @@ class HomeFragment : Fragment() {
             if (mViewModel.mBleManagerApi.isConnected(macAddress = deviceViewManagerDevice.macAddress)) {
                 mViewModel.mBleManagerApi.disconnect(deviceViewManagerDevice.macAddress)
             } else {
-                mViewModel.mBleManagerApi.connectWithRegister(
-                    deviceViewManagerDevice.macAddress,
-                    this@HomeFragment,
-                    ReceivedMessageHandle.RegisterType.NORMAL_REGISTER
-                )
+                RequestPermissions.requestPermissions(this@HomeFragment) {
+                    mViewModel.mBleManagerApi.connectWithRegister(
+                        deviceViewManagerDevice.macAddress,
+                        this@HomeFragment,
+                        ReceivedMessageHandle.RegisterType.NORMAL_REGISTER
+                    )
+                }
             }
         }
 
@@ -114,53 +115,51 @@ class HomeFragment : Fragment() {
         }
     }
 
-    @ObsoleteCoroutinesApi
+
     private fun setObserve() {
         mViewModel.mBleManagerApi.setDevicesViewObserver(this) {
-            if (it.isNotEmpty()) {
-                (requireActivity() as MainActivity).localPasswordRepository.getNewPasswordDialog(
-                    requireActivity(),
-                    R.string.password
-                )
-                Logger.e(TAG, "Change size =${it.size} mDefault=${mViewModel.mBleManagerApi.mDefaultDeviceInfo}")
-                mViewModel.managerDeviceObserverHandle(mBinding.managerPager, this, it, mManagerPagerClick)
-                lifecycleScope.launch(Dispatchers.Main) {
-                    if (mBinding.scanCardView.isVisible) {
-                        mBinding.banner.layoutParams.height = (mViewModel.getHeight(requireActivity()) * .37).toInt()
-                        mBinding.scanCardView.visibility = View.GONE
-                        mBinding.managerPager.visibility = View.VISIBLE
+            it?.let {
+                if (it.isNotEmpty()) {
+                    Logger.e(TAG, "Change size =${it.size} mDefault=${mViewModel.mBleManagerApi.mDefaultDeviceInfo}")
+                    mViewModel.managerDeviceObserverHandle(mBinding.managerPager, this, it, mManagerPagerClick)
+                    lifecycleScope.launch(Dispatchers.Main) {
+                        if (mBinding.scanCardView.isVisible) {
+                            mBinding.banner.layoutParams.height = (mViewModel.getHeight(requireActivity()) * .37).toInt()
+                            mBinding.scanCardView.visibility = View.GONE
+                            mBinding.managerPager.visibility = View.VISIBLE
+                        }
                     }
-                }
-                if (activity is MainActivity) {
+                    if (activity is MainActivity) {
+                        (activity as MainActivity).apply {
+                            mFabListener = object : MainActivity.FabListener {
+                                override fun hasDevice(): Boolean {
+                                    return true
+                                }
+
+                                override fun onClick() {
+                                    val position = this@HomeFragment.mBinding.managerPager.currentItem
+                                    mViewModel.fabOnClick(it[position].macAddress, it[position].imei)
+                                }
+                            }
+                            showFab()
+                        }
+                    } else return@let
+                } else {
+                    if (mBinding.scanCardView.isGone) {
+                        mBinding.banner.layoutParams.height = (mViewModel.getHeight(requireActivity()) * .55).toInt()
+                        mBinding.scanCardView.visibility = View.VISIBLE
+                        mBinding.managerPager.visibility = View.GONE
+                    }
                     (activity as MainActivity).apply {
                         mFabListener = object : MainActivity.FabListener {
                             override fun hasDevice(): Boolean {
-                                return true
+                                return false
                             }
 
-                            override fun onClick() {
-                                val position = this@HomeFragment.mBinding.managerPager.currentItem
-                                mViewModel.fabOnClick(it[position].macAddress, it[position].imei)
-                            }
+                            override fun onClick() {}
                         }
-                        showFab()
+                        mBinding.homeFab.hide()
                     }
-                }
-            } else {
-                if (mBinding.scanCardView.isGone) {
-                    mBinding.banner.layoutParams.height = (mViewModel.getHeight(requireActivity()) * .55).toInt()
-                    mBinding.scanCardView.visibility = View.VISIBLE
-                    mBinding.managerPager.visibility = View.GONE
-                }
-                (activity as MainActivity).apply {
-                    mFabListener = object : MainActivity.FabListener {
-                        override fun hasDevice(): Boolean {
-                            return false
-                        }
-
-                        override fun onClick() {}
-                    }
-                    mBinding.homeFab.hide()
                 }
             }
         }
@@ -183,8 +182,10 @@ class HomeFragment : Fragment() {
 //        mViewModel.setDefaultDevice(mBinding.managerPager)
 //    }
 
+    @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        Logger.e(TAG, "onRequestPermissions code =${requestCode}")
         EasyPermissions.onRequestPermissionsResult(
             requestCode,
             permissions,

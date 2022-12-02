@@ -18,5 +18,5 @@ interface ReqresIn {
     @GET("/api/user/{id}")
     fun getSingerUser(
         @Path("id") id: Int = 1
-    ): LiveData<ApiResponse<JsonElement>>
+    ): LiveData<ApiResponse<JsonElement, Any?>>
 }

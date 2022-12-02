@@ -21,14 +21,17 @@ class LoginActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (intent.getBooleanExtra("logout", false)) {
+            mViewModel.loginComposeState.clearData()
+        }
         setContent {
             LoginTheme {
                 // A surface container using the 'background' color from the theme
                 Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colors.background) {
-                    if (mViewModel.state.mDialogError.isShow()) {
-                        TipsDialog(mViewModel.state.mDialogError, onDismiss = { mViewModel.state.userPhone.value = "" })
+                    if (mViewModel.loginComposeState.mDialogError.isShow()) {
+                        TipsDialog(mViewModel.loginComposeState.mDialogError, onDismiss = { mViewModel.loginComposeState.userPhone.value = "" })
                     }
-                    if (mViewModel.state.mLoadingDialog.value) {
+                    if (mViewModel.loginComposeState.mLoadingDialog.value) {
                         LoadingDialog(dismissOnBackPress = true) { mViewModel.onDialogDismissed() }
                     }
                     LoginPage(mViewModel)

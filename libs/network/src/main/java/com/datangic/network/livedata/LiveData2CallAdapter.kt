@@ -12,11 +12,11 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 internal class LiveData2CallAdapter<T>(
     private val responseType: Type
-) : CallAdapter<T, LiveData<ApiResponse<T>>> {
+) : CallAdapter<T, LiveData<ApiResponse<T, Any?>>> {
     override fun responseType() = responseType
 
-    override fun adapt(call: Call<T>): LiveData<ApiResponse<T>> {
-        return object : LiveData<ApiResponse<T>>() {
+    override fun adapt(call: Call<T>): LiveData<ApiResponse<T, Any?>> {
+        return object : LiveData<ApiResponse<T, Any?>>() {
             private var started = AtomicBoolean(false)
             override fun onActive() {
                 super.onActive()

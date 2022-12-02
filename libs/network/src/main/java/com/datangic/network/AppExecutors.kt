@@ -12,7 +12,7 @@ import kotlin.coroutines.CoroutineContext
 
 open class AppExecutors(
     private val singleIO: ExecutorService = Executors.newSingleThreadExecutor(),
-    private val fixedIO: ExecutorService = Executors.newFixedThreadPool(5),
+    private val fixedIO: ExecutorService = Executors.newCachedThreadPool(),
     private val mainThread: Executor = MainThreadExecutor(),
 ) {
 

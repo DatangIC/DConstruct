@@ -107,7 +107,7 @@ class SingleFragmentNavigator(context: Context, manager: FragmentManager, contai
                 // remove it from the back stack and put our replacement
                 // on the back stack in its place
                 mManager.popBackStack(
-                        generateBackStackName(mBackStack.size, mBackStack.peekLast()),
+                    mBackStack.peekLast()?.let { generateBackStackName(mBackStack.size, it) },
                         FragmentManager.POP_BACK_STACK_INCLUSIVE
                 )
                 ft.addToBackStack(generateBackStackName(mBackStack.size, destId))
@@ -132,6 +132,12 @@ class SingleFragmentNavigator(context: Context, manager: FragmentManager, contai
         } else {
             null
         }
+    }
+
+    override fun popBackStack(): Boolean {
+//        if(mBackStack.isEmpty()) return false
+//        if(mFragmentM)
+        return false
     }
 
 
